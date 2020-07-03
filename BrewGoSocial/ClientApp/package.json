@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "echo hello && ng serve",
     "build": "ng build",
-    "build:ssr": "ng run BrewGoSocial:server:dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

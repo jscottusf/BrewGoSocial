@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
-  selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  selector: "nav-menu",
+  templateUrl: "./nav-menu.component.html",
+  styleUrls: ["./nav-menu.component.css"],
 })
 export class NavMenuComponent {
+  @Input() user: any;
+  @Output() logout = new EventEmitter();
   isExpanded = false;
 
   collapse() {
