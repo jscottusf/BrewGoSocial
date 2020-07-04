@@ -1,8 +1,10 @@
 ﻿export class User {
-    id: string;
-    username: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    token: string;
+  id: string;
+  email: string;
+  username: string;
+  slug: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  token: string;
 }

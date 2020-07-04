@@ -3,17 +3,6 @@
   cursor: pointer;
 }
 
-#welcome-jumbo {
-  background: url("./assets/images/taps.jpg");
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  color: #f8f8f8;
-  align-items: center;
-  justify-content: center;
-  padding-top: 50px;
-}
-
 #welcome-forms {
   color: black;
 }
