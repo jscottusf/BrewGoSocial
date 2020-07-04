@@ -4,6 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home";
 import { AuthGuard } from "./_helpers";
 import { AlertComponent } from "./_components";
+import { BrewerySearchComponent } from "./brewery-search/brewery-search.component";
 
 const accountModule = () =>
   import("./account/account.module").then((x) => x.AccountModule);
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: "",
     component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "search",
+    component: BrewerySearchComponent,
     canActivate: [AuthGuard],
   },
   {

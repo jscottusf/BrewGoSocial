@@ -19,3 +19,50 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 5px;
 }
+
+.hero-user {
+  height: 350px;
+  background-image: url("./assets/images/taps.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-position-y: top;
+}
+
+.hero-user::after {
+  content: "";
+  display: block;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+}
+
+.hero-user * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-user h1,
+.hero-user h2,
+.hero-user h3,
+.hero-user p {
+  color: white;
+}
+
+.hero-user h1 {
+  font-size: 60px;
+  padding-top: 20px;
+  margin-top: 0;
+}
+
+.hero-user h3 {
+  font-size: 40px;
+  font-weight: bolder;
+  position: absolute;
+  top: 4px;
+  left: 200px;
+}
