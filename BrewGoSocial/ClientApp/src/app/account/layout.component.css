@@ -1,6 +1,6 @@
 #welcome-jumbo {
   background: url("../../assets/images/taps.jpg");
-  height: 100vh;
+  height: 100%;
   background-size: cover;
   background-position: center;
   color: #f8f8f8;
@@ -11,6 +11,7 @@
 
 .hero {
   height: 100vh;
+  min-height: 750px;
   background-image: url("../../assets/images/taps.jpg");
   background-size: cover;
   background-position: center;

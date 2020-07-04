@@ -19,7 +19,7 @@ import { AlertComponent } from "./_components";
     HttpClientModule,
     AppRoutingModule,
   ],
-  declarations: [AppComponent, NavMenuComponent, AlertComponent, HomeComponent],
+  declarations: [AppComponent, NavMenuComponent, HomeComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
