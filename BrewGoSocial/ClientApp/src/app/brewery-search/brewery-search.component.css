@@ -51,3 +51,113 @@
 h4 i:hover {
   cursor: pointer;
 }
+
+/* Brewery Card Grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.books {
+  display: grid;
+  grid-gap: 5px;
+}
+
+.card {
+  min-height: 175px;
+  cursor: pointer;
+}
+
+/* Modal card styling */
+
+#modal-card {
+  border-radius: 15px;
+}
+
+.modal-dialog {
+  max-width: 750px;
+}
+/* .modal-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  min-height: 100px;
+  justify-content: center;
+  background-color: rgb(16, 2, 42);
+} */
+
+/* #brewery {
+  background-color: rgb(16, 2, 42);
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+} */
+
+#brewery,
+#nearby-restaurants-h4,
+#map-h4 {
+  font-weight: 700;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+#nearby-restaurants {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+#website a:hover {
+  text-decoration: none;
+}
+
+#address,
+#phone,
+#website,
+#map-h4,
+#nearby-restaurants-h4,
+#nearby-restaurants {
+  padding: 0px 5px;
+  margin: 0px 5px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+}
+
+.mapboxgl-canvas {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 10px;
+}
+
+.food-div {
+  margin-top: 20px;
+}
+
+.food-div img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.food-div a:hover {
+  text-decoration: none;
+}
+
+.modal-footer {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  min-height: 50px;
+  justify-content: left;
+  background-color: rgb(225, 222, 230);
+}

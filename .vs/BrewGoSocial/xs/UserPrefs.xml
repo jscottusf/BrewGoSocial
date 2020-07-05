@@ -1,16 +1,20 @@
 ﻿<Properties StartupConfiguration="{0B11D65E-F764-4DB7-8503-3ED5435D9C8F}|Default">
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/Controllers/UsersController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/index.html">
     <Files>
-      <File FileName="BrewGoSocial/Controllers/UsersController.cs" Line="67" Column="20" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="33" Column="110" />
+      <File FileName="BrewGoSocial/Services/UserService.cs" Line="82" Column="10" />
+      <File FileName="BrewGoSocial/ClientApp/src/index.html" Line="14" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BrewGoSocial" expanded="True">
             <Node name="BrewGoSocial" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="UsersController.cs" selected="True" />
+              <Node name="ClientApp" expanded="True">
+                <Node name="src" expanded="True">
+                  <Node name="index.html" selected="True" />
+                </Node>
               </Node>
               <Node name="Services" expanded="True" />
             </Node>

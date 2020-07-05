@@ -9,6 +9,8 @@ import { BreweryAPIService } from "../_services/breweryAPI.service";
 })
 export class BrewerySearchComponent implements OnInit {
   form: FormGroup;
+  breweryData: any = [];
+  city: string = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,8 +27,17 @@ export class BrewerySearchComponent implements OnInit {
     return this.form.controls;
   }
 
+  brewerySearch(query) {
+    this.breweryAPI.searchBreweryAPI(query).subscribe(
+      (data) => {
+        this.breweryData = data;
+        this.city = this.breweryAPI.city;
+      },
+      (err) => console.log(err)
+    );
+  }
+
   onSubmit() {
-    console.log(this.form.value.brewerySearch);
-    this.breweryAPI.searchBreweryAPI(this.form.value.brewerySearch);
+    this.brewerySearch(this.form.value.brewerySearch);
   }
 }
