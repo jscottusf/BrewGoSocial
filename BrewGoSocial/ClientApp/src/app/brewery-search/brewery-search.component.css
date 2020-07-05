@@ -128,18 +128,6 @@ h4 i:hover {
   font-size: 20px;
 }
 
-#map {
-  width: 100%;
-  height: 400px;
-  margin-top: 20px;
-}
-
-.mapboxgl-canvas {
-  width: 100% !important;
-  height: auto !important;
-  border-radius: 10px;
-}
-
 .food-div {
   margin-top: 20px;
 }

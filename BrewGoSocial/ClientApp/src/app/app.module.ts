@@ -12,6 +12,7 @@ import { BrewerySearchComponent } from "./brewery-search/brewery-search.componen
 import { AppRoutingModule } from "./app-routing.module";
 import { JwtInterceptor, ErrorInterceptor } from "./_helpers";
 import { BreweryAPIService } from "./_services/breweryAPI.service";
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { BreweryAPIService } from "./_services/breweryAPI.service";
     NavMenuComponent,
     HomeComponent,
     BrewerySearchComponent,
+    MapComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
