@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{0B11D65E-F764-4DB7-8503-3ED5435D9C8F}|Default">
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/index.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="33" Column="110" />
-      <File FileName="BrewGoSocial/Services/UserService.cs" Line="82" Column="10" />
-      <File FileName="BrewGoSocial/ClientApp/src/index.html" Line="14" Column="1" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="20" Column="16" />
+      <File FileName="BrewGoSocial/Services/UserService.cs" />
+      <File FileName="BrewGoSocial/ClientApp/src/index.html" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +13,12 @@
             <Node name="BrewGoSocial" expanded="True">
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
-                  <Node name="index.html" selected="True" />
+                  <Node name="app" expanded="True">
+                    <Node name="brewery-search" expanded="True">
+                      <Node name="brewery-search.component.html" selected="True" />
+                    </Node>
+                    <Node name="map" expanded="True" />
+                  </Node>
                 </Node>
               </Node>
               <Node name="Services" expanded="True" />

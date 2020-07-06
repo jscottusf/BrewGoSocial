@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BreweryAPIService } from "../_services/breweryAPI.service";
+import { MapService } from "../_services/mapbox.service";
 
 @Component({
   selector: "app-brewery-search",
@@ -10,11 +11,16 @@ import { BreweryAPIService } from "../_services/breweryAPI.service";
 export class BrewerySearchComponent implements OnInit {
   form: FormGroup;
   breweryData: any = [];
+  brewery: any = {};
+  address: string = "";
   city: string = "";
+  state: string = "";
+  zip: string = "";
 
   constructor(
     private formBuilder: FormBuilder,
-    private breweryAPI: BreweryAPIService
+    private breweryAPI: BreweryAPIService,
+    private mapBox: MapService
   ) {}
 
   ngOnInit() {
@@ -35,6 +41,16 @@ export class BrewerySearchComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+
+  handleClick(address, city, state, zip, brewery) {
+    this.brewery = brewery;
+    this.address = address;
+    this.city = city;
+    this.state = state;
+    this.zip = zip;
+    console.log(brewery);
+    this.mapBox.getLocation(address, city, state, zip);
   }
 
   onSubmit() {

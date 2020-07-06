@@ -18,7 +18,6 @@
                 </div>
             </div>
         </form>
-
         <h2 *ngIf="breweryData.length == 0 && city != ''">No breweries found in {{ city }}. Check your spelling.</h2>
         <div *ngIf="breweryData.length" id="brewery-list">
             <h2 *ngIf="breweryData.length == 1">{{ breweryData.length }} brewery found in {{ city }}</h2>
@@ -26,7 +25,7 @@
             <h2 *ngIf="city == ''">You didn't enter anything, but here are {{ breweryData.length }} breweries</h2>
             <div class="grid">
                 <div class="breweries" *ngFor="let brewery of breweryData">
-                    <div class="card" style="width: 100%;" data-toggle="modal" data-target="#info-modal">
+                    <div class="card" style="width: 100%;" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery)">
                         <div class="card-body">
                             <h5 class="card-title">{{ brewery.name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
@@ -82,7 +81,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" id="modal-card">
             <div class="modal-header">
-                <h2 class="modal-title" id="brewery">Hello, Modal</h2>
+                <h2>{{brewery.name}}</h2>
                 <!-- <span aria-hidden="true">&times;</span> -->
             </div>
             <div class="modal-body">
@@ -92,10 +91,10 @@
                 </div>
                 <div id="website-info"></div>
                 <hr>
-                <h4 id="map-h4">Brewery Location</h4>
+                <h4>Brewery Location</h4>
                 <app-map></app-map>
                 <hr>
-                <h4 id="nearby-restaurants-h4">Nearby Restaurants <i class="fas fa-chevron-circle-left left"></i><i class="fas fa-chevron-circle-right right"></i></h4>
+                <h4>Nearby Restaurants <i class="fas fa-chevron-circle-left left"></i><i class="fas fa-chevron-circle-right right"></i></h4>
                 <div id="nearby-restaurants"></div>
             </div>
             <div class="modal-footer">
