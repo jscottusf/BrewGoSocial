@@ -25,7 +25,7 @@
             <h2 *ngIf="city == ''">You didn't enter anything, but here are {{ breweryData.length }} breweries</h2>
             <div class="grid">
                 <div class="breweries" *ngFor="let brewery of breweryData">
-                    <div class="card" style="width: 100%;" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery.street, brewery.city, brewery.state, brewery.postal_code, brewery)">
+                    <div class="card" style="width: 100%;" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery)">
                         <div class="card-body">
                             <h5 class="card-title">{{ brewery.name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
@@ -79,15 +79,15 @@
 <!-- Modal -->
 <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" id="modal-card">
+        <div class="modal-content card" id="modal-card">
             <div class="modal-header">
                 <h2>{{brewery.name}}</h2>
                 <!-- <span aria-hidden="true">&times;</span> -->
             </div>
             <div class="modal-body">
                 <div class="contact-container">
-                    <div id="address-info"></div>
-                    <div id="phone-info"></div>
+                    <div id="address-info"><i class="fas fa-map-marker-alt"></i> {{brewery.street}} <br /> {{brewery.city}}, {{brewery.state}} {{zip}}</div>
+                    <div id="phone-info"><i class="fas fa-phone"></i> ({{areaCode}}) {{prefix}}-{{lineNum}}</div>
                 </div>
                 <div id="website-info"></div>
                 <hr>

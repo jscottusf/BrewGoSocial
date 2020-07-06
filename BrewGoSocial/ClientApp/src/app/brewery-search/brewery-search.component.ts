@@ -12,10 +12,11 @@ export class BrewerySearchComponent implements OnInit {
   form: FormGroup;
   breweryData: any = [];
   brewery: any = {};
-  address: string = "";
   city: string = "";
-  state: string = "";
-  zip: string = "";
+  areaCode: number;
+  prefix: number;
+  lineNum: number;
+  zip: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,14 +44,19 @@ export class BrewerySearchComponent implements OnInit {
     );
   }
 
-  handleClick(address, city, state, zip, brewery) {
+  handleClick(brewery) {
     this.brewery = brewery;
-    this.address = address;
-    this.city = city;
-    this.state = state;
-    this.zip = zip;
-    console.log(brewery);
-    this.mapBox.getLocation(address, city, state, zip);
+    console.log(this.brewery);
+    this.mapBox.getLocation(
+      brewery.street,
+      brewery.city,
+      brewery.state,
+      brewery.postal_code
+    );
+    this.areaCode = brewery.phone.substr(0, 3);
+    this.prefix = brewery.phone.substr(3, 3);
+    this.lineNum = brewery.phone.substr(6, 4);
+    this.zip = brewery.postal_code.substr(0, 5);
   }
 
   onSubmit() {
