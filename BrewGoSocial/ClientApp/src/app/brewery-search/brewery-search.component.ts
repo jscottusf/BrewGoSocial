@@ -18,7 +18,9 @@ export class BrewerySearchComponent implements OnInit {
   prefix: number;
   lineNum: number;
   zip: number;
+  results: any = [];
   restaurants: any = [];
+  foodDisplayCount: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,11 +67,30 @@ export class BrewerySearchComponent implements OnInit {
         this.zomato
           .getRestaurants(this.mapBox.latitude, this.mapBox.longitude)
           .subscribe(
-            (data) => (this.restaurants = data),
+            (data) => {
+              this.results = data;
+              this.restaurants = this.results.restaurants;
+              this.foodDisplayCount = 0;
+              console.log(this.restaurants);
+            },
             (err) => console.log(err)
           ),
-      250
+      500
     );
+  }
+
+  leftClick() {
+    this.foodDisplayCount -= 2;
+    if (this.foodDisplayCount < 0) {
+      this.foodDisplayCount = this.restaurants.length - 2;
+    }
+  }
+
+  rightClick() {
+    this.foodDisplayCount += 2;
+    if (this.foodDisplayCount >= this.restaurants.length) {
+      this.foodDisplayCount = 0;
+    }
   }
 
   onSubmit() {

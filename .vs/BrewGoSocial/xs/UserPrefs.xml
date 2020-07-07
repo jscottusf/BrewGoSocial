@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="20" Column="16" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="104" Column="54" />
       <File FileName="BrewGoSocial/Services/UserService.cs" />
       <File FileName="BrewGoSocial/ClientApp/src/index.html" />
     </Files>
@@ -17,11 +17,9 @@
                     <Node name="brewery-search" expanded="True">
                       <Node name="brewery-search.component.html" selected="True" />
                     </Node>
-                    <Node name="map" expanded="True" />
                   </Node>
                 </Node>
               </Node>
-              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>

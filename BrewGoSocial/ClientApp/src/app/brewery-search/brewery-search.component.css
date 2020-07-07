@@ -106,12 +106,6 @@ h4 i:hover {
   grid-gap: 10px;
 }
 
-#nearby-restaurants {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-}
-
 #website a {
   color: #353b40;
 }
@@ -148,4 +142,14 @@ h4 i:hover {
   border-bottom-right-radius: 10px;
   min-height: 50px;
   justify-content: left;
+}
+
+.food-card {
+  min-height: 250px;
+}
+
+.menu-btn {
+  position: absolute;
+  left: 15px;
+  bottom: 20px;
 }

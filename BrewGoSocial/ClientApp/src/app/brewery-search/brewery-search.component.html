@@ -90,17 +90,62 @@
                     <div *ngIf="brewery.phone" id="phone-info"><i class="fas fa-phone"></i> ({{areaCode}}) {{prefix}}-{{lineNum}}</div>
                     <div *ngIf="brewery.website_url" id="website"><i class="fas fa-globe-americas"></i><a href={{brewery.website_url}}> {{brewery.website_url}}</a></div>
                 </div>
-                
+
                 <hr>
                 <h4>Brewery Location</h4>
                 <app-map></app-map>
                 <hr>
-                <h4>Nearby Restaurants <i class="fas fa-chevron-circle-left left"></i><i class="fas fa-chevron-circle-right right"></i></h4>
-                <div id="nearby-restaurants"></div>
+                <h4>Nearby Restaurants <i class="fas fa-chevron-circle-left left" (click)="leftClick()"></i><i class="fas fa-chevron-circle-right right" (click)="rightClick()"></i></h4>
+                <div class="row">
+                    <div *ngFor="let res of restaurants; let i = index" class="col-lg-6">
+                        <div *ngIf="i == foodDisplayCount" class="card food-card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{res.restaurant.name}}</h5>
+                                <div class="card-text">{{res.restaurant.cuisines}}. </div>
+                                <div class="card-text">{{res.restaurant.location.address}}</div>
+                                <div class="card-text"></div>
+                                <div *ngIf="res.restaurant.price_range == 1" class="card-text">$</div>
+                                <div *ngIf="res.restaurant.price_range == 2" class="card-text">$$</div>
+                                <div *ngIf="res.restaurant.price_range == 3" class="card-text">$$$</div>
+                                <div *ngIf="res.restaurant.price_range == 4" class="card-text">$$$$</div>
+                                <div *ngIf="res.restaurant.price_range == 5" class="card-text">$$$$$</div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating < 1.5" class="card-text"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 1.5 && res.restaurant.user_rating.aggregate_rating < 2.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 2.5 && res.restaurant.user_rating.aggregate_rating < 3.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 3.5 && res.restaurant.user_rating.aggregate_rating < 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <div class="menu-btn">
+                                    <a href={{res.restaurant.menu_url}} class="btn btn-primary align-bottom" target="_blank">Menu</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="i == foodDisplayCount + 1" class="card food-card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{res.restaurant.name}}</h5>
+                                <div class="card-text">{{res.restaurant.cuisines}}. </div>
+                                <div class="card-text">{{res.restaurant.location.address}}</div>
+                                <div class="card-text"></div>
+                                <div *ngIf="res.restaurant.price_range == 1" class="card-text">$</div>
+                                <div *ngIf="res.restaurant.price_range == 2" class="card-text">$$</div>
+                                <div *ngIf="res.restaurant.price_range == 3" class="card-text">$$$</div>
+                                <div *ngIf="res.restaurant.price_range == 4" class="card-text">$$$$</div>
+                                <div *ngIf="res.restaurant.price_range == 5" class="card-text">$$$$$</div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating < 1.5" class="card-text"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 1.5 && res.restaurant.user_rating.aggregate_rating < 2.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 2.5 && res.restaurant.user_rating.aggregate_rating < 3.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 3.5 && res.restaurant.user_rating.aggregate_rating < 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                <div class="menu-btn">
+                                    <a href={{res.restaurant.menu_url}} class="btn btn-primary align-bottom" target="_blank">Menu</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-            </div>
-        </div>
     </div>
 </div>
