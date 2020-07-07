@@ -19,6 +19,7 @@ export class MapService {
   }
 
   getLocation(address, city, state, zip) {
+    //destory map if it exists
     if (this.map) {
       this.map.remove();
     }
@@ -47,8 +48,8 @@ export class MapService {
         //allows to zoom in and zoom out map
         this.map.addControl(new mapboxgl.NavigationControl());
         this.map.scrollZoom.disable();
-        this.map.resize();
-        setTimeout(() => this.map.resize(), 500);
+        //this.map.resize(); is done with after a half second timeout
+        setTimeout(() => this.map.resize(), 250);
       },
       (err) => console.log(err)
     );

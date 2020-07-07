@@ -14,6 +14,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { JwtInterceptor, ErrorInterceptor } from "./_helpers";
 import { BreweryAPIService } from "./_services/breweryAPI.service";
 import { MapService } from "./_services/mapbox.service";
+import { ZomatoService } from "./_services/zomato.service";
 
 @NgModule({
   imports: [

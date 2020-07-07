@@ -87,9 +87,10 @@
             <div class="modal-body">
                 <div class="contact-container">
                     <div id="address-info"><i class="fas fa-map-marker-alt"></i> {{brewery.street}} <br /> {{brewery.city}}, {{brewery.state}} {{zip}}</div>
-                    <div id="phone-info"><i class="fas fa-phone"></i> ({{areaCode}}) {{prefix}}-{{lineNum}}</div>
+                    <div *ngIf="brewery.phone" id="phone-info"><i class="fas fa-phone"></i> ({{areaCode}}) {{prefix}}-{{lineNum}}</div>
+                    <div *ngIf="brewery.website_url" id="website"><i class="fas fa-globe-americas"></i><a href={{brewery.website_url}}> {{brewery.website_url}}</a></div>
                 </div>
-                <div id="website-info"></div>
+                
                 <hr>
                 <h4>Brewery Location</h4>
                 <app-map></app-map>

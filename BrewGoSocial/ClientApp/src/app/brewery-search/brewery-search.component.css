@@ -94,11 +94,11 @@ h4 i:hover {
   margin-top: 10px;
 } */
 
-#brewery,
+/* #brewery,
 #nearby-restaurants-h4,
 #map-h4 {
   font-weight: 700;
-}
+} */
 
 .contact-container {
   display: grid;
@@ -112,14 +112,15 @@ h4 i:hover {
   grid-gap: 10px;
 }
 
-#website a:hover {
-  text-decoration: none;
+#website a {
+  color: #353b40;
 }
 
-#address,
-#phone,
-#website,
-#map-h4,
+#website a:hover {
+  text-decoration: none;
+  color: black;
+}
+
 #nearby-restaurants-h4,
 #nearby-restaurants {
   padding: 0px 5px;
@@ -147,5 +148,4 @@ h4 i:hover {
   border-bottom-right-radius: 10px;
   min-height: 50px;
   justify-content: left;
-  background-color: rgb(225, 222, 230);
 }

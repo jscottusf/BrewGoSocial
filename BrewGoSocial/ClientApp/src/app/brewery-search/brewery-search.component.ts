@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BreweryAPIService } from "../_services/breweryAPI.service";
 import { MapService } from "../_services/mapbox.service";
+import { ZomatoService } from "../_services/zomato.service";
 
 @Component({
   selector: "app-brewery-search",
@@ -17,11 +18,13 @@ export class BrewerySearchComponent implements OnInit {
   prefix: number;
   lineNum: number;
   zip: number;
+  restaurants: any = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private breweryAPI: BreweryAPIService,
-    private mapBox: MapService
+    private mapBox: MapService,
+    private zomato: ZomatoService
   ) {}
 
   ngOnInit() {
@@ -57,6 +60,16 @@ export class BrewerySearchComponent implements OnInit {
     this.prefix = brewery.phone.substr(3, 3);
     this.lineNum = brewery.phone.substr(6, 4);
     this.zip = brewery.postal_code.substr(0, 5);
+    setTimeout(
+      () =>
+        this.zomato
+          .getRestaurants(this.mapBox.latitude, this.mapBox.longitude)
+          .subscribe(
+            (data) => (this.restaurants = data),
+            (err) => console.log(err)
+          ),
+      250
+    );
   }
 
   onSubmit() {
