@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BrewGoSocial.Entities;
 using BrewGoSocial.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace BrewGoSocial.Services
 {
@@ -51,7 +52,8 @@ namespace BrewGoSocial.Services
 
         public User GetById(int id)
         {
-            return _context.Users.Find(id);
+            return _context.Users.Include(x => x.SavedBreweries).FirstOrDefault(u => u.Id == id);
+            //return _context.Users.Find(id);
         }
 
         public User Create(User user, string password)
