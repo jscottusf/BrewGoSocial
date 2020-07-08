@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using BrewGoSocial.Entities;
 using BrewGoSocial.Models;
 using BrewGoSocial.Helpers;
-using Microsoft.EntityFrameworkCore;
 
 namespace BrewGoSocial.Services
 {

@@ -94,6 +94,7 @@ namespace BrewGoSocial
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISavedBreweryService, SavedBreweryService>();
+            services.AddScoped<IProfileService, ProfileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
