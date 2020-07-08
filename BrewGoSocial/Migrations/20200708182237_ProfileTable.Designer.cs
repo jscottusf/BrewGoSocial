@@ -4,14 +4,16 @@ using BrewGoSocial.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BrewGoSocial.Migrations
 {
     [DbContext(typeof(BrewGoDbContext))]
-    partial class BrewGoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200708182237_ProfileTable")]
+    partial class ProfileTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,13 +28,28 @@ namespace BrewGoSocial.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FavoriteBeers")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FavoriteBreweries")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Occupation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("PasswordHash")
@@ -42,6 +59,9 @@ namespace BrewGoSocial.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
@@ -134,7 +154,7 @@ namespace BrewGoSocial.Migrations
 
             modelBuilder.Entity("BrewGoSocial.Models.Profile", b =>
                 {
-                    b.HasOne("BrewGoSocial.Entities.User", null)
+                    b.HasOne("BrewGoSocial.Entities.User", "User")
                         .WithOne("Profile")
                         .HasForeignKey("BrewGoSocial.Models.Profile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -15,10 +15,12 @@ namespace BrewGoSocial.Helpers
 
         public DbSet<User> Users { get; set; }
         public DbSet<SavedBrewery> SavedBreweries { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasMany(l => l.SavedBreweries);
+            modelBuilder.Entity<User>().HasMany(u => u.SavedBreweries);
+            modelBuilder.Entity<User>().HasOne(p => p.Profile);
         }
     }
 }
