@@ -15,6 +15,7 @@ import { JwtInterceptor, ErrorInterceptor } from "./_helpers";
 import { BreweryAPIService } from "./_services/breweryAPI.service";
 import { MapService } from "./_services/mapbox.service";
 import { ZomatoService } from "./_services/zomato.service";
+import { SavedBreweriesComponent } from './saved-breweries/saved-breweries.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ZomatoService } from "./_services/zomato.service";
     HomeComponent,
     BrewerySearchComponent,
     MapComponent,
+    SavedBreweriesComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
