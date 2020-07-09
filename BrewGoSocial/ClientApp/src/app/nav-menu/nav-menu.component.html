@@ -46,6 +46,18 @@
           >
             <a
               class="nav-item nav-link"
+              routerLink="/saved"
+              routerLinkActive="active"
+              >Saved Breweries</a
+            >
+          </li>
+          <li
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a
+              class="nav-item nav-link"
               id="logout"
               (click)="this.logout.emit()"
               >Logout</a

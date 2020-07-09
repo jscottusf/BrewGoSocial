@@ -5,6 +5,7 @@ import { HomeComponent } from "./home";
 import { AuthGuard } from "./_helpers";
 import { AlertComponent } from "./_components";
 import { BrewerySearchComponent } from "./brewery-search/brewery-search.component";
+import { SavedBreweriesComponent } from "./saved-breweries/saved-breweries.component";
 
 const accountModule = () =>
   import("./account/account.module").then((x) => x.AccountModule);
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: "account",
     loadChildren: accountModule,
+  },
+  {
+    path: "saved",
+    component: SavedBreweriesComponent,
+    canActivate: [AuthGuard],
   },
 
   // otherwise redirect to home

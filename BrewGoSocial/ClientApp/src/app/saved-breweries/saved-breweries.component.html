@@ -1,1 +1,28 @@
-<p>saved-breweries works!</p>
+<div class="hero-user text-center">
+    <h1>BrewGo Social</h1>
+    <h2>Find local breweries and grub</h2>
+    <p class="font-weight-bold text-center">
+        Enter location, get buzzed, eat food
+    </p>
+</div>
+<div class="p-4">
+    <div class="container">
+        <h2 *ngIf="breweries.length == 0">No breweries saved yet</h2>
+        <div *ngIf="breweries" id="brewery-list">
+            <h2 *ngIf="breweries.length != 0">Favorite Breweries</h2>
+            <div class="grid">
+                <div class="breweries" *ngFor="let brewery of breweries">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ brewery.breweryName }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ brewery.breweryType }}</h6>
+                            <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
+                            <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.zip}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        

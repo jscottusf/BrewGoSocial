@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BreweryAPIService } from "../_services/breweryAPI.service";
 import { MapService } from "../_services/mapbox.service";
 import { ZomatoService } from "../_services/zomato.service";
+import { AccountService } from "../_services";
+import { User } from "../_models";
 
 @Component({
   selector: "app-brewery-search",
@@ -10,6 +12,7 @@ import { ZomatoService } from "../_services/zomato.service";
   styleUrls: ["./brewery-search.component.css"],
 })
 export class BrewerySearchComponent implements OnInit {
+  user: User;
   form: FormGroup;
   breweryData: any = [];
   brewery: any = {};
@@ -23,11 +26,14 @@ export class BrewerySearchComponent implements OnInit {
   foodDisplayCount: number = 0;
 
   constructor(
+    private accountService: AccountService,
     private formBuilder: FormBuilder,
     private breweryAPI: BreweryAPIService,
     private mapBox: MapService,
     private zomato: ZomatoService
-  ) {}
+  ) {
+    this.user = this.accountService.userValue;
+  }
 
   ngOnInit() {
     this.form = this.formBuilder.group({

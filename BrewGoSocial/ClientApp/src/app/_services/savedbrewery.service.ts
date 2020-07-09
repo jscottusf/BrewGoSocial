@@ -1,16 +1,22 @@
 import { BreweryModel } from "../_models/brewery";
 import { HttpClient } from "@angular/common/http";
-import { Inject, OnInit } from "@angular/core";
-import { Observable, fromEventPattern } from "rxjs";
+import { Injectable, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
 
-export class BookService implements OnInit {
+@Injectable({ providedIn: "root" })
+export class BreweryService implements OnInit {
   appurl: string = "";
 
-  constructor(private http: HttpClient, @Inject("BASE_URL") _baseurl: string) {
-    this.appurl = _baseurl + "api/breweries/";
+  constructor(private http: HttpClient) {
+    this.appurl = `${environment.apiUrl}/api/breweries/`;
   }
 
   ngOnInit() {}
+
+  getUserBreweries(id): Observable<BreweryModel> {
+    return this.http.get<BreweryModel>(`${environment.apiUrl}/api/users/${id}`);
+  }
 
   getallBreweries(): Observable<BreweryModel> {
     return this.http.get<BreweryModel>(this.appurl);
