@@ -67,7 +67,6 @@ h4 i:hover {
 
 .card {
   min-height: 175px;
-  cursor: pointer;
 }
 
 /* Modal card styling */
@@ -79,26 +78,6 @@ h4 i:hover {
 .modal-dialog {
   max-width: 750px;
 }
-/* .modal-header {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  min-height: 100px;
-  justify-content: center;
-  background-color: rgb(16, 2, 42);
-} */
-
-/* #brewery {
-  background-color: rgb(16, 2, 42);
-  color: white;
-  text-align: center;
-  margin-top: 10px;
-} */
-
-/* #brewery,
-#nearby-restaurants-h4,
-#map-h4 {
-  font-weight: 700;
-} */
 
 .contact-container {
   display: grid;

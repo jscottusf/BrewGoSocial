@@ -28,7 +28,7 @@
                     <div class="card" style="width: 100%;">
                         <save-icon [brewery]=brewery userId={{user.id}}></save-icon>
                         <div class="card-body">
-                            <h5 class="card-title">{{ brewery.name }}</h5>
+                            <h5 class="card-title">{{ brewery.name.substr(0, 25) }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
                             <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
                             <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.postal_code.substr(0, 5)}}</div>
