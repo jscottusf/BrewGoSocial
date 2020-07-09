@@ -18,6 +18,7 @@
                 </div>
             </div>
         </form>
+
         <h2 *ngIf="breweryData.length == 0 && city != ''">No breweries found in {{ city }}. Check your spelling.</h2>
         <div *ngIf="breweryData.length" id="brewery-list">
             <h2 *ngIf="breweryData.length == 1">{{ breweryData.length }} brewery found in {{ city }}</h2>
@@ -32,7 +33,9 @@
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
                             <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
                             <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.postal_code.substr(0, 5)}}</div>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery)">More Info</button>
+                            <div class="info-div">
+                                <button class="btn btn-primary btn-sm info-btn" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery)">More Info</button>
+                            </div>
                         </div>
                     </div>
                 </div>

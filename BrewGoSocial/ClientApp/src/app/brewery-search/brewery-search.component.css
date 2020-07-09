@@ -132,3 +132,13 @@ h4 i:hover {
   left: 15px;
   bottom: 20px;
 }
+
+.info-div {
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+}
+
+.info-btn {
+  border-radius: 16px;
+}

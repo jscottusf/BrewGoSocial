@@ -2,15 +2,14 @@
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="31" Column="80" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.ts" Line="6" Column="47" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.css" Line="59" Column="33" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/saved-breweries/saved-breweries.component.html" Line="20" Column="105" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="21" Column="29" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.ts" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/saved-breweries/saved-breweries.component.html" Line="11" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="BrewGoSocial" expanded="True">
+          <Node name="BrewGoSocial" expanded="True" selected="True">
             <Node name="BrewGoSocial" expanded="True" />
           </Node>
         </State>

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { BreweryService } from "../_services/savedbrewery.service";
-import { BreweryModel } from "../_models";
 
 @Component({
   selector: "save-icon",

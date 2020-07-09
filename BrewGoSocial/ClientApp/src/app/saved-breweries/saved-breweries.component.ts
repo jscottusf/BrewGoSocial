@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { BreweryService } from "../_services/savedbrewery.service";
 import { User, BreweryModel } from "../_models";
 import { AccountService } from "../_services";
-import { AnyMxRecord } from "dns";
 
 @Component({
   selector: "app-saved-breweries",
