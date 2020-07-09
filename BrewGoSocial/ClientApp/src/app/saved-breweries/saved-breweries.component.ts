@@ -11,7 +11,11 @@ import { AccountService } from "../_services";
 export class SavedBreweriesComponent implements OnInit {
   user: User;
   userData: any;
+  alertShow = false;
+  alertMessage = "";
+  alertType = "";
   public breweries: BreweryModel;
+
   constructor(
     private breweryService: BreweryService,
     private accountService: AccountService
@@ -31,11 +35,18 @@ export class SavedBreweriesComponent implements OnInit {
       (err) => console.log(err);
   }
 
-  exexOnDelete($event: any) {
+  exexOnDelete($event: any, name) {
     this.getAllSavedBreweries(this.user.id);
+    this.alertType = "danger";
+    this.alertMessage = name + " removed from favorites";
+    this.alertShow = true;
   }
 
   exexOnRate($event: any) {
     this.getAllSavedBreweries(this.user.id);
+  }
+
+  exexOnDismiss($event: any) {
+    this.alertShow = false;
   }
 }

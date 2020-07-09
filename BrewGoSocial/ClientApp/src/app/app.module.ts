@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
@@ -18,6 +19,7 @@ import { ZomatoService } from "./_services/zomato.service";
 import { BreweryService } from "./_services/savedbrewery.service";
 import { SaveIconComponent } from "./save-icon-component/save-icon.component";
 import { RemoveIconComponent } from "./remove-icon-component/remove-icon.component";
+import { AlertComponent } from "./alert/alert.component";
 
 @NgModule({
   imports: [
@@ -25,6 +27,7 @@ import { RemoveIconComponent } from "./remove-icon-component/remove-icon.compone
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgbModule,
   ],
   declarations: [
     AppComponent,
@@ -35,6 +38,7 @@ import { RemoveIconComponent } from "./remove-icon-component/remove-icon.compone
     SavedBreweriesComponent,
     SaveIconComponent,
     RemoveIconComponent,
+    AlertComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

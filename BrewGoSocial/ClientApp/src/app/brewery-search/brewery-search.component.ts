@@ -12,6 +12,9 @@ import { User } from "../_models";
   styleUrls: ["./brewery-search.component.css"],
 })
 export class BrewerySearchComponent implements OnInit {
+  alertShow = false;
+  alertMessage = "";
+  alertType = "";
   user: User;
   form: FormGroup;
   breweryData: any = [];
@@ -101,5 +104,23 @@ export class BrewerySearchComponent implements OnInit {
 
   onSubmit() {
     this.brewerySearch(this.form.value.brewerySearch);
+  }
+
+  exexOnSave($event: any, name) {
+    this.brewerySearch(this.city);
+    this.alertType = "success";
+    this.alertMessage = name + " added to favorites list";
+    this.alertShow = true;
+  }
+
+  exexOnSaveError($event: any) {
+    this.brewerySearch(this.city);
+    this.alertType = "danger";
+    this.alertMessage = $event;
+    this.alertShow = true;
+  }
+
+  exexOnDismiss($event: any) {
+    this.alertShow = false;
   }
 }

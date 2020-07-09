@@ -24,10 +24,13 @@
             <h2 *ngIf="breweryData.length == 1">{{ breweryData.length }} brewery found in {{ city }}</h2>
             <h2 *ngIf="breweryData.length > 1 && city != ''">{{ breweryData.length }} breweries found in {{ city }}</h2>
             <h2 *ngIf="city == ''">You didn't enter anything, but here are {{ breweryData.length }} breweries</h2>
+            <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)">
+            </app-alert>
             <div class="grid">
                 <div class="breweries" *ngFor="let brewery of breweryData">
                     <div class="card" style="width: 100%;">
-                        <save-icon [brewery]=brewery userId={{user.id}}></save-icon>
+                        <save-icon [brewery]=brewery userId={{user.id}} 
+                   (onBrewerySave)="exexOnSave($event, brewery.name)" (onBrewerySaveError)="exexOnSaveError($event)"></save-icon>
                         <div class="card-body">
                             <h5 class="card-title">{{ brewery.name.substr(0, 25) }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
@@ -147,10 +150,10 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-                </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>

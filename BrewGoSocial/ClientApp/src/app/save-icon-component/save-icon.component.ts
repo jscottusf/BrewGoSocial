@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { BreweryService } from "../_services/savedbrewery.service";
 
@@ -10,6 +10,8 @@ import { BreweryService } from "../_services/savedbrewery.service";
 export class SaveIconComponent implements OnInit {
   @Input() brewery = {};
   @Input() userId: number;
+  @Output() onBrewerySave = new EventEmitter();
+  @Output() onBrewerySaveError = new EventEmitter();
   breweryData: any = {};
 
   constructor(
@@ -36,8 +38,8 @@ export class SaveIconComponent implements OnInit {
       userId: this.userId,
     };
     this.breweryService.postNewBrewery(this.breweryData).subscribe(
-      (res) => this.router.navigate(["/saved"]),
-      (err) => console.log(err)
+      (res) => this.onBrewerySave.emit(),
+      (err) => this.onBrewerySaveError.emit(err)
     );
   }
 }

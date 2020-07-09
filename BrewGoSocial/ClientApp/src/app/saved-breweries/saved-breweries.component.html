@@ -8,12 +8,14 @@
 <div class="p-4">
     <div class="container">
         <h2>Favorite Breweries</h2>
+        <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)">
+        </app-alert>
         <h5 *ngIf="breweries.length == 0">No breweries saved yet</h5>
         <div *ngIf="breweries" id="brewery-list">
             <div class="grid">
                 <div class="breweries" *ngFor="let brewery of breweries">
                     <div class="card" style="width: 100%;">
-                        <remove-icon (onDeleteBrewery)="exexOnDelete($event)" breweryId={{brewery.breweryId}}></remove-icon>
+                        <remove-icon (onDeleteBrewery)="exexOnDelete($event, brewery.breweryName)" breweryId={{brewery.breweryId}}></remove-icon>
                         <div class="card-body">
                             <h5 class="card-title">{{ brewery.breweryName }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.breweryType }}</h6>

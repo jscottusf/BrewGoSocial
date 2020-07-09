@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BrewGoSocial.Services;
 using BrewGoSocial.Models;
 using Microsoft.AspNetCore.JsonPatch;
+using BrewGoSocial.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrewGoSocial.Controllers
@@ -41,10 +42,18 @@ namespace BrewGoSocial.Controllers
         [HttpPost]
         public ActionResult<SavedBrewery> Create(SavedBrewery brewery)
         {
-            _service.Create(brewery);
-            _service.SaveChanges();
+            try
+            {
+                _service.Create(brewery);
+                _service.SaveChanges();
 
-            return CreatedAtRoute(nameof(GetBreweryById), new { Id = brewery.BreweryId }, brewery);
+                return CreatedAtRoute(nameof(GetBreweryById), new { Id = brewery.BreweryId }, brewery);
+            }
+            catch (AppException ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]
@@ -55,22 +64,9 @@ namespace BrewGoSocial.Controllers
             {
                 return NotFound();
             }
-            var updatedbrewery = new SavedBrewery
-            {
-                BreweryId = breweryModel.BreweryId,
-                BreweryName = brewery.BreweryName,
-                BreweryType = brewery.BreweryType,
-                Street = brewery.Street,
-                City = brewery.City,
-                State = brewery.State,
-                Zip = brewery.Zip,
-                Phone = brewery.Phone,
-                Url = brewery.Url,
-                Rating = brewery.Rating,
-                UserId = brewery.UserId
-            };
+            brewery.BreweryId = breweryModel.BreweryId;
             _service.Delete(breweryModel);
-            _service.Update(updatedbrewery);
+            _service.Update(brewery);
             _service.SaveChanges();
             return NoContent();
         }
