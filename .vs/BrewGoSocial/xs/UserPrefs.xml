@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/saved-breweries/saved-breweries.component.html">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/saved-breweries/saved-breweries.component.html" Line="12" Column="21" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/saved-breweries/saved-breweries.component.html" Line="24" Column="155" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,8 +12,8 @@
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
                   <Node name="app" expanded="True">
-                    <Node name="saved-breweries" expanded="True">
-                      <Node name="saved-breweries.component.html" selected="True" />
+                    <Node name="brewery-rating" expanded="True">
+                      <Node name="brewery-rating.component.css" selected="True" />
                     </Node>
                   </Node>
                 </Node>

@@ -21,6 +21,7 @@
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.breweryType }}</h6>
                             <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
                             <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.zip}}</div>
+                            <brewery-rating rating={{brewery.rating}} breweryId={{brewery.breweryId}} [brewery]=brewery (breweryRated)="exexOnRate($event)" ></brewery-rating>
                         </div>
                     </div>
                 </div>

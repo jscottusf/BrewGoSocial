@@ -20,6 +20,7 @@ import { BreweryService } from "./_services/savedbrewery.service";
 import { SaveIconComponent } from "./save-icon-component/save-icon.component";
 import { RemoveIconComponent } from "./remove-icon-component/remove-icon.component";
 import { AlertComponent } from "./alert/alert.component";
+import { BreweryRatingComponent } from './brewery-rating/brewery-rating.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { AlertComponent } from "./alert/alert.component";
     SaveIconComponent,
     RemoveIconComponent,
     AlertComponent,
+    BreweryRatingComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
