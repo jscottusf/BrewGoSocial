@@ -63,6 +63,8 @@ namespace BrewGoSocial
                     OnTokenValidated = context =>
                     {
                         var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                        var profileService = context.HttpContext.RequestServices.GetRequiredService<IProfileService>();
+                        var breweryService = context.HttpContext.RequestServices.GetRequiredService<ISavedBreweryService>();
                         var userId = int.Parse(context.Principal.Identity.Name);
                         var user = userService.GetById(userId);
                         if (user == null)

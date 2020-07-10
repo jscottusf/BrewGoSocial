@@ -6,12 +6,14 @@ using BrewGoSocial.Services;
 using BrewGoSocial.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BrewGoSocial.Controllers
 {
     //api routes for All User Profiles
-    [Route("api/profiles")]
+    [Authorize]
     [ApiController]
+    [Route("api/profiles")]
     public class ProfilesController : Controller
     {
         private readonly IProfileService _service;

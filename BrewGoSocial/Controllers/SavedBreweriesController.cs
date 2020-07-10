@@ -7,12 +7,14 @@ using BrewGoSocial.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using BrewGoSocial.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BrewGoSocial.Controllers
 {
     //api routes for Saved Breweries
-    [Route("api/breweries")]
+    [Authorize]
     [ApiController]
+    [Route("api/breweries")]
     public class SavedBreweriesController : Controller
     {
         private readonly ISavedBreweryService _service;
