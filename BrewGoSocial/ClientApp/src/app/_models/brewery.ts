@@ -9,5 +9,6 @@ export class BreweryModel {
   phone: string;
   url: string;
   rating: number;
+  apiId: number;
   userId: number;
 }

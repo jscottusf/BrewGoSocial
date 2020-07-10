@@ -142,3 +142,25 @@ h4 i:hover {
 .info-btn {
   border-radius: 16px;
 }
+/* Saved brewery icon */
+
+.saved-icon {
+  position: absolute;
+  top: 8px;
+  right: 0px;
+  font-size: 18px;
+  padding: 0 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.saved-icon i {
+  padding: 0;
+  color: red;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.saved-icon i:hover {
+  color: black;
+}

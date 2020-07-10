@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BreweryAPIService } from "../_services/breweryAPI.service";
+import { BreweryService } from "../_services/savedbrewery.service";
 import { MapService } from "../_services/mapbox.service";
 import { ZomatoService } from "../_services/zomato.service";
 import { AccountService } from "../_services";
@@ -12,7 +13,13 @@ import { User } from "../_models";
   styleUrls: ["./brewery-search.component.css"],
 })
 export class BrewerySearchComponent implements OnInit {
+  //Open BreweryAPI IDs
+  apiIds: any = [];
+  //Saved Brewery DeleteIds
+  deleteIds: any = [];
+
   alertShow = false;
+  savedBreweryList: any = [];
   alertMessage = "";
   alertType = "";
   user: User;
@@ -30,6 +37,7 @@ export class BrewerySearchComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
+    private breweryService: BreweryService,
     private formBuilder: FormBuilder,
     private breweryAPI: BreweryAPIService,
     private mapBox: MapService,
@@ -53,9 +61,27 @@ export class BrewerySearchComponent implements OnInit {
       (data) => {
         this.breweryData = data;
         this.city = this.breweryAPI.city;
+        this.getSavedBreweries();
       },
       (err) => console.log(err)
     );
+  }
+
+  getSavedBreweries() {
+    this.breweryService.getUserBreweries(this.user.id).subscribe((res) => {
+      this.savedBreweryList = res;
+      //store all open brewery api ids in an array
+      this.apiIds = this.savedBreweryList.savedBreweries.map((brewery) => {
+        return brewery.apiId;
+      });
+      //also store the database Ids into an array to delete them if needed
+      //The index should be the same for each, making the delete method easier
+      this.deleteIds = this.savedBreweryList.savedBreweries.map((brewery) => {
+        return brewery.breweryId;
+      });
+      console.log(this.savedBreweryIds);
+    }),
+      (err) => console.log(err);
   }
 
   handleClick(brewery) {
@@ -111,6 +137,18 @@ export class BrewerySearchComponent implements OnInit {
     this.alertType = "success";
     this.alertMessage = name + " added to favorites list";
     this.alertShow = true;
+  }
+
+  deleteBrewery(id, name) {
+    this.breweryService.deleteBrewery(id).subscribe(
+      (res) => {
+        this.brewerySearch(this.city);
+        this.alertType = "danger";
+        this.alertMessage = name + "  removed from favorites list";
+        this.alertShow = true;
+      },
+      (err) => console.log(err)
+    );
   }
 
   exexOnSaveError($event: any) {

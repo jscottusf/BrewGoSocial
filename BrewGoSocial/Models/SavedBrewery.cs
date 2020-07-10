@@ -17,6 +17,7 @@ namespace BrewGoSocial.Models
         public string Phone { get; set; }
         public string Url { get; set; }
         public int Rating { get; set; }
+        public int apiId { get; set; }
         [ForeignKey("RelationalUserModel")]
         public int UserId { get; set; }
     }

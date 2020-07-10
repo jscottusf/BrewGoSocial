@@ -29,10 +29,17 @@
             <div class="grid">
                 <div class="breweries" *ngFor="let brewery of breweryData">
                     <div class="card" style="width: 100%;">
-                        <save-icon [brewery]=brewery userId={{user.id}} 
-                   (onBrewerySave)="exexOnSave($event, brewery.name)" (onBrewerySaveError)="exexOnSaveError($event)"></save-icon>
+                        <div *ngIf="apiIds.indexOf(brewery.id) == -1">
+                            <save-icon [brewery]=brewery userId={{user.id}}
+                                       (onBrewerySave)="exexOnSave($event, brewery.name)"
+                                       (onBrewerySaveError)="exexOnSaveError($event)">
+                            </save-icon>
+                        </div>
+                        <div *ngIf="apiIds.indexOf(brewery.id) >= 0" class="saved-icon">
+                            <i class="fas fa-heart" (click)="deleteBrewery(deleteIds[apiIds.indexOf(brewery.id)], brewery.name)"></i>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ brewery.name.substr(0, 25) }}</h5>
+                            <h5 class="card-title">{{ brewery.name.substr(0, 28) }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
                             <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
                             <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.postal_code.substr(0, 5)}}</div>

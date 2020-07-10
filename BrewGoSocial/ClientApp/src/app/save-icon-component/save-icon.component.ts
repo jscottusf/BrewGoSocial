@@ -35,6 +35,7 @@ export class SaveIconComponent implements OnInit {
       phone: brewery.phone,
       url: brewery.website_url,
       rating: 0,
+      apiId: brewery.id,
       userId: this.userId,
     };
     this.breweryService.postNewBrewery(this.breweryData).subscribe(
