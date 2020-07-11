@@ -79,7 +79,6 @@ export class BrewerySearchComponent implements OnInit {
       this.deleteIds = this.savedBreweryList.savedBreweries.map((brewery) => {
         return brewery.breweryId;
       });
-      console.log(this.savedBreweryIds);
     }),
       (err) => console.log(err);
   }
