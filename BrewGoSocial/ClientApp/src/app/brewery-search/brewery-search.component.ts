@@ -85,7 +85,6 @@ export class BrewerySearchComponent implements OnInit {
 
   handleClick(brewery) {
     this.brewery = brewery;
-    console.log(this.brewery);
     this.mapBox.getLocation(
       brewery.street,
       brewery.city,
@@ -105,7 +104,6 @@ export class BrewerySearchComponent implements OnInit {
               this.results = data;
               this.restaurants = this.results.restaurants;
               this.foodDisplayCount = 0;
-              console.log(this.restaurants);
             },
             (err) => console.log(err)
           ),

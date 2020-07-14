@@ -30,7 +30,6 @@ export class SavedBreweriesComponent implements OnInit {
     this.breweryService.getUserBreweries(id).subscribe((data) => {
       this.userData = data;
       this.breweries = this.userData.savedBreweries;
-      console.log(this.breweries);
     }),
       (err) => console.log(err);
   }

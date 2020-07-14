@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using BrewGoSocial.Entities;
 using BrewGoSocial.Models;
-using BrewGoSocial.Models.Users;
 
 namespace BrewGoSocial.Helpers
 {

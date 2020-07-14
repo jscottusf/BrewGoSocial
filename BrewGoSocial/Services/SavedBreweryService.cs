@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BrewGoSocial.Models;
 using BrewGoSocial.Helpers;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BrewGoSocial.Services
 {
@@ -35,8 +32,10 @@ namespace BrewGoSocial.Services
                 throw new ArgumentNullException(nameof(brewery));
             }
 
+            //make sure user has not already saved brewery using brewery name and user id
             string breweryName = brewery.BreweryName;
-            if (_context.SavedBreweries.Any(b => b.BreweryName == brewery.BreweryName))
+            int breweryId = brewery.BreweryId;
+            if (_context.SavedBreweries.Any(b => b.BreweryName == brewery.BreweryName && b.BreweryId == breweryId))
             {
                 throw new AppException(breweryName + " has already been added to your favorites list");
             }

@@ -1,9 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using BrewGoSocial.Models.Users;
-using BrewGoSocial.Entities;
-
-namespace BrewGoSocial.Models
+﻿namespace BrewGoSocial.Models
 {
     public class Profile
     {

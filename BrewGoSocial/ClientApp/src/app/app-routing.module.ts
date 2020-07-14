@@ -3,9 +3,9 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { HomeComponent } from "./home";
 import { AuthGuard } from "./_helpers";
-import { AlertComponent } from "./_components";
 import { BrewerySearchComponent } from "./brewery-search/brewery-search.component";
 import { SavedBreweriesComponent } from "./saved-breweries/saved-breweries.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 const accountModule = () =>
   import("./account/account.module").then((x) => x.AccountModule);
@@ -24,13 +24,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: "account",
-    loadChildren: accountModule,
-  },
-  {
     path: "saved",
     component: SavedBreweriesComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: "profile",
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "account",
+    loadChildren: accountModule,
   },
 
   // otherwise redirect to home
