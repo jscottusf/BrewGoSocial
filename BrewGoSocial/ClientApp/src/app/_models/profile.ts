@@ -6,5 +6,5 @@ export class ProfileModel {
   favoriteBreweries: string;
   favoriteBeers: string;
   bio: string;
-  userId: string;
+  userId: number;
 }

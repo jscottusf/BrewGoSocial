@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BrewGoSocial.Entities;
+using BrewGoSocial.Models;
 using BrewGoSocial.Helpers;
 using Microsoft.EntityFrameworkCore;
 
@@ -78,6 +79,19 @@ namespace BrewGoSocial.Services
             user.PasswordSalt = passwordSalt;
 
             _context.Users.Add(user);
+
+            //create a mew blank profile for new user before saving changes
+            user.Profile = new Profile
+            {
+                City = "",
+                State = "",
+                Occupation = "",
+                FavoriteBreweries = "",
+                FavoriteBeers = "",
+                Bio = "",
+                UserId = user.Id,
+            };
+
             _context.SaveChanges();
 
             return user;

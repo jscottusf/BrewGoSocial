@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { User } from "../_models";
-import { AccountService } from "../_services";
+import { User, ProfileModel } from "../_models";
+import { AccountService, ProfileService } from "../_services";
 
 @Component({
   selector: "app-profile",
@@ -9,10 +9,27 @@ import { AccountService } from "../_services";
 })
 export class ProfileComponent implements OnInit {
   user: User;
+  userData: any;
+  alertShow = false;
+  alertMessage = "";
+  alertType = "";
+  public profile: ProfileModel;
 
-  constructor(private accountService: AccountService) {
+  constructor(
+    private accountService: AccountService,
+    private profileService: ProfileService
+  ) {
     this.user = this.accountService.userValue;
+    this.getUserProfile(this.user.id);
   }
 
   ngOnInit(): void {}
+
+  getUserProfile(id) {
+    this.profileService.getUserProfile(id).subscribe((data) => {
+      this.userData = data;
+      this.profile = this.userData.profile;
+    }),
+      (err) => console.log(err);
+  }
 }
