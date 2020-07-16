@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { User, ProfileModel } from "../_models";
 import { AccountService, ProfileService } from "../_services";
+import * as moment from "moment";
 
 @Component({
   selector: "app-profile",
@@ -10,6 +11,7 @@ import { AccountService, ProfileService } from "../_services";
 export class ProfileComponent implements OnInit {
   user: User;
   userData: any;
+  createdDate: any;
   alertShow = false;
   alertMessage = "";
   alertType = "";
@@ -20,10 +22,13 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService
   ) {
     this.user = this.accountService.userValue;
-    this.getUserProfile(this.user.id);
+    this.createdDate = moment(this.user.createdDate).format("MMMM YYYY");
+    //this.createdDate = moment(this.user.createdDate).fromNow();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserProfile(this.user.id);
+  }
 
   getUserProfile(id) {
     this.profileService.getUserProfile(id).subscribe((data) => {

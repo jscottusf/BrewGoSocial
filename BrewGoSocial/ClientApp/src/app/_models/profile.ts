@@ -1,5 +1,5 @@
 export class ProfileModel {
-  profieId: number;
+  profileId: number;
   city: string;
   state: string;
   occupation: string;

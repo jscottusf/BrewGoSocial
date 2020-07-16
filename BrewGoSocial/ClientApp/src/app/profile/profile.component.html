@@ -19,13 +19,18 @@
                         <div class="card-text text-center">{{ profile.bio }}</div>
 
                     </div>
-                    <div class="p-4">
-                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ profile.city }}, {{ profile.state }}</p>
-                        <p class="card-text"><i class="fas fa-briefcase"></i> {{ profile.occupation }}</p>
-                        <p class="card-text"><i class="fas fa-industry"></i> {{ profile.favoriteBreweries }}</p>
-                        <p class="card-text"><i class="fas fa-beer"></i> {{ profile.favoriteBeers }}</p>
-                        <p class="card-text"><i class="far fa-calendar-alt"></i></p>
+                    <div class="m-4">
+                        <div class="info-grid">
+                            <i class="fas fa-map-marker-alt p-1 mr-3"></i><p class="card-text"> {{ profile.city }}<span *ngIf="profile.city">,</span> {{ profile.state }}</p>
+                            <i class="fas fa-briefcase p-1 mr-3"></i><p class="card-text"> {{ profile.occupation }}</p>
+                            <i class="fas fa-industry p-1 mr-3"></i><p class="card-text"> {{ profile.favoriteBreweries }}</p>
+                            <i class="fas fa-beer p-1 mr-3"></i><p class="card-text"> {{ profile.favoriteBeers }}</p>
+                            <i class="far fa-calendar-alt p-1 mr-3"></i><p class="card-text"> Member since {{ createdDate }}</p>
+                        </div>
                     </div>
+                </div>
+                <div class="btn-location">
+                    <button class="btn btn-primary btn-sm info-btn" (click)="handleClick(brewery)">Edit Profile</button>
                 </div>
             </div>
         </div>

@@ -4,6 +4,19 @@
   grid-gap: 5px;
 }
 
+.info-grid {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-gap: 5px;
+}
+
+.btn-location {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+
 .left {
   margin: auto;
 }

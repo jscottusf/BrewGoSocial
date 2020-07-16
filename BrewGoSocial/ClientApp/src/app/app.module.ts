@@ -22,6 +22,7 @@ import { RemoveIconComponent } from "./remove-icon-component/remove-icon.compone
 import { AlertComponent } from "./alert/alert.component";
 import { BreweryRatingComponent } from "./brewery-rating/brewery-rating.component";
 import { ProfileComponent } from "./profile/profile.component";
+import { StateInputComponent } from './state-input/state-input.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,7 @@ import { ProfileComponent } from "./profile/profile.component";
     AlertComponent,
     BreweryRatingComponent,
     ProfileComponent,
+    StateInputComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

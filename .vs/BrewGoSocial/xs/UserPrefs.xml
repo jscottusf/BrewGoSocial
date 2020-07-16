@@ -1,22 +1,28 @@
 ﻿<Properties StartupConfiguration="{0B11D65E-F764-4DB7-8503-3ED5435D9C8F}|Default">
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/Controllers/UsersController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html">
     <Files>
       <File FileName="BrewGoSocial/Services/UserService.cs" Line="1" Column="1" />
-      <File FileName="BrewGoSocial/Controllers/UsersController.cs" Line="68" Column="18" />
+      <File FileName="BrewGoSocial/Controllers/UsersController.cs" Line="66" Column="42" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/profile/profile.component.html" Line="22" Column="34" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="47" Column="176" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BrewGoSocial" expanded="True">
             <Node name="BrewGoSocial" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="UsersController.cs" selected="True" />
+              <Node name="ClientApp" expanded="True">
+                <Node name="src" expanded="True">
+                  <Node name="app" expanded="True">
+                    <Node name="brewery-search" expanded="True">
+                      <Node name="brewery-search.component.html" selected="True" />
+                    </Node>
+                    <Node name="profile" expanded="True" />
+                  </Node>
+                </Node>
               </Node>
-              <Node name="Entities" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Users" expanded="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>
           </Node>
