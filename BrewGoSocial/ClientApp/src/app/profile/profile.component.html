@@ -6,15 +6,28 @@
   </p>
 </div>
 <div class="p-4">
-  <div class="container">
-    <h1>Hello, {{ user.firstName }}</h1>
-    <div>
-      <div>City: {{ profile.city }}</div>
-      <div>State: {{ profile.state }}</div>
-      <div>Occupation: {{ profile.occupation }}</div>
-      <div>Favorite Breweries: {{ profile.favoriteBreweries }}</div>
-      <div>Favorite Beers: {{ profile.favoriteBeers }}</div>
-      <div>Bio: {{ profile.bio }}</div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="profile-grid">
+                    <div class="left">
+                        <div class="profile-img">
+                            <img src="../../assets/images/profilejs.jpg" alt="" />
+                        </div>
+                        <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">@{{ user.username }}</h6>
+                        <div class="card-text text-center">{{ profile.bio }}</div>
+
+                    </div>
+                    <div class="p-4">
+                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ profile.city }}, {{ profile.state }}</p>
+                        <p class="card-text"><i class="fas fa-briefcase"></i> {{ profile.occupation }}</p>
+                        <p class="card-text"><i class="fas fa-industry"></i> {{ profile.favoriteBreweries }}</p>
+                        <p class="card-text"><i class="fas fa-beer"></i> {{ profile.favoriteBeers }}</p>
+                        <p class="card-text"><i class="far fa-calendar-alt"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

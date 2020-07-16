@@ -1,7 +1,7 @@
 ﻿using System;
 namespace BrewGoSocial.Models.Users
 {
-    public class UpdateModel
+    public class UpdateModel : BaseEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

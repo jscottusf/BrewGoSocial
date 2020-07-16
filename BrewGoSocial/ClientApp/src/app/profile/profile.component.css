@@ -1,0 +1,29 @@
+.profile-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-gap: 5px;
+}
+
+.left {
+  margin: auto;
+}
+
+.profile-img {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.profile-img img {
+  position: relative;
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+  text-align: center;
+  color: white;
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+}

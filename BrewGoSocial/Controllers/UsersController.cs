@@ -65,6 +65,8 @@ namespace BrewGoSocial.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                CreatedDate = user.CreatedDate,
+                UpdatedDate = user.UpdatedDate,
                 Token = tokenString
             });
         }

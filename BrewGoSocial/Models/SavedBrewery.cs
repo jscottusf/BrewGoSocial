@@ -4,7 +4,7 @@ using BrewGoSocial.Models.Users;
 
 namespace BrewGoSocial.Models
 {
-    public class SavedBrewery
+    public class SavedBrewery : BaseEntity
     {
         [Key]
         public int BreweryId { get; set; }

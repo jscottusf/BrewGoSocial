@@ -7,4 +7,6 @@
   firstName: string;
   lastName: string;
   token: string;
+  createdDate: string;
+  updatedDate: string;
 }

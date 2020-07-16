@@ -1,3 +1,8 @@
+html,
+body {
+  background-color: #f9f9f9;
+}
+
 #logout,
 .btn-link,
 .close {

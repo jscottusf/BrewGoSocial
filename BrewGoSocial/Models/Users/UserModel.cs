@@ -2,7 +2,7 @@
 
 namespace BrewGoSocial.Models.Users
 {
-    public class UserModel
+    public class UserModel : BaseEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
