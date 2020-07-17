@@ -1,23 +1,21 @@
 ﻿<Properties StartupConfiguration="{0B11D65E-F764-4DB7-8503-3ED5435D9C8F}|Default">
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/home/home.component.css">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/Models/Post.cs">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/home/home.component.html" Line="11" Column="15" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/home/home.component.css" Line="52" Column="2" />
+      <File FileName="BrewGoSocial/Models/Users/UserModel.cs" Line="1" Column="1" />
+      <File FileName="BrewGoSocial/Models/Users/UserBase.cs" Line="1" Column="14" />
+      <File FileName="BrewGoSocial/Models/Users/UpdateModel.cs" Line="2" Column="11" />
+      <File FileName="BrewGoSocial/Models/Post.cs" Line="2" Column="33" />
+      <File FileName="BrewGoSocial/Models/SavedBrewery.cs" Line="6" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BrewGoSocial" expanded="True">
             <Node name="BrewGoSocial" expanded="True">
-              <Node name="ClientApp" expanded="True">
-                <Node name="src" expanded="True">
-                  <Node name="app" expanded="True">
-                    <Node name="home" expanded="True">
-                      <Node name="home.component.css" selected="True" />
-                    </Node>
-                  </Node>
-                </Node>
+              <Node name="Models" expanded="True">
+                <Node name="Users" expanded="True" />
+                <Node name="Post.cs" selected="True" />
               </Node>
             </Node>
           </Node>
