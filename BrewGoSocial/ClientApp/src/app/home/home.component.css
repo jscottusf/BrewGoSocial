@@ -44,3 +44,14 @@
   top: 4px;
   left: 200px;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.card-img-top {
+  max-height: 300px;
+  object-fit: cover;
+}

@@ -90,6 +90,8 @@ namespace BrewGoSocial.Services
                 FavoriteBeers = "",
                 Bio = "",
                 UserId = user.Id,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
             };
 
             _context.SaveChanges();
