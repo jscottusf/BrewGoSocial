@@ -30,11 +30,11 @@ export class ProfileService implements OnInit {
     return this.http.post(this.appurl, formData);
   }
 
-  deleteProfile(id: number) {
+  deleteProfile(id: string) {
     return this.http.delete(this.appurl + id);
   }
 
-  editProfile(id: number, formData: ProfileModel) {
+  editProfile(id: string, formData: ProfileModel) {
     return this.http.put(this.appurl + id, formData);
   }
 }

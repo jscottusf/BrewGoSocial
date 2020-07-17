@@ -57,7 +57,7 @@ namespace BrewGoSocial.Controllers
             {
                 return NotFound();
             }
-            profile.ProfileId = profileModel.ProfileId;
+            //profile.ProfileId = profileModel.ProfileId;
             _service.Delete(profileModel);
             _service.Update(profile);
             _service.SaveChanges();

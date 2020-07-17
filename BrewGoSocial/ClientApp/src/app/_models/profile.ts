@@ -1,10 +1,12 @@
 export class ProfileModel {
-  profileId: number;
+  profileId: string;
   city: string;
   state: string;
   occupation: string;
   favoriteBreweries: string;
   favoriteBeers: string;
   bio: string;
-  userId: number;
+  userId: string;
+  createdDate: string;
+  updatedDate: string;
 }

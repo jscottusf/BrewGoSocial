@@ -1,6 +1,6 @@
 ﻿namespace BrewGoSocial.Models
 {
-    public class Profile
+    public class Profile : BaseEntity
     {
         public int ProfileId { get; set; }
         public string City { get; set; }
