@@ -24,6 +24,7 @@ import { BreweryRatingComponent } from "./brewery-rating/brewery-rating.componen
 import { ProfileComponent } from "./profile/profile.component";
 import { StateInputComponent } from './state-input/state-input.component';
 import { PostModalComponent } from './post-modal/post-modal.component';
+import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { PostModalComponent } from './post-modal/post-modal.component';
     ProfileComponent,
     StateInputComponent,
     PostModalComponent,
+    ProfilePostsComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -91,7 +91,8 @@ namespace BrewGoSocial.Services
                 Bio = "",
                 UserId = user.Id,
                 CreatedDate = DateTime.Now,
-                UpdatedDate = DateTime.Now
+                UpdatedDate = DateTime.Now,
+                ProfileImgUrl = "../../assets/images/thumb.png"
             };
 
             _context.SaveChanges();

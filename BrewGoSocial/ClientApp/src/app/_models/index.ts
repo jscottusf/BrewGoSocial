@@ -2,3 +2,4 @@
 export * from "./user";
 export * from "./brewery";
 export * from "./profile";
+export * from "./post";

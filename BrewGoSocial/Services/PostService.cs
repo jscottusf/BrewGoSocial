@@ -31,6 +31,7 @@ namespace BrewGoSocial.Services
             {
                 throw new ArgumentNullException(nameof(post));
             }
+            post.ProfileImgUrl = "../../assets/images/thumb.png";
             _context.Posts.Add(post);
         }
 

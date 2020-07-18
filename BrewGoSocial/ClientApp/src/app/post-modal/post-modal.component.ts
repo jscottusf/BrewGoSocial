@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input } from "@angular/core";
+import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-  selector: 'post-modal',
-  templateUrl: './post-modal.component.html',
-  styleUrls: ['./post-modal.component.css'],
+  selector: "post-modal",
+  templateUrl: "./post-modal.component.html",
+  styleUrls: ["./post-modal.component.css"],
   providers: [NgbModalConfig, NgbModal],
 })
-
 export class PostModalComponent implements OnInit {
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
-    config.backdrop = 'static';
-    config.keyboard = false;
-  }
+  @Input() userCard: any = {};
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit(): void {}
 

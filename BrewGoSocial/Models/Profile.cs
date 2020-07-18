@@ -10,5 +10,6 @@
         public string FavoriteBeers { get; set; }
         public string Bio { get; set; }
         public int UserId { get; set; }
+        public string ProfileImgUrl { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-import { PostModel } from "../_models/Post";
+import { PostModel } from "../_models";
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
 import { Observable } from "rxjs";

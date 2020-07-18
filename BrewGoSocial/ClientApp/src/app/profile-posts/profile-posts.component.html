@@ -1,0 +1,20 @@
+<div *ngFor="let post of posts">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-2 sm-3">
+                    <div id="postImgDiv">
+                        <img id="postImg" src="{{post.profileImgUrl}}" />
+                    </div>
+                </div>
+                <div class="col-10 sm-9">
+                    <div class="postcard-grid">
+                        <h5 class="card-title mb-2">{{post.firstName}} {{post.lastName}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{post.createdDate}}</h6>
+                    </div>
+                    <div class="card-text mb-1">{{post.postBody}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

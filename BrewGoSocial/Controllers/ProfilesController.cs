@@ -39,7 +39,7 @@ namespace BrewGoSocial.Controllers
             return Ok(profile);
         }
 
-        //Post api/breweries
+        //Post api/profiles
         [HttpPost]
         public ActionResult<SavedBrewery> Create(Profile profile)
         {

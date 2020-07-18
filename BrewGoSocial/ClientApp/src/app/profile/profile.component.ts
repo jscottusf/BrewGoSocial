@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { User, ProfileModel } from "../_models";
+import { User, ProfileModel, PostModel } from "../_models";
 import { AccountService, ProfileService } from "../_services";
 import * as moment from "moment";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -20,7 +20,10 @@ export class ProfileComponent implements OnInit {
   alertShow = false;
   alertMessage = "";
   alertType = "";
+  //store user data in a card to pass down to post modal :) reminder
+  userCard: any = {};
   public profile: ProfileModel;
+  public posts: PostModel[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,6 +49,17 @@ export class ProfileComponent implements OnInit {
     this.profileService.getUserProfile(id).subscribe((data) => {
       this.userData = data;
       this.profile = this.userData.profile;
+      this.posts = this.userData.posts;
+      this.userCard = {
+        userId: this.user.id,
+        profileImgUrl: this.profile.profileImgUrl,
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        username: this.user.username,
+        slug: this.user.slug,
+        city: this.profile.city,
+        state: this.profile.state,
+      };
       this.form = this.formBuilder.group({
         profileId: this.profile.profileId,
         city: [this.profile.city, [Validators.maxLength(25)]],
@@ -61,6 +75,7 @@ export class ProfileComponent implements OnInit {
         ],
         bio: [this.profile.bio, [Validators.maxLength(255)]],
         userId: this.profile.userId,
+        profileImgUrl: this.profile.profileImgUrl,
       });
     }),
       (err) => console.log(err);

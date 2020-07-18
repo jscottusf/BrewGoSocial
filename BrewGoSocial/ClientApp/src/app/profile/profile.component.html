@@ -13,7 +13,7 @@
                 <div class="profile-grid">
                     <div class="left">
                         <div class="profile-img">
-                            <img src="../../assets/images/profilejs.jpg" alt="" />
+                            <img src="{{ profile.profileImgUrl }}" alt="" />
                         </div>
                         <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted text-center">@{{ user.username }}</h6>
@@ -164,8 +164,9 @@
                 </div>
                 <hr />
                 <h4>Posts</h4>
-                <post-modal></post-modal>
+                <post-modal [userCard]=userCard></post-modal>
                 <hr />
+                <profile-posts [posts]=posts></profile-posts>
             </div>
         </div>
     </div>

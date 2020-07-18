@@ -9,6 +9,7 @@ namespace BrewGoSocial.Models
     {
         [Key]
         public int PostId { get; set; }
+        public string ProfileImgUrl { get; set; }
         public string PostBody { get; set; }
         [ForeignKey("RelationalUserModel")]
         public int UserId { get; set; }

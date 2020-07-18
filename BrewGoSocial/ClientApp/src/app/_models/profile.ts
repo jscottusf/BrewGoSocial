@@ -7,6 +7,7 @@ export class ProfileModel {
   favoriteBeers: string;
   bio: string;
   userId: string;
+  profileImgUrl: string;
   createdDate: string;
   updatedDate: string;
 }

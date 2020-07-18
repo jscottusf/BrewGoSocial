@@ -77,6 +77,9 @@ namespace BrewGoSocial.Migrations
                     b.Property<string>("PostBody")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfileImgUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Slug")
                         .HasColumnType("nvarchar(max)");
 
@@ -119,6 +122,9 @@ namespace BrewGoSocial.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfileImgUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -193,7 +199,7 @@ namespace BrewGoSocial.Migrations
 
             modelBuilder.Entity("BrewGoSocial.Models.Post", b =>
                 {
-                    b.HasOne("BrewGoSocial.Entities.User", "User")
+                    b.HasOne("BrewGoSocial.Entities.User", null)
                         .WithMany("Posts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
