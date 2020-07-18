@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using BrewGoSocial.Models.Users;
+using BrewGoSocial.Entities;
 
 namespace BrewGoSocial.Models
 {
@@ -8,6 +10,7 @@ namespace BrewGoSocial.Models
         [Key]
         public int PostId { get; set; }
         public string PostBody { get; set; }
+        [ForeignKey("RelationalUserModel")]
         public int UserId { get; set; }
     }
 }

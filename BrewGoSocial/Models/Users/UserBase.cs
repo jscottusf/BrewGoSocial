@@ -1,5 +1,4 @@
-﻿using System;
-namespace BrewGoSocial.Models.Users
+﻿namespace BrewGoSocial.Models.Users
 {
     public class UserBase : BaseEntity
     {

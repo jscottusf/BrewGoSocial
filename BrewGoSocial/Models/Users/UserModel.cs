@@ -11,6 +11,7 @@ namespace BrewGoSocial.Models.Users
         public string Slug { get; set; }
         public string Email { get; set; }
         public Profile Profile { get; set; }
+        public virtual List<Post> Posts { get; set; }
         public virtual List<SavedBrewery> SavedBreweries { get; set; }
     }
 }

@@ -58,6 +58,44 @@ namespace BrewGoSocial.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("BrewGoSocial.Models.Post", b =>
+                {
+                    b.Property<int>("PostId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostBody")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Posts");
+                });
+
             modelBuilder.Entity("BrewGoSocial.Models.Profile", b =>
                 {
                     b.Property<int>("ProfileId")
@@ -151,6 +189,15 @@ namespace BrewGoSocial.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("SavedBreweries");
+                });
+
+            modelBuilder.Entity("BrewGoSocial.Models.Post", b =>
+                {
+                    b.HasOne("BrewGoSocial.Entities.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BrewGoSocial.Models.Profile", b =>

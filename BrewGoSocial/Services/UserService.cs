@@ -53,7 +53,7 @@ namespace BrewGoSocial.Services
 
         public User GetById(int id)
         {
-            return _context.Users.Include(x => x.SavedBreweries).Include(x => x.Profile).FirstOrDefault(u => u.Id == id);
+            return _context.Users.Include(x => x.SavedBreweries).Include(x => x.Posts).Include(x => x.Profile).FirstOrDefault(u => u.Id == id);
             //return _context.Users.Find(id);
         }
 
