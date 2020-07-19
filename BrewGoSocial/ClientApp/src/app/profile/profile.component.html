@@ -5,6 +5,9 @@
         Enter location, get buzzed, eat food
     </p>
 </div>
+<div *ngIf="!profile" class="text-center bg-white pt-0 loading-div">
+    <img class="animated-gif" src="../../assets/images/loading.gif" />
+</div>
 <div class="p-4">
     <div class="container" *ngIf="profile">
         <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)"></app-alert>
@@ -164,9 +167,9 @@
                 </div>
                 <hr />
                 <h4>Posts</h4>
-                <post-modal [userCard]=userCard (onPost)="reloadPosts($event)"></post-modal>
+                <post-modal [user]=user [userCard]=userCard (onPost)="reloadPosts($event)"></post-modal>
                 <hr />
-                <profile-posts [posts]=posts (onDelete)="reloadPosts($event)"></profile-posts>
+                <profile-posts [posts]=posts (onSubmit)="reloadPosts($event)"></profile-posts>
             </div>
         </div>
     </div>

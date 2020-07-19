@@ -22,9 +22,10 @@ import { RemoveIconComponent } from "./remove-icon-component/remove-icon.compone
 import { AlertComponent } from "./alert/alert.component";
 import { BreweryRatingComponent } from "./brewery-rating/brewery-rating.component";
 import { ProfileComponent } from "./profile/profile.component";
-import { StateInputComponent } from './state-input/state-input.component';
-import { PostModalComponent } from './post-modal/post-modal.component';
-import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
+import { StateInputComponent } from "./state-input/state-input.component";
+import { PostModalComponent } from "./post-modal/post-modal.component";
+import { ProfilePostsComponent } from "./profile-posts/profile-posts.component";
+import { ProfileService, PostService } from "./_services";
 
 @NgModule({
   imports: [
@@ -57,6 +58,8 @@ import { ProfilePostsComponent } from './profile-posts/profile-posts.component';
     MapService,
     ZomatoService,
     BreweryService,
+    ProfileService,
+    PostService,
   ],
   bootstrap: [AppComponent],
 })

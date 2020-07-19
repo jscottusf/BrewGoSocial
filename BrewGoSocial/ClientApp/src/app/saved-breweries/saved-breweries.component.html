@@ -5,6 +5,9 @@
         Enter location, get buzzed, eat food
     </p>
 </div>
+<div *ngIf="!breweries" class="text-center bg-white pt-0 loading-div">
+    <img class="animated-gif" src="../../assets/images/loading.gif" />
+</div>
 <div class="p-4">
     <div class="container">
         <h2>Favorite Breweries</h2>

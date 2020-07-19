@@ -1,3 +1,6 @@
+<div *ngIf="!posts" class="text-center bg-white pt-0 loading-div">
+    <img class="animated-gif" src="../../assets/images/loading.gif" />
+</div>
 <h5 class="text-center m-3 p-3" *ngIf="posts?.length == 0">You have not made any posts to BrewGo Social</h5>
 <div *ngFor="let post of posts">
     <div class="card">
@@ -30,9 +33,9 @@
 </div>
 
 <ng-template #editPost let-c="close">
-    <form [formGroup]="editForm" (ngSubmit)="c(editPost())">
-        <div class="card" style="width: 100%;">
-            <div class="card-body">
+    <div class="card" style="width: 100%;">
+        <div class="card-body">
+            <div [formGroup]="editForm" (ngSubmit)="c(submitChanges())">
                 <div class="post-grid">
                     <div id="postImgDiv">
                         <img id="postImg" src="{{postData.profileImgUrl}}" alt="profile image" />
@@ -41,18 +44,13 @@
                         <h5 class="card-title mt-2">{{postData.firstName}} {{postData.lastName}}</h5>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-sm btn-primary" id="editPostBtn" (click)="c(editPost())">Submit Changes</button>
+                        <button id="editPostBtn" class="btn btn-sm btn-primary" (click)="c(submitChanges())">Submit Changes</button>
                     </div>
                 </div>
                 <div class="postText form-group">
-                    <textarea formControlName="postBody" minlength="1" class="form-control" rows="10" [ngClass]="{ 'is-invalid': submitted && f.postBody.errors }"></textarea>
-                    <div *ngIf="submitted && f.postBody.errors" class="invalid-feedback">
-                        <div *ngIf="f.postBody.errors.minlength">
-                            Post must contain at least one character
-                        </div>
-                    </div>
+                    <textarea formControlName="postBody" class="form-control" rows="10"></textarea>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </ng-template>

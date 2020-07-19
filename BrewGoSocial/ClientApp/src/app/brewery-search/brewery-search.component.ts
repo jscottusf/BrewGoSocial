@@ -19,7 +19,7 @@ export class BrewerySearchComponent implements OnInit {
   deleteIds: any = [];
 
   alertShow = false;
-  savedBreweryList: any = [];
+  savedBreweryList: any;
   alertMessage = "";
   alertType = "";
   user: User;
@@ -107,7 +107,7 @@ export class BrewerySearchComponent implements OnInit {
             },
             (err) => console.log(err)
           ),
-      500
+      750
     );
   }
 

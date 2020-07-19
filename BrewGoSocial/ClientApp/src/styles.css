@@ -83,3 +83,15 @@ body {
   height: auto !important;
   border-radius: 10px;
 }
+
+.loading-div {
+  overflow: hidden;
+  height: 500px;
+}
+
+img.animated-gif {
+  object-fit: cover;
+  object-position: 0 -170px;
+  height: auto;
+  width: auto;
+}

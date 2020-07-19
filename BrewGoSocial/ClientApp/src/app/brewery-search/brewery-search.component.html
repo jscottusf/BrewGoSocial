@@ -18,39 +18,44 @@
                 </div>
             </div>
         </form>
-
-        <h2 *ngIf="breweryData.length == 0 && city != ''">No breweries found in {{ city }}. Check your spelling.</h2>
-        <div *ngIf="breweryData.length" id="brewery-list">
-            <h2 *ngIf="breweryData.length == 1">{{ breweryData.length }} brewery found in {{ city }}</h2>
-            <h2 *ngIf="breweryData.length > 1 && city != ''">{{ breweryData.length }} breweries found in {{ city }}</h2>
-            <h2 *ngIf="city == ''">You didn't enter anything, but here are {{ breweryData.length }} breweries</h2>
-            <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)">
-            </app-alert>
-            <div class="grid">
-                <div class="breweries" *ngFor="let brewery of breweryData">
-                    <div class="card" style="width: 100%;">
-                        <div *ngIf="apiIds.indexOf(brewery.id) == -1">
-                            <save-icon [brewery]=brewery userId={{user.id}}
-                                       (onBrewerySave)="exexOnSave($event, brewery.name)"
-                                       (onBrewerySaveError)="exexOnSaveError($event)">
-                            </save-icon>
-                        </div>
-                        <div *ngIf="apiIds.indexOf(brewery.id) >= 0" class="saved-icon">
-                            <i class="fas fa-heart" (click)="deleteBrewery(deleteIds[apiIds.indexOf(brewery.id)], brewery.name)"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ brewery.name.substr(0, 28) }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
-                            <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
-                            <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.postal_code.substr(0, 5)}}</div>
-                            <div class="info-div">
-                                <button class="btn btn-primary btn-sm info-btn" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery)">More Info</button>
+        <div *ngIf="!savedBreweryList && breweryData.length" class="text-center bg-white pt-0 loading-div">
+            <img class="animated-gif" src="../../assets/images/loading.gif" />
+        </div>
+        <div *ngIf="savedBreweryList && breweryData">
+            <h2 *ngIf="breweryData.length == 0 && city != ''">No breweries found in {{ city }}. Check your spelling.</h2>
+            <div *ngIf="breweryData.length" id="brewery-list">
+                <h2 *ngIf="breweryData.length == 1">{{ breweryData.length }} brewery found in {{ city }}</h2>
+                <h2 *ngIf="breweryData.length > 1 && city != ''">{{ breweryData.length }} breweries found in {{ city }}</h2>
+                <h2 *ngIf="city == ''">You didn't enter anything, but here are {{ breweryData.length }} breweries</h2>
+                <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)">
+                </app-alert>
+                <div class="grid">
+                    <div class="breweries" *ngFor="let brewery of breweryData">
+                        <div class="card" style="width: 100%;">
+                            <div *ngIf="apiIds.indexOf(brewery.id) == -1">
+                                <save-icon [brewery]=brewery userId={{user.id}}
+                                           (onBrewerySave)="exexOnSave($event, brewery.name)"
+                                           (onBrewerySaveError)="exexOnSaveError($event)">
+                                </save-icon>
+                            </div>
+                            <div *ngIf="apiIds.indexOf(brewery.id) >= 0" class="saved-icon">
+                                <i class="fas fa-heart" (click)="deleteBrewery(deleteIds[apiIds.indexOf(brewery.id)], brewery.name)"></i>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ brewery.name.substr(0, 28) }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
+                                <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
+                                <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.postal_code.substr(0, 5)}}</div>
+                                <div class="info-div">
+                                    <button class="btn btn-primary btn-sm info-btn" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery)">More Info</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
 
         <div class="row">
             <div class="col-lg-12">

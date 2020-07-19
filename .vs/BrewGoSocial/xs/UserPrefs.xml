@@ -1,10 +1,9 @@
 ﻿<Properties StartupConfiguration="{0B11D65E-F764-4DB7-8503-3ED5435D9C8F}|Default">
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/profile-posts/profile-posts.component.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/post-modal/post-modal.component.html" Line="18" Column="70" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/profile/profile.component.html" Line="171" Column="15" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/profile-posts/profile-posts.component.html" Line="24" Column="79" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/home/home.component.html" Line="24" Column="44" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/brewery-search/brewery-search.component.html" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,9 +13,12 @@
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
                   <Node name="app" expanded="True">
-                    <Node name="profile-posts" expanded="True">
-                      <Node name="profile-posts.component.css" selected="True" />
+                    <Node name="brewery-search" expanded="True">
+                      <Node name="brewery-search.component.html" selected="True" />
                     </Node>
+                  </Node>
+                  <Node name="assets" expanded="True">
+                    <Node name="images" expanded="True" />
                   </Node>
                 </Node>
               </Node>

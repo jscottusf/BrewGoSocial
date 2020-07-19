@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import * as moment from "moment";
-import { PostModel } from "../_models";
-import { PostService } from "../_services";
 import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { PostModel } from "../_models";
+import { PostService } from "../_services";
+import * as moment from "moment";
 
 @Component({
   selector: "profile-posts",
@@ -14,9 +14,10 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class ProfilePostsComponent implements OnInit {
   moment: any = moment;
   @Input() posts: any = [];
-  @Output() onDelete = new EventEmitter();
+  @Input() user: any = {};
+  @Output() onSubmit = new EventEmitter();
   public post: PostModel;
-  editForm: FormGroup;
+  public editForm: FormGroup;
   submitted = false;
   postData: any = {};
 
@@ -27,7 +28,7 @@ export class ProfilePostsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.resetForm();
+    this.setForm();
   }
 
   // convenience getter for easy access to form fields
@@ -35,64 +36,58 @@ export class ProfilePostsComponent implements OnInit {
     return this.editForm.controls;
   }
 
-  open(content) {
-    this.modalService.open(content);
-  }
-
   getPostData(id) {
-    this.postService.getPostById(id).subscribe(
-      (data) => {
-        this.postData = data;
-        this.editForm = this.formBuilder.group({
-          postId: this.postData.postId,
-          profileImgUrl: this.postData.profileImgUrl,
-          postBody: [this.postData.postBody, [Validators.minLength(1)]],
-          userId: this.postData.userId,
-          firstName: this.postData.firstName,
-          lastName: this.postData.lastName,
-          username: this.postData.username,
-          slug: this.postData.slug,
-        });
-        console.log(this.editForm.value);
-      },
-      (err) => console.log(err)
-    );
+    this.postService
+      .getPostById(id)
+      .toPromise()
+      .then(
+        (data) => {
+          this.postData = data;
+          this.setForm();
+          console.log(this.editForm.value);
+        },
+        (err) => console.log(err)
+      );
   }
 
-  resetForm(form?: FormGroup) {
-    if (form != null) form.reset();
+  setForm(editForm?: FormGroup) {
+    if (editForm != null) editForm.reset();
     this.editForm = this.formBuilder.group({
-      postId: "",
-      profileImgUrl: "",
-      postBody: "",
-      userId: "",
-      firstName: "",
-      lastName: "",
-      username: "",
-      slug: "",
+      postId: this.postData.postId,
+      profileImgUrl: this.postData.profileImgUrl,
+      postBody: [this.postData.postBody, [Validators.minLength(1)]],
+      userId: this.postData.userId,
+      firstName: this.postData.firstName,
+      lastName: this.postData.lastName,
+      username: this.postData.username,
+      slug: this.postData.slug,
     });
   }
 
-  editPost() {
-    // this.submitted = true;
-    // // stop here if form is invalid (only whitespace)
-    // if (/\S/.test(this.form.value.postBody) === false) {
-    //   return;
-    // }
+  submitChanges() {
+    this.submitted = true;
+    // stop here if form is invalid (only whitespace)
+    if (/\S/.test(this.editForm.value.postBody) === false) {
+      return;
+    }
     console.log(this.editForm.value);
-    // this.postService
-    //   .editPost(this.postData.postId, this.form.value)
-    //   .subscribe((res) => {
-    //     this.onDelete.emit();
-    //     this.resetForm();
-    //   }),
-    //   (err) => console.log(err);
+    this.postService
+      .editPost(this.postData.postId, this.editForm.value)
+      .subscribe((res) => {
+        this.onSubmit.emit();
+        this.setForm();
+      }),
+      (err) => console.log(err);
   }
 
   deletePost(id) {
     this.postService.deletePost(id).subscribe(
-      (res) => this.onDelete.emit(),
+      (res) => this.onSubmit.emit(),
       (err) => console.log(err)
     );
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 }
