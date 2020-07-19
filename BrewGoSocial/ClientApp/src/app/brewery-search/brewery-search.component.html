@@ -1,171 +1,377 @@
 <div class="hero-user text-center">
-    <h1>BrewGo Social</h1>
-    <h2>Find local breweries and grub</h2>
-    <p class="font-weight-bold text-center">
-        Enter location, get buzzed, eat food
-    </p>
+  <h1>BrewGo Social</h1>
+  <h2>Find local breweries and grub</h2>
+  <p class="font-weight-bold text-center">
+    Enter location, get buzzed, eat food
+  </p>
 </div>
 <div class="p-4">
-    <div class="container">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="input-group mb-3">
-                <input type="text"
-                       class="form-control"
-                       formControlName="brewerySearch"
-                       placeholder="Cincinnati, OH" />
-                <div class="input-group-append">
-                    <button class="btn btn-dark" type="submit">Search</button>
-                </div>
-            </div>
-        </form>
-        <div *ngIf="!savedBreweryList && breweryData.length" class="text-center bg-white pt-0 loading-div">
-            <img class="animated-gif" src="../../assets/images/loading.gif" />
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="input-group mb-3 search">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="brewerySearch"
+          placeholder="Cincinnati, OH"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-dark" type="submit">Search</button>
         </div>
-        <div *ngIf="savedBreweryList && breweryData">
-            <h2 *ngIf="breweryData.length == 0 && city != ''">No breweries found in {{ city }}. Check your spelling.</h2>
-            <div *ngIf="breweryData.length" id="brewery-list">
-                <h2 *ngIf="breweryData.length == 1">{{ breweryData.length }} brewery found in {{ city }}</h2>
-                <h2 *ngIf="breweryData.length > 1 && city != ''">{{ breweryData.length }} breweries found in {{ city }}</h2>
-                <h2 *ngIf="city == ''">You didn't enter anything, but here are {{ breweryData.length }} breweries</h2>
-                <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)">
-                </app-alert>
-                <div class="grid">
-                    <div class="breweries" *ngFor="let brewery of breweryData">
-                        <div class="card" style="width: 100%;">
-                            <div *ngIf="apiIds.indexOf(brewery.id) == -1">
-                                <save-icon [brewery]=brewery userId={{user.id}}
-                                           (onBrewerySave)="exexOnSave($event, brewery.name)"
-                                           (onBrewerySaveError)="exexOnSaveError($event)">
-                                </save-icon>
-                            </div>
-                            <div *ngIf="apiIds.indexOf(brewery.id) >= 0" class="saved-icon">
-                                <i class="fas fa-heart" (click)="deleteBrewery(deleteIds[apiIds.indexOf(brewery.id)], brewery.name)"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ brewery.name.substr(0, 28) }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{ brewery.brewery_type }}</h6>
-                                <div class="card-text"><i class="fas fa-location-arrow"></i> {{ brewery.street }}</div>
-                                <div class="card-text">{{ brewery.city }}, {{ brewery.state }} {{brewery.postal_code.substr(0, 5)}}</div>
-                                <div class="info-div">
-                                    <button class="btn btn-primary btn-sm info-btn" data-toggle="modal" data-target="#info-modal" (click)="handleClick(brewery)">More Info</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="recommended-cities-header">Featured Craft Beer Cities</h2>
-            </div>
-        </div>
-        <div class="container-recommended-cities" id="recommended-cities">
-            <div class="city-container" id="Tampa" (click)="brewerySearch('Tampa, Florida')">
-                <img src="./assets/images/tampa.jpg">
-                <div class="recommended">
-                    <h4 class="city">Tampa</h4>
-                    <p>Florida</p>
-                </div>
-            </div>
-            <div class="city-container" id="Raleigh" (click)="brewerySearch('Raleigh, North Carolina')">
-                <img src="./assets/images/raleigh.jpg">
-                <div class="recommended">
-                    <h4 class="city">Raleigh</h4>
-                    <p>North Carolina</p>
-                </div>
-            </div>
-            <div class="city-container" id="Grand Rapids" (click)="brewerySearch('Grand Rapids, Michigan')">
-                <img src="./assets/images/grandrapids.jpg">
-                <div class="recommended">
-                    <h4 class="city">Grand Rapids</h4>
-                    <p>Michigan</p>
-                </div>
-            </div>
-            <div class="city-container" id="Portland" (click)="brewerySearch('Portland, Oregon')">
-                <img src="./assets/images/portland.jpg">
-                <div class="recommended">
-                    <h4 class="city">Portland</h4>
-                    <p>Oregon</p>
-                </div>
-            </div>
-        </div>
+      </div>
+    </form>
+    <div
+      *ngIf="!savedBreweryList && breweryData.length"
+      class="text-center bg-white pt-0 loading-div"
+    >
+      <img class="animated-gif" src="../../assets/images/loading.gif" />
     </div>
+    <div *ngIf="savedBreweryList && breweryData">
+      <h2 *ngIf="breweryData.length == 0 && city != ''">
+        No breweries found in {{ city }}. Check your spelling.
+      </h2>
+      <div *ngIf="breweryData.length" id="brewery-list">
+        <h2 *ngIf="breweryData.length == 1">
+          {{ breweryData.length }} brewery found in {{ city }}
+        </h2>
+        <h2 *ngIf="breweryData.length > 1 && city != ''">
+          {{ breweryData.length }} breweries found in {{ city }}
+        </h2>
+        <h2 *ngIf="city == ''">
+          You didn't enter anything, but here are
+          {{ breweryData.length }} breweries
+        </h2>
+        <app-alert
+          *ngIf="alertShow"
+          alertType="{{ alertType }}"
+          alertMessage="{{ alertMessage }}"
+          (onDismiss)="exexOnDismiss($event)"
+        >
+        </app-alert>
+        <div class="grid">
+          <div class="breweries" *ngFor="let brewery of breweryData">
+            <div class="card" style="width: 100%;">
+              <div *ngIf="apiIds.indexOf(brewery.id) == -1">
+                <save-icon
+                  [brewery]="brewery"
+                  userId="{{ user.id }}"
+                  (onBrewerySave)="exexOnSave($event, brewery.name)"
+                  (onBrewerySaveError)="exexOnSaveError($event)"
+                >
+                </save-icon>
+              </div>
+              <div *ngIf="apiIds.indexOf(brewery.id) >= 0" class="saved-icon">
+                <i
+                  class="fas fa-heart"
+                  (click)="
+                    deleteBrewery(
+                      deleteIds[apiIds.indexOf(brewery.id)],
+                      brewery.name
+                    )
+                  "
+                ></i>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ brewery.name.substr(0, 28) }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  {{ brewery.brewery_type }}
+                </h6>
+                <div class="card-text">
+                  <i class="fas fa-location-arrow"></i> {{ brewery.street }}
+                </div>
+                <div class="card-text">
+                  {{ brewery.city }}, {{ brewery.state }}
+                  {{ brewery.postal_code.substr(0, 5) }}
+                </div>
+                <div class="info-div">
+                  <button
+                    class="btn btn-primary btn-sm info-btn"
+                    data-toggle="modal"
+                    data-target="#info-modal"
+                    (click)="handleClick(brewery)"
+                  >
+                    More Info
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="recommended-cities-header">Featured Craft Beer Cities</h2>
+      </div>
+    </div>
+    <div class="container-recommended-cities" id="recommended-cities">
+      <div
+        class="city-container"
+        id="Tampa"
+        (click)="brewerySearch('Tampa, Florida')"
+      >
+        <img src="./assets/images/tampa.jpg" />
+        <div class="recommended">
+          <h4 class="city">Tampa</h4>
+          <p>Florida</p>
+        </div>
+      </div>
+      <div
+        class="city-container"
+        id="Raleigh"
+        (click)="brewerySearch('Raleigh, North Carolina')"
+      >
+        <img src="./assets/images/raleigh.jpg" />
+        <div class="recommended">
+          <h4 class="city">Raleigh</h4>
+          <p>North Carolina</p>
+        </div>
+      </div>
+      <div
+        class="city-container"
+        id="Grand Rapids"
+        (click)="brewerySearch('Grand Rapids, Michigan')"
+      >
+        <img src="./assets/images/grandrapids.jpg" />
+        <div class="recommended">
+          <h4 class="city">Grand Rapids</h4>
+          <p>Michigan</p>
+        </div>
+      </div>
+      <div
+        class="city-container"
+        id="Portland"
+        (click)="brewerySearch('Portland, Oregon')"
+      >
+        <img src="./assets/images/portland.jpg" />
+        <div class="recommended">
+          <h4 class="city">Portland</h4>
+          <p>Oregon</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--Modal card layout will go here...JS code will append info from APIs-->
 <!-- Modal -->
-<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content card" id="modal-card">
-            <div class="modal-header">
-                <h2>{{brewery.name}}</h2>
-                <!-- <span aria-hidden="true">&times;</span> -->
-            </div>
-            <div class="modal-body">
-                <div class="contact-container">
-                    <div id="address-info"><i class="fas fa-map-marker-alt"></i> {{brewery.street}} <br /> {{brewery.city}}, {{brewery.state}} {{zip}}</div>
-                    <div *ngIf="brewery.phone" id="phone-info"><i class="fas fa-phone"></i> ({{areaCode}}) {{prefix}}-{{lineNum}}</div>
-                    <div *ngIf="brewery.website_url" id="website"><i class="fas fa-globe-americas"></i><a href={{brewery.website_url}}> {{brewery.website_url}}</a></div>
-                </div>
-
-                <hr>
-                <h4>Brewery Location</h4>
-                <app-map></app-map>
-                <hr>
-                <h4>Nearby Restaurants <i class="fas fa-chevron-circle-left left" (click)="leftClick()"></i><i class="fas fa-chevron-circle-right right" (click)="rightClick()"></i></h4>
-                <div class="row">
-                    <div *ngFor="let res of restaurants; let i = index" class="col-lg-6">
-                        <div *ngIf="i == foodDisplayCount" class="card food-card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{res.restaurant.name}}</h5>
-                                <div class="card-text">{{res.restaurant.cuisines}}. </div>
-                                <div class="card-text">{{res.restaurant.location.address}}</div>
-                                <div class="card-text"></div>
-                                <div *ngIf="res.restaurant.price_range == 1" class="card-text">$</div>
-                                <div *ngIf="res.restaurant.price_range == 2" class="card-text">$$</div>
-                                <div *ngIf="res.restaurant.price_range == 3" class="card-text">$$$</div>
-                                <div *ngIf="res.restaurant.price_range == 4" class="card-text">$$$$</div>
-                                <div *ngIf="res.restaurant.price_range == 5" class="card-text">$$$$$</div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating < 1.5" class="card-text"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 1.5 && res.restaurant.user_rating.aggregate_rating < 2.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 2.5 && res.restaurant.user_rating.aggregate_rating < 3.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 3.5 && res.restaurant.user_rating.aggregate_rating < 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                <div class="menu-btn">
-                                    <a href={{res.restaurant.menu_url}} class="btn btn-primary align-bottom" target="_blank">Menu</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="i == foodDisplayCount + 1" class="card food-card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{res.restaurant.name}}</h5>
-                                <div class="card-text">{{res.restaurant.cuisines}}. </div>
-                                <div class="card-text">{{res.restaurant.location.address}}</div>
-                                <div class="card-text"></div>
-                                <div *ngIf="res.restaurant.price_range == 1" class="card-text">$</div>
-                                <div *ngIf="res.restaurant.price_range == 2" class="card-text">$$</div>
-                                <div *ngIf="res.restaurant.price_range == 3" class="card-text">$$$</div>
-                                <div *ngIf="res.restaurant.price_range == 4" class="card-text">$$$$</div>
-                                <div *ngIf="res.restaurant.price_range == 5" class="card-text">$$$$$</div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating < 1.5" class="card-text"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 1.5 && res.restaurant.user_rating.aggregate_rating < 2.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 2.5 && res.restaurant.user_rating.aggregate_rating < 3.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 3.5 && res.restaurant.user_rating.aggregate_rating < 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-                                <div *ngIf="res.restaurant.user_rating.aggregate_rating >= 4.5" class="card-text"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                <div class="menu-btn">
-                                    <a href={{res.restaurant.menu_url}} class="btn btn-primary align-bottom" target="_blank">Menu</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-            </div>
+<div
+  class="modal fade"
+  id="info-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content card" id="modal-card">
+      <div class="modal-header">
+        <h2>{{ brewery.name }}</h2>
+        <!-- <span aria-hidden="true">&times;</span> -->
+      </div>
+      <div class="modal-body">
+        <div class="contact-container">
+          <div id="address-info">
+            <i class="fas fa-map-marker-alt"></i> {{ brewery.street }} <br />
+            {{ brewery.city }}, {{ brewery.state }} {{ zip }}
+          </div>
+          <div *ngIf="brewery.phone" id="phone-info">
+            <i class="fas fa-phone"></i> ({{ areaCode }}) {{ prefix }}-{{
+              lineNum
+            }}
+          </div>
+          <div *ngIf="brewery.website_url" id="website">
+            <i class="fas fa-globe-americas"></i
+            ><a href="{{ brewery.website_url }}"> {{ brewery.website_url }}</a>
+          </div>
         </div>
+
+        <hr />
+        <h4>Brewery Location</h4>
+        <app-map></app-map>
+        <hr />
+        <h4>
+          Nearby Restaurants
+          <i class="fas fa-chevron-circle-left left" (click)="leftClick()"></i
+          ><i
+            class="fas fa-chevron-circle-right right"
+            (click)="rightClick()"
+          ></i>
+        </h4>
+        <div class="row">
+          <div *ngFor="let res of restaurants; let i = index" class="col-lg-6">
+            <div *ngIf="i == foodDisplayCount" class="card food-card">
+              <div class="card-body">
+                <h5 class="card-title">{{ res.restaurant.name }}</h5>
+                <div class="card-text">{{ res.restaurant.cuisines }}.</div>
+                <div class="card-text">
+                  {{ res.restaurant.location.address }}
+                </div>
+                <div class="card-text"></div>
+                <div *ngIf="res.restaurant.price_range == 1" class="card-text">
+                  $
+                </div>
+                <div *ngIf="res.restaurant.price_range == 2" class="card-text">
+                  $$
+                </div>
+                <div *ngIf="res.restaurant.price_range == 3" class="card-text">
+                  $$$
+                </div>
+                <div *ngIf="res.restaurant.price_range == 4" class="card-text">
+                  $$$$
+                </div>
+                <div *ngIf="res.restaurant.price_range == 5" class="card-text">
+                  $$$$$
+                </div>
+                <div
+                  *ngIf="res.restaurant.user_rating.aggregate_rating < 1.5"
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="
+                    res.restaurant.user_rating.aggregate_rating >= 1.5 &&
+                    res.restaurant.user_rating.aggregate_rating < 2.5
+                  "
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="
+                    res.restaurant.user_rating.aggregate_rating >= 2.5 &&
+                    res.restaurant.user_rating.aggregate_rating < 3.5
+                  "
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="
+                    res.restaurant.user_rating.aggregate_rating >= 3.5 &&
+                    res.restaurant.user_rating.aggregate_rating < 4.5
+                  "
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="res.restaurant.user_rating.aggregate_rating >= 4.5"
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <div class="menu-btn">
+                  <a
+                    href="{{ res.restaurant.menu_url }}"
+                    class="btn btn-primary align-bottom"
+                    target="_blank"
+                    >Menu</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div *ngIf="i == foodDisplayCount + 1" class="card food-card">
+              <div class="card-body">
+                <h5 class="card-title">{{ res.restaurant.name }}</h5>
+                <div class="card-text">{{ res.restaurant.cuisines }}.</div>
+                <div class="card-text">
+                  {{ res.restaurant.location.address }}
+                </div>
+                <div class="card-text"></div>
+                <div *ngIf="res.restaurant.price_range == 1" class="card-text">
+                  $
+                </div>
+                <div *ngIf="res.restaurant.price_range == 2" class="card-text">
+                  $$
+                </div>
+                <div *ngIf="res.restaurant.price_range == 3" class="card-text">
+                  $$$
+                </div>
+                <div *ngIf="res.restaurant.price_range == 4" class="card-text">
+                  $$$$
+                </div>
+                <div *ngIf="res.restaurant.price_range == 5" class="card-text">
+                  $$$$$
+                </div>
+                <div
+                  *ngIf="res.restaurant.user_rating.aggregate_rating < 1.5"
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="
+                    res.restaurant.user_rating.aggregate_rating >= 1.5 &&
+                    res.restaurant.user_rating.aggregate_rating < 2.5
+                  "
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="far fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="
+                    res.restaurant.user_rating.aggregate_rating >= 2.5 &&
+                    res.restaurant.user_rating.aggregate_rating < 3.5
+                  "
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="far fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="
+                    res.restaurant.user_rating.aggregate_rating >= 3.5 &&
+                    res.restaurant.user_rating.aggregate_rating < 4.5
+                  "
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="far fa-star"></i>
+                </div>
+                <div
+                  *ngIf="res.restaurant.user_rating.aggregate_rating >= 4.5"
+                  class="card-text"
+                >
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <div class="menu-btn">
+                  <a
+                    href="{{ res.restaurant.menu_url }}"
+                    class="btn btn-primary align-bottom"
+                    target="_blank"
+                    >Menu</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" data-dismiss="modal">
+          Close
+        </button>
+      </div>
     </div>
+  </div>
 </div>

@@ -13,3 +13,10 @@
 .card {
   min-height: 175px;
 }
+
+@media screen and (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr;
+    padding-top: 10px;
+  }
+}

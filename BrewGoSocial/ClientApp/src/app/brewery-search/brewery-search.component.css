@@ -164,3 +164,34 @@ h4 i:hover {
 .saved-icon i:hover {
   color: black;
 }
+
+@media screen and (max-width: 991px) {
+  .container-recommended-cities {
+    grid-template-columns: 1fr 1fr;
+  }
+  .city-container {
+    padding-bottom: 5px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    padding-top: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container-recommended-cities {
+    grid-template-columns: 1fr;
+  }
+
+  .search {
+    padding-top: 15px;
+  }
+  .city-container {
+    padding-bottom: 5px;
+    width: 98%;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    padding-top: 10px;
+  }
+}
