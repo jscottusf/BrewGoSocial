@@ -1,9 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { User, ProfileModel, PostModel } from "../_models";
 import { AccountService, ProfileService } from "../_services";
 import * as moment from "moment";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-profile",
@@ -20,7 +19,7 @@ export class ProfileComponent implements OnInit {
   alertShow = false;
   alertMessage = "";
   alertType = "";
-  //store user data in a card to pass down to post modal :) reminder
+  //store user data in a card to pass down to post modal
   userCard: any = {};
   public profile: ProfileModel;
   public posts: PostModel[];
@@ -56,7 +55,7 @@ export class ProfileComponent implements OnInit {
         firstName: this.user.firstName,
         lastName: this.user.lastName,
         username: this.user.username,
-        slug: this.user.slug,
+        slug: this.userData.slug,
         city: this.profile.city,
         state: this.profile.state,
       };
@@ -108,6 +107,10 @@ export class ProfileComponent implements OnInit {
 
   editClick() {
     this.editProfile = !this.editProfile;
+  }
+
+  reloadPosts($event: any) {
+    this.getUserProfile(this.user.id);
   }
 
   exexOnDismiss($event: any) {

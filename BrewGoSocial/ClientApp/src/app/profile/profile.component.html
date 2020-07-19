@@ -1,12 +1,12 @@
 <div class="hero-user text-center">
-  <h1>BrewGo Social</h1>
-  <h2>Find local breweries and grub</h2>
-  <p class="font-weight-bold text-center">
-    Enter location, get buzzed, eat food
-  </p>
+    <h1>BrewGo Social</h1>
+    <h2>Find local breweries and grub</h2>
+    <p class="font-weight-bold text-center">
+        Enter location, get buzzed, eat food
+    </p>
 </div>
 <div class="p-4">
-    <div class="container">
+    <div class="container" *ngIf="profile">
         <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)"></app-alert>
         <div class="card">
             <div class="card-body">
@@ -17,7 +17,7 @@
                         </div>
                         <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted text-center">@{{ user.username }}</h6>
-                        <div *ngIf="!editProfile" class="card-text text-center">{{ profile.bio }}</div>
+                        <div *ngIf="!editProfile" class="card-text text-center">{{ profile?.bio }}</div>
                     </div>
                     <div *ngIf="!editProfile" class="m-4">
                         <div class="info-grid">
@@ -36,9 +36,9 @@
                                     <div class="form-group">
                                         <label for="city">City</label>
                                         <input type="text"
-                                                formControlName="city"
-                                                class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                                               formControlName="city"
+                                               class="form-control"
+                                               [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
                                         <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
                                             <div *ngIf="f.city.errors.maxlength">
                                                 25 Character limit
@@ -106,9 +106,9 @@
                                 <div class="form-group">
                                     <label for="occupation">Occupation</label>
                                     <input type="text"
-                                            formControlName="occupation"
-                                            class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && f.occupation.errors }" />
+                                           formControlName="occupation"
+                                           class="form-control"
+                                           [ngClass]="{ 'is-invalid': submitted && f.occupation.errors }" />
                                     <div *ngIf="submitted && f.occupation.errors" class="invalid-feedback">
                                         <div *ngIf="f.occupation.errors.maxlength">
                                             25 Character limit
@@ -119,9 +119,9 @@
                                 <div class="form-group">
                                     <label for="favoriteBreweries">Favorite Breweries</label>
                                     <input type="text"
-                                            formControlName="favoriteBreweries"
-                                            class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && f.favoriteBreweries.errors }" />
+                                           formControlName="favoriteBreweries"
+                                           class="form-control"
+                                           [ngClass]="{ 'is-invalid': submitted && f.favoriteBreweries.errors }" />
                                     <div *ngIf="submitted && f.favoriteBreweries.errors" class="invalid-feedback">
                                         <div *ngIf="f.favoriteBreweries.errors.maxlength">
                                             255 Character limit
@@ -132,9 +132,9 @@
                                 <div class="form-group">
                                     <label for="favoriteBeers">Favorite Beers</label>
                                     <input type="text"
-                                            formControlName="favoriteBeers"
-                                            class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && f.favoriteBeers.errors }" />
+                                           formControlName="favoriteBeers"
+                                           class="form-control"
+                                           [ngClass]="{ 'is-invalid': submitted && f.favoriteBeers.errors }" />
                                     <div *ngIf="submitted && f.favoriteBeers.errors" class="invalid-feedback">
                                         <div *ngIf="f.favoriteBeers.errors.maxlength">
                                             255 Character limit
@@ -145,9 +145,9 @@
                                 <div class="form-group">
                                     <label for="bio">Bio</label>
                                     <input type="text"
-                                            formControlName="bio"
-                                            class="form-control"
-                                            [ngClass]="{ 'is-invalid': submitted && f.bio.errors }" />
+                                           formControlName="bio"
+                                           class="form-control"
+                                           [ngClass]="{ 'is-invalid': submitted && f.bio.errors }" />
                                     <div *ngIf="submitted && f.bio.errors" class="invalid-feedback">
                                         <div *ngIf="f.bio.errors.maxlength">
                                             255 Character limit
@@ -164,9 +164,9 @@
                 </div>
                 <hr />
                 <h4>Posts</h4>
-                <post-modal [userCard]=userCard></post-modal>
+                <post-modal [userCard]=userCard (onPost)="reloadPosts($event)"></post-modal>
                 <hr />
-                <profile-posts [posts]=posts></profile-posts>
+                <profile-posts [posts]=posts (onDelete)="reloadPosts($event)"></profile-posts>
             </div>
         </div>
     </div>

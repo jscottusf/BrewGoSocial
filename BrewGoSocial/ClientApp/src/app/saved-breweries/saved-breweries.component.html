@@ -10,7 +10,7 @@
         <h2>Favorite Breweries</h2>
         <app-alert *ngIf="alertShow" alertType="{{ alertType }}" alertMessage="{{ alertMessage }}" (onDismiss)="exexOnDismiss($event)">
         </app-alert>
-        <h5 *ngIf="breweries.length == 0">No breweries saved yet</h5>
+        <h5 *ngIf="breweries?.length == 0">No breweries saved yet</h5>
         <div *ngIf="breweries" id="brewery-list">
             <div class="grid">
                 <div class="breweries" *ngFor="let brewery of breweries">

@@ -28,6 +28,7 @@ namespace BrewGoSocial.Controllers
         public ActionResult<IEnumerable<Post>> GetAll()
         {
             var posts = _service.GetAll();
+            posts = posts.Reverse();
             return Ok(posts);
         }
 

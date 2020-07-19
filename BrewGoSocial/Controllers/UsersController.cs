@@ -103,6 +103,8 @@ namespace BrewGoSocial.Controllers
         public IActionResult GetById(int id)
         {
             var user = _userService.GetById(id);
+            //reverse the posts into desc order
+            user.Posts.Reverse();
             var model = _mapper.Map<UserModel>(user);
             return Ok(model);
         }

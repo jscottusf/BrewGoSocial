@@ -1,27 +1,30 @@
 <ng-template #content let-c="close" let-d="dismiss">
-    <div class="card" style="width: 100%;">
-        <div class="card-body">
-            <div class="post-grid">
-                <div id="postImgDiv">
-                    <img id="postImg" src="{{userCard.profileImgUrl}}" alt="profile image"/>
+    <form [formGroup]="form" (ngSubmit)="c(makePost())">
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <div class="post-grid">
+                    <div id="postImgDiv">
+                        <img id="postImg" src="{{userCard.profileImgUrl}}" alt="profile image" />
+                    </div>
+                    <div>
+                        <h5 class="card-title">{{userCard.firstName}} {{userCard.lastName}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{userCard.city}}, {{userCard.state}}</h6>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-primary" id="sendPostBtn" (click)="c(makePost())">Send Post</button>
+                    </div>
                 </div>
-                <div>
-                    <h5 class="card-title">{{userCard.firstName}} {{userCard.lastName}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{userCard.city}}, {{userCard.state}}</h6>
+                <div class="postText form-group">
+                    <textarea placeholder="Post something on BrewGo Social..." formControlName="postBody" minlength="1" class="form-control" rows="10" [ngClass]="{ 'is-invalid': submitted && f.postBody.errors }"></textarea>
+                    <div *ngIf="submitted && f.postBody.errors" class="invalid-feedback">
+                        <div *ngIf="f.postBody.errors.minlength">
+                            Post must contain at least one character
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-sm btn-primary" id="sendPostBtn" (click)="c('Save click')">Send Post</button>
-                </div>
-            </div>
-            <div class="postText">
-                <textarea rows="10"></textarea>
             </div>
         </div>
-    </div>
-    
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-    </div>
+    </form>
 </ng-template>
 
 <div (click)="open(content)" class="post-btn">
