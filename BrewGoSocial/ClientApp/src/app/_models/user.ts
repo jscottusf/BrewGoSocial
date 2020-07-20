@@ -7,6 +7,9 @@
   firstName: string;
   lastName: string;
   token: string;
+  posts: any = [];
+  savedBreweries: any = [];
+  profile: any = {};
   createdDate: string;
   updatedDate: string;
 }

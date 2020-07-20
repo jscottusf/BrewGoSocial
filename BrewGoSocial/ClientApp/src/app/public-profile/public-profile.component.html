@@ -1,0 +1,41 @@
+<div class="hero-user text-center">
+    <h1>BrewGo Social</h1>
+    <h2>Find local breweries and grub</h2>
+    <p class="font-weight-bold text-center">
+        Enter location, get buzzed, eat food
+    </p>
+</div>
+<div *ngIf="!user" class="text-center bg-white pt-0 loading-div">
+    <img class="animated-gif" src="../../assets/images/loading.gif" />
+</div>
+<div class="p-4">
+    <div class="container" *ngIf="user">
+        <div class="card">
+            <div class="card-body">
+                <div class="profile-grid">
+                    <div class="left">
+                        <div class="profile-img">
+                            <img src="{{ user.profile.profileImgUrl }}" alt="" />
+                        </div>
+                        <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">@{{ user.username }}</h6>
+                        <div class="card-text text-center">{{ user.profile?.bio }}</div>
+                    </div>
+                    <div class="m-4">
+                        <div class="info-grid">
+                            <i class="fas fa-map-marker-alt p-1 mr-3"></i><p class="card-text"> {{ user.profile.city }}<span *ngIf="user.profile.city">,</span> {{ user.profile.state }}</p>
+                            <i class="fas fa-briefcase p-1 mr-3"></i><p class="card-text"> {{ user.profile.occupation }}</p>
+                            <i class="fas fa-industry p-1 mr-3"></i><p class="card-text"> {{ user.profile.favoriteBreweries }}</p>
+                            <i class="fas fa-beer p-1 mr-3"></i><p class="card-text"> {{ user.profile.favoriteBeers }}</p>
+                            <i class="far fa-calendar-alt p-1 mr-3"></i><p class="card-text"> Member since {{ moment(user.createdDate).format('MMMM Do YYYY') }}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <h4>Posts</h4>
+                <hr />
+                <profile-posts [posts]=user.posts></profile-posts>
+            </div>
+        </div>
+    </div>
+</div>

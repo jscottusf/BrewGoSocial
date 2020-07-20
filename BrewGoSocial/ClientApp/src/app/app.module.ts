@@ -26,6 +26,7 @@ import { StateInputComponent } from "./state-input/state-input.component";
 import { PostModalComponent } from "./post-modal/post-modal.component";
 import { ProfilePostsComponent } from "./profile-posts/profile-posts.component";
 import { ProfileService, PostService } from "./_services";
+import { PublicProfileComponent } from './public-profile/public-profile.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { ProfileService, PostService } from "./_services";
     StateInputComponent,
     PostModalComponent,
     ProfilePostsComponent,
+    PublicProfileComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

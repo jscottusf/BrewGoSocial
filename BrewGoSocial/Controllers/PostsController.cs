@@ -37,6 +37,10 @@ namespace BrewGoSocial.Controllers
         public ActionResult<Post> GetPostById(int id)
         {
             var post = _service.GetPostById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
             return Ok(post);
         }
 

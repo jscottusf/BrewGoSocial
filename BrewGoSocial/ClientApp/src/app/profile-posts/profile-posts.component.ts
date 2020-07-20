@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { PostModel } from "../_models";
-import { PostService } from "../_services";
+import { User, PostModel } from "../_models";
+import { PostService, AccountService } from "../_services";
 import * as moment from "moment";
 
 @Component({
@@ -14,18 +14,21 @@ import * as moment from "moment";
 export class ProfilePostsComponent implements OnInit {
   moment: any = moment;
   @Input() posts: any = [];
-  @Input() user: any = {};
   @Output() onSubmit = new EventEmitter();
   public post: PostModel;
   public editForm: FormGroup;
   submitted = false;
   postData: any = {};
+  user: User;
 
   constructor(
     private modalService: NgbModal,
     private postService: PostService,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private accountService: AccountService
+  ) {
+    this.user = this.accountService.userValue;
+  }
 
   ngOnInit(): void {
     this.setForm();

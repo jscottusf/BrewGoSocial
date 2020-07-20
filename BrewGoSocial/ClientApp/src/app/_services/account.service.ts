@@ -58,6 +58,10 @@ export class AccountService {
     return this.http.get<User>(`${environment.apiUrl}/api/users/${id}`);
   }
 
+  getBySlug(slug: string) {
+    return this.http.get<User>(`${environment.apiUrl}/api/users/slugs/${slug}`);
+  }
+
   update(id, params) {
     return this.http.put(`${environment.apiUrl}/api/users/${id}`, params).pipe(
       map((x) => {

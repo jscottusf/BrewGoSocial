@@ -6,6 +6,7 @@ import { AuthGuard } from "./_helpers";
 import { BrewerySearchComponent } from "./brewery-search/brewery-search.component";
 import { SavedBreweriesComponent } from "./saved-breweries/saved-breweries.component";
 import { ProfileComponent } from "./profile/profile.component";
+import { PublicProfileComponent } from "./public-profile/public-profile.component";
 
 const accountModule = () =>
   import("./account/account.module").then((x) => x.AccountModule);
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: "profile",
     component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "users/:slug",
+    component: PublicProfileComponent,
     canActivate: [AuthGuard],
   },
   {

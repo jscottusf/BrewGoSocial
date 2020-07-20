@@ -37,6 +37,10 @@ namespace BrewGoSocial.Controllers
         public ActionResult<SavedBrewery> GetBreweryById(int id)
         {
             var brewery = _service.GetBreweryById(id);
+            if (brewery == null)
+            {
+                return NotFound();
+            }
             return Ok(brewery);
         }
 

@@ -13,6 +13,7 @@ namespace BrewGoSocial.Services
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
         User GetById(int id);
+        User GetBySlug(string slug);
         User Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
@@ -55,6 +56,11 @@ namespace BrewGoSocial.Services
         {
             return _context.Users.Include(x => x.SavedBreweries).Include(x => x.Posts).Include(x => x.Profile).FirstOrDefault(u => u.Id == id);
             //return _context.Users.Find(id);
+        }
+
+        public User GetBySlug(string slug)
+        {
+            return _context.Users.Include(x => x.Posts).Include(x => x.Profile).FirstOrDefault(u => u.Slug == slug);
         }
 
         public User Create(User user, string password)

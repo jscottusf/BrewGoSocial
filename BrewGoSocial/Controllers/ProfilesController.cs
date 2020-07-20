@@ -36,6 +36,10 @@ namespace BrewGoSocial.Controllers
         public ActionResult<Profile> GetProfileById(int id)
         {
             var profile = _service.GetProfileById(id);
+            if (profile == null)
+            {
+                return NotFound();
+            }
             return Ok(profile);
         }
 

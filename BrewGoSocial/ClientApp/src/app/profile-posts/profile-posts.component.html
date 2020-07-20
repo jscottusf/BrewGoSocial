@@ -1,7 +1,7 @@
 <div *ngIf="!posts" class="text-center bg-white pt-0 loading-div">
     <img class="animated-gif" src="../../assets/images/loading.gif" />
 </div>
-<h5 class="text-center m-3 p-3" *ngIf="posts?.length == 0">You have not made any posts to BrewGo Social</h5>
+<h5 class="text-center m-3 p-3" *ngIf="posts?.length == 0">No posts to BrewGo Social</h5>
 <div *ngFor="let post of posts">
     <div class="card">
         <div class="card-body">
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div>
-            <div class="dropdown">
+            <div *ngIf="user.id == post.userId" class="dropdown">
                 <i class="fas fa-ellipsis-h" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <div class="dropdown-item" (click)="getPostData(post.postId); open(editPost)">Edit Post</div>
