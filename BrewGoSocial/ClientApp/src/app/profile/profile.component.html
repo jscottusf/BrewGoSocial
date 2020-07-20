@@ -169,7 +169,7 @@
                 </div>
                 <hr />
                 <h4>Posts</h4>
-                <post-modal [user]=user [userCard]=userCard (onPost)="reloadPosts($event)"></post-modal>
+                <post-modal [userCard]=userCard (onPost)="reloadPosts($event)"></post-modal>
                 <hr />
                 <profile-posts [posts]=posts (onSubmit)="reloadPosts($event)"></profile-posts>
             </div>

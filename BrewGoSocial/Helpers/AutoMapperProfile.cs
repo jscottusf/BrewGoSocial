@@ -9,6 +9,7 @@ namespace BrewGoSocial.Helpers
         public AutoMapperProfile()
         {
             CreateMap<User, UserModel>();
+            CreateMap<User, PublicUserModel>();
             CreateMap<RegisterModel, User>();
             CreateMap<UpdateModel, User>();
         }

@@ -123,7 +123,7 @@ namespace BrewGoSocial.Controllers
             }
             //reverse the posts into desc order
             user.Posts.Reverse();
-            var model = _mapper.Map<UserModel>(user);
+            var model = _mapper.Map<PublicUserModel>(user);
             return Ok(model);
         }
 
