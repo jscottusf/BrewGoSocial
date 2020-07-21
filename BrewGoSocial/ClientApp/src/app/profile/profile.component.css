@@ -48,6 +48,14 @@
   margin: 0 auto;
 }
 
+.username:hover {
+  text-decoration: none;
+}
+
+.username h6:hover {
+  color: #353b40 !important;
+}
+
 @media screen and (max-width: 991px) {
   .profile-grid {
     grid-template-columns: 1fr;

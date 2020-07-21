@@ -19,7 +19,7 @@
                             <img src="{{ profile.profileImgUrl }}" alt="" />
                         </div>
                         <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
-                        <a [routerLink]="['/users/' + user.username.toLowerCase()]">
+                        <a class="username" [routerLink]="['/users/' + user.username.toLowerCase()]">
                             <h6 class="card-subtitle mb-2 text-muted text-center">@{{ user.username }}</h6>
                         </a>
                         <div *ngIf="!editProfile" class="card-text text-center">{{ profile?.bio }}</div>

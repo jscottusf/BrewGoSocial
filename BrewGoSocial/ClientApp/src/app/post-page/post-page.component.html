@@ -1,0 +1,70 @@
+<div class="hero-user text-center">
+    <h1>BrewGo Social</h1>
+    <h2>Find local breweries and grub</h2>
+    <p class="font-weight-bold text-center">
+        Enter location, get buzzed, eat food
+    </p>
+</div>
+<div *ngIf="!post" class="text-center bg-white pt-0 loading-div">
+    <img class="animated-gif" src="../../assets/images/loading.gif" />
+</div>
+<div class="p-4">
+    <div class="container" *ngIf="post">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2 sm-3">
+                        <div id="postImgDiv">
+                            <img id="postImg" src="{{post.profileImgUrl}}" />
+                        </div>
+                    </div>
+                    <div class="col-10 sm-9">
+                        <div class="postcard-grid">
+                            <h5 class="card-title mb-2">{{post.firstName}} {{post.lastName}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{moment(post.createdDate).format('MMMM Do YYYY, h:mm a')}}</h6>
+                        </div>
+                        <div class="card-text mb-1">{{post.postBody}}</div>
+                        <a class="comments-link" [routerLink]="['/posts/' + post.postId]">
+                            <div class="card-text text-muted mb-1 comments"><i class="far fa-comment"></i> {{post.comments.length}}</div>
+                        </a>
+                    </div>
+                </div>
+                <br />
+                <h4>Comments</h4>
+                <hr />
+                <h5 class="text-center m-3 p-3" *ngIf="comments?.length == 0">No comments yet. Be the first!</h5>
+                <div *ngFor="let comment of comments">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2 sm-3">
+                                    <div id="commentImgDiv">
+                                        <img id="commentImg" src="{{comment.profileImgUrl}}" />
+                                    </div>
+                                </div>
+                                <div class="col-10 sm-9">
+                                    <div class="postcard-grid">
+                                        <h5 class="card-title mb-2">{{comment.firstName}} {{comment.lastName}}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{moment(post.createdDate).format('MMMM Do YYYY, h:mm a')}}</h6>
+                                    </div>
+                                    <div class="card-text mb-1">{{comment.commentBody}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div *ngIf="user.id == post.userId" class="dropdown">
+                    <i class="fas fa-ellipsis-h" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-item" (click)="getPostData(post.postId); open(editPost)">Edit Post</div>
+                        <div class="dropdown-item" (click)="deletePost(post.postId)">Delete Post</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        

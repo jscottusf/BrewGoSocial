@@ -7,6 +7,8 @@ import { BrewerySearchComponent } from "./brewery-search/brewery-search.componen
 import { SavedBreweriesComponent } from "./saved-breweries/saved-breweries.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { PublicProfileComponent } from "./public-profile/public-profile.component";
+import { ProfilePostsComponent } from "./profile-posts/profile-posts.component";
+import { PostPageComponent } from "./post-page/post-page.component";
 
 const accountModule = () =>
   import("./account/account.module").then((x) => x.AccountModule);
@@ -37,6 +39,11 @@ const routes: Routes = [
   {
     path: "users/:slug",
     component: PublicProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "posts/:id",
+    component: PostPageComponent,
     canActivate: [AuthGuard],
   },
   {

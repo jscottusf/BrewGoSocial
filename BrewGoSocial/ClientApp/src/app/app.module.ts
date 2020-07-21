@@ -25,8 +25,9 @@ import { ProfileComponent } from "./profile/profile.component";
 import { StateInputComponent } from "./state-input/state-input.component";
 import { PostModalComponent } from "./post-modal/post-modal.component";
 import { ProfilePostsComponent } from "./profile-posts/profile-posts.component";
-import { ProfileService, PostService } from "./_services";
-import { PublicProfileComponent } from './public-profile/public-profile.component';
+import { ProfileService, PostService, CommentService } from "./_services";
+import { PublicProfileComponent } from "./public-profile/public-profile.component";
+import { PostPageComponent } from "./post-page/post-page.component";
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
     PostModalComponent,
     ProfilePostsComponent,
     PublicProfileComponent,
+    PostPageComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -62,6 +64,7 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
     BreweryService,
     ProfileService,
     PostService,
+    CommentService,
   ],
   bootstrap: [AppComponent],
 })

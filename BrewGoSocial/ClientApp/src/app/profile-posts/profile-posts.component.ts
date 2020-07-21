@@ -43,14 +43,12 @@ export class ProfilePostsComponent implements OnInit {
     this.postService
       .getPostById(id)
       .toPromise()
-      .then(
-        (data) => {
-          this.postData = data;
-          this.setForm();
-          console.log(this.editForm.value);
-        },
-        (err) => console.log(err)
-      );
+      .then((data) => {
+        this.postData = data;
+        this.setForm();
+        console.log(this.editForm.value);
+      })
+      .catch((err) => console.log(err));
   }
 
   setForm(editForm?: FormGroup) {

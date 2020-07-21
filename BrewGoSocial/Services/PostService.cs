@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BrewGoSocial.Models;
 using BrewGoSocial.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace BrewGoSocial.Services
 {
@@ -51,7 +52,7 @@ namespace BrewGoSocial.Services
 
         public Post GetPostById(int id)
         {
-            return _context.Posts.FirstOrDefault(b => b.PostId == id);
+            return _context.Posts.Include(x => x.Comments).FirstOrDefault(b => b.PostId == id);
         }
 
         public bool SaveChanges()

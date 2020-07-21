@@ -17,6 +17,9 @@
                         <h6 class="card-subtitle mb-2 text-muted">{{moment(post.createdDate).format('MMMM Do YYYY, h:mm a')}}</h6>
                     </div>
                     <div class="card-text mb-1">{{post.postBody}}</div>
+                    <a class="comments-link" [routerLink]="['/posts/' + post.postId]">
+                        <div class="card-text text-muted mb-1 comments"><i class="far fa-comment"></i> {{post.comments.length}}</div>
+                    </a>
                 </div>
             </div>
         </div>

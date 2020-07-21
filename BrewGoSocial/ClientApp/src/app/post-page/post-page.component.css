@@ -1,0 +1,114 @@
+.card {
+  width: 100%;
+}
+
+.postcard-grid {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+}
+
+#postImgDiv {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+#commentImgDiv {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+#commentImg {
+  height: auto;
+  object-fit: cover;
+  min-height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#postImg {
+  height: auto;
+  object-fit: cover;
+  min-height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-link {
+  color: #17a2b8;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  color: #0d606d;
+  transition: 1s;
+}
+
+.dropdown {
+  position: static;
+}
+
+.fa-ellipsis-h {
+  position: absolute;
+  top: 3rem;
+  right: 2.5rem;
+  z-index: 200;
+}
+
+.fa-ellipsis-h:hover {
+  cursor: pointer;
+}
+
+.dropdown-item {
+  font-weight: 600;
+  color: #1b1b1b;
+}
+
+.dropdown-item:hover {
+  background-color: #e0eefc;
+  color: #51a3ff;
+  cursor: pointer;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: 60px 1fr 130px;
+  padding-top: 6px;
+}
+
+.postText textarea {
+  padding: 20px;
+  width: 100%;
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; /*remove the resize handle on the bottom right*/
+}
+
+#editPostBtn {
+  border-radius: 16px;
+}
+
+.comments:hover {
+  cursor: pointer;
+  color: #353b40 !important;
+}
+
+.comments-link:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+  .fa-ellipsis-h {
+    top: 2.1rem;
+    right: 2rem;
+  }
+}

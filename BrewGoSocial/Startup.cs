@@ -98,6 +98,7 @@ namespace BrewGoSocial
             services.AddScoped<ISavedBreweryService, SavedBreweryService>();
             services.AddScoped<IProfileService, ProfileService>();
             services.AddScoped<IPostService, PostService>();
+            services.AddScoped<ICommentService, CommentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

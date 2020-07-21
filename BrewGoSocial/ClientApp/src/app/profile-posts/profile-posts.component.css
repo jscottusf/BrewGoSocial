@@ -82,6 +82,15 @@
   border-radius: 16px;
 }
 
+.comments:hover {
+  cursor: pointer;
+  color: #353b40 !important;
+}
+
+.comments-link:hover {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 500px) {
   .fa-ellipsis-h {
     top: 2.1rem;
