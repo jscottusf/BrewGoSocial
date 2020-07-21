@@ -62,9 +62,11 @@ namespace BrewGoSocial.Controllers
             {
                 Id = user.Id,
                 Username = user.Username,
+                Slug = user.Slug,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                ProfileImgUrl = user.Profile.ProfileImgUrl,
                 CreatedDate = user.CreatedDate,
                 UpdatedDate = user.UpdatedDate,
                 Token = tokenString

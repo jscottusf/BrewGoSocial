@@ -1,0 +1,34 @@
+<ng-template #comment let-c="close">
+    <form [formGroup]="form" ngSubmit="c(makeComment())">
+        <div class="card" style="width: 100%">
+            <div class="card-body">
+                <div class="comment-grid">
+                    <div id="imgDiv">
+                        <img id="img" src="{{user.profileImgUrl}}" />
+                    </div>
+                    <div>
+                        <h5 class="card-tite mt-2">{{user.firstName}} {{user.lastName}}</h5>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-primary" id="sendCommentBtn" (click)="c(makeComment())">Send Comment</button>
+                    </div>
+                </div>
+                <div class="commentText form-group">
+                    <textarea *ngIf="user.id != postCard.userId" placeholder="Comment on {{postCard.firstName}} {{postCard.lastName}}'s post..." formControlName="commentBody" minlength="1" class="form-control" rows="10" [ngClass]="{ 'is-invalid': submitted && f.commentBody.errors }"></textarea>
+                    <textarea *ngIf="user.id == postCard.userId" placeholder="Comment on your post..." formControlName="commentBody" minlength="1" class="form-control" rows="10" [ngClass]="{ 'is-invalid': submitted && f.commentBody.errors }"></textarea>
+                    <div *ngIf="submitted && f.commentBody.errors" class="invalid-feedback">
+                        <div *ngIf="f.commentBody.errors.minlength">
+                            Comment must contain at least one character
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>
+
+<div class="row">
+    <div class="col-2">
+        <div (click)="open(comment)" class="comment-btn"><i class="fas fa-comment-medical"></i> Write Comment</div>
+    </div>
+</div>

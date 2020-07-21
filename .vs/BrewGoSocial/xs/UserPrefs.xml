@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{0B11D65E-F764-4DB7-8503-3ED5435D9C8F}|Default">
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/post-page/post-page.component.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/post-modal/post-modal.component.html">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/profile-posts/profile-posts.component.html" Line="4" Column="1" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/post-page/post-page.component.html" Line="50" Column="82" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/profile/profile.component.html" Line="16" Column="43" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/post-page/post-page.component.html" Line="49" Column="99" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/comment-modal/comment-modal.component.html" Line="30" Column="1" />
+      <File FileName="BrewGoSocial/Models/Comment.cs" Line="19" Column="2" />
+      <File FileName="BrewGoSocial/ClientApp/src/app/post-modal/post-modal.component.html" Line="31" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +14,11 @@
             <Node name="BrewGoSocial" expanded="True">
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
-                  <Node name="app" expanded="True" />
+                  <Node name="app" expanded="True">
+                    <Node name="post-modal" expanded="True">
+                      <Node name="post-modal.component.html" selected="True" />
+                    </Node>
+                  </Node>
                 </Node>
               </Node>
             </Node>

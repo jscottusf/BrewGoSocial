@@ -46,4 +46,8 @@ export class PostPageComponent implements OnInit {
       })
       .catch((err) => console.log(err));
   }
+
+  exexOnComment() {
+    this.getPostData(this.postId);
+  }
 }

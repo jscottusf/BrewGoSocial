@@ -28,6 +28,8 @@ import { ProfilePostsComponent } from "./profile-posts/profile-posts.component";
 import { ProfileService, PostService, CommentService } from "./_services";
 import { PublicProfileComponent } from "./public-profile/public-profile.component";
 import { PostPageComponent } from "./post-page/post-page.component";
+import { CommentModalComponent } from './comment-modal/comment-modal.component';
+import { CommentEllipsisComponent } from './comment-ellipsis/comment-ellipsis.component';
 
 @NgModule({
   imports: [
@@ -54,6 +56,8 @@ import { PostPageComponent } from "./post-page/post-page.component";
     ProfilePostsComponent,
     PublicProfileComponent,
     PostPageComponent,
+    CommentModalComponent,
+    CommentEllipsisComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

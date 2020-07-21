@@ -31,6 +31,7 @@
                 </div>
                 <br />
                 <h4>Comments</h4>
+                <comment-modal [postCard]=post (onComment)="exexOnComment()"></comment-modal>
                 <hr />
                 <h5 class="text-center m-3 p-3" *ngIf="comments?.length == 0">No comments yet. Be the first!</h5>
                 <div *ngFor="let comment of comments">
@@ -45,7 +46,7 @@
                                 <div class="col-10 sm-9">
                                     <div class="postcard-grid">
                                         <h5 class="card-title mb-2">{{comment.firstName}} {{comment.lastName}}</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">{{moment(post.createdDate).format('MMMM Do YYYY, h:mm a')}}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{moment(comment.createdDate).format('MMMM Do YYYY, h:mm a')}}</h6>
                                     </div>
                                     <div class="card-text mb-1">{{comment.commentBody}}</div>
                                 </div>

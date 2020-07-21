@@ -10,6 +10,7 @@
   posts: any = [];
   savedBreweries: any = [];
   profile: any = {};
+  profileImgUrl: string;
   createdDate: string;
   updatedDate: string;
 }
