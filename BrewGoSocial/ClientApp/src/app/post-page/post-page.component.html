@@ -39,9 +39,11 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-2 sm-3">
-                                    <div id="commentImgDiv">
-                                        <img id="commentImg" src="{{comment.profileImgUrl}}" />
-                                    </div>
+                                    <a [routerLink]="['/users/' + comment.slug]">
+                                        <div id="commentImgDiv">
+                                            <img id="commentImg" src="{{comment.profileImgUrl}}" />
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="col-10 sm-9">
                                     <div class="postcard-grid">
@@ -69,3 +71,25 @@
     </div>
 </div>
         
+<ng-template #editPost let-c="close">
+    <div class="card" style="width: 100%;">
+        <div class="card-body">
+            <div [formGroup]="editForm" (ngSubmit)="c(submitChanges())">
+                <div class="post-grid">
+                    <div id="editImgDiv">
+                        <img id="editImg" src="{{post.profileImgUrl}}" alt="profile image" />
+                    </div>
+                    <div>
+                        <h5 class="card-title mt-2">{{post.firstName}} {{post.lastName}}</h5>
+                    </div>
+                    <div>
+                        <button id="editPostBtn" class="btn btn-sm btn-primary" (click)="c(submitChanges())">Submit Changes</button>
+                    </div>
+                </div>
+                <div class="postText form-group">
+                    <textarea formControlName="postBody" class="form-control" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
