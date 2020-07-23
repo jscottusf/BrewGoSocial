@@ -22,8 +22,6 @@ export class ProfileComponent implements OnInit {
   alertShow = false;
   alertMessage = "";
   alertType = "";
-  //store user data in a card to pass down to post modal
-  userCard: any = {};
   public profile: ProfileModel;
   public posts: PostModel[];
 

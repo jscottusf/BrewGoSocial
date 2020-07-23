@@ -1,24 +1,17 @@
 ﻿<Properties StartupConfiguration="{0B11D65E-F764-4DB7-8503-3ED5435D9C8F}|Default">
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/ClientApp/src/app/post-modal/post-modal.component.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/Controllers/ImageUploadController.cs">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/profile/profile.component.html" Line="173" Column="23" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/public-profile/public-profile.component.html" Line="38" Column="23" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/post-modal/post-modal.component.html" Line="1" Column="1" />
+      <File FileName="BrewGoSocial/Controllers/ImageUploadController.cs" Line="13" Column="8" />
+      <File FileName="BrewGoSocial/appsettings.json" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BrewGoSocial" expanded="True">
             <Node name="BrewGoSocial" expanded="True">
-              <Node name="ClientApp" expanded="True">
-                <Node name="src" expanded="True">
-                  <Node name="app" expanded="True">
-                    <Node name="post-modal" expanded="True">
-                      <Node name="post-modal.component.html" selected="True" />
-                    </Node>
-                  </Node>
-                </Node>
+              <Node name="Controllers" expanded="True">
+                <Node name="ImageUploadController.cs" selected="True" />
               </Node>
             </Node>
           </Node>

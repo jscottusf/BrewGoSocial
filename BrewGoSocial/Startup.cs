@@ -14,6 +14,7 @@ using BrewGoSocial.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 
 namespace BrewGoSocial
 {
@@ -120,6 +121,7 @@ namespace BrewGoSocial
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

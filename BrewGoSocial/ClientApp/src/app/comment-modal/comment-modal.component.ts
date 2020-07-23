@@ -13,7 +13,8 @@ export class CommentModalComponent implements OnInit {
   @Input() postCard: PostModel;
   @Output() onComment = new EventEmitter();
   public commentModel: CommentModel;
-  public user: User;
+  public viewer: User;
+  public user: any = {};
   form: FormGroup;
   submitted = false;
 
@@ -23,11 +24,36 @@ export class CommentModalComponent implements OnInit {
     private modalService: NgbModal,
     private formBuilder: FormBuilder
   ) {
-    this.user = this.accountService.userValue;
+    this.viewer = this.accountService.userValue;
   }
 
   ngOnInit(): void {
-    this.setForm();
+    //person viewing the post, retrieve thier data by id in order to make post
+    this.getUserData(this.viewer.id);
+  }
+
+  getUserData(id) {
+    this.accountService
+      .getById(id)
+      .toPromise()
+      .then((data) => {
+        console.log(data);
+        //user === person making the comment
+        this.user = {
+          userId: data.id,
+          profileImgUrl: data.profile.profileImgUrl,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          slug: data.slug,
+          city: data.profile.city,
+          state: data.profile.state,
+        };
+        this.setForm();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   setForm(form?: FormGroup) {
@@ -35,7 +61,7 @@ export class CommentModalComponent implements OnInit {
     this.form = this.formBuilder.group({
       profileImgUrl: this.user.profileImgUrl,
       commentBody: ["", [Validators.minLength(1)]],
-      userId: this.user.id,
+      userId: this.user.userId,
       originalPosterId: this.postCard.userId,
       postId: this.postCard.postId,
       firstName: this.user.firstName,

@@ -17,8 +17,6 @@ export class PublicProfileComponent implements OnInit {
   //profile viewer is the person using the app and viewing the pages
   //this allows to have a new post component only if you're the owner of the page
   profileViewer: any;
-  //user data is packaged for consumption by the profile post component
-  userCard: any;
 
   constructor(
     private router: Router,
@@ -38,47 +36,12 @@ export class PublicProfileComponent implements OnInit {
       .toPromise()
       .then((data) => {
         this.user = data;
-        //this.getViewerData(this.profileViewer.id);
-        // this.userCard = {
-        //   userId: this.user.id,
-        //   profileImgUrl: this.user.profileImgUrl,
-        //   firstName: this.user.firstName,
-        //   lastName: this.user.lastName,
-        //   username: this.user.username,
-        //   slug: this.user.slug,
-        //   city: this.user.city,
-        //   state: this.user.state,
-        // };
-        console.log(this.user);
       })
       .catch((err) => {
         console.log(err);
         this.router.navigate(["/"]);
       });
   }
-
-  // getViewerData(id) {
-  //   this.accountService
-  //     .getById(id)
-  //     .toPromise()
-  //     .then((data) => {
-  //       console.log(data);
-  //       this.userCard = {
-  //         userId: data.id,
-  //         profileImgUrl: data.profile.profileImgUrl,
-  //         firstName: data.firstName,
-  //         lastName: data.lastName,
-  //         username: data.username,
-  //         slug: data.slug,
-  //         city: data.profile.city,
-  //         state: data.profile.state,
-  //       };
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       this.router.navigate(["/"]);
-  //     });
-  // }
 
   exexOnSubmit() {
     this.getProfileBySlug(this.slug);
