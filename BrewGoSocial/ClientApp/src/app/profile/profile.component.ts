@@ -3,6 +3,7 @@ import { User, ProfileModel, PostModel } from "../_models";
 import { AccountService, ProfileService } from "../_services";
 import * as moment from "moment";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { PostModalComponent } from "../post-modal/post-modal.component";
 
 @Component({
   selector: "app-profile",
@@ -10,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./profile.component.css"],
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild(PostModalComponent, { static: false })
+  private postModal: PostModalComponent;
   form: FormGroup;
   user: User;
   userData: any;
@@ -49,16 +52,6 @@ export class ProfileComponent implements OnInit {
       this.userData = data;
       this.profile = this.userData.profile;
       this.posts = this.userData.posts;
-      this.userCard = {
-        userId: this.user.id,
-        profileImgUrl: this.profile.profileImgUrl,
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
-        username: this.user.username,
-        slug: this.userData.slug,
-        city: this.profile.city,
-        state: this.profile.state,
-      };
       this.form = this.formBuilder.group({
         profileId: this.profile.profileId,
         city: [this.profile.city, [Validators.maxLength(25)]],
@@ -88,21 +81,21 @@ export class ProfileComponent implements OnInit {
     }
     this.profileService
       .editProfile(this.profile.profileId, this.form.value)
-      .subscribe(
-        (res) => {
-          this.editProfile = false;
-          this.alertShow = true;
-          this.alertMessage = "Profile Updated Successfully";
-          this.alertType = "success";
-          this.getUserProfile(this.profile.userId);
-        },
-        (err) => {
-          console.log(err);
-          this.alertShow = true;
-          this.alertMessage = "Profile Update Failed";
-          this.alertType = "danger";
-        }
-      );
+      .toPromise()
+      .then((res) => {
+        this.editProfile = false;
+        this.alertShow = true;
+        this.alertMessage = "Profile Updated Successfully";
+        this.alertType = "success";
+        this.getUserProfile(this.profile.userId);
+        this.postModal.getUserData(this.user.id);
+      })
+      .catch((err) => {
+        console.log(err);
+        this.alertShow = true;
+        this.alertMessage = "Profile Update Failed";
+        this.alertType = "danger";
+      });
   }
 
   editClick() {

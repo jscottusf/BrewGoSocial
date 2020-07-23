@@ -33,8 +33,11 @@
                 </div>
                 <hr />
                 <h4>Posts</h4>
+                <div *ngIf="profileViewer.id == user.id">
+                    <post-modal (onPost)="exexOnSubmit()"></post-modal>
+                </div>
                 <hr />
-                <profile-posts [posts]=user.posts></profile-posts>
+                <profile-posts (onSubmit)="exexOnSubmit()" [posts]=user.posts></profile-posts>
             </div>
         </div>
     </div>

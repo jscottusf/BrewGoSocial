@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { PostModel } from "../_models";
-import { PostService } from "../_services";
+import { PostModel, User } from "../_models";
+import { PostService, AccountService } from "../_services";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
@@ -11,20 +11,48 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   providers: [NgbModalConfig, NgbModal],
 })
 export class PostModalComponent implements OnInit {
-  @Input() userCard: any = {};
+  //@Input() userCard: any = {};
   @Output() onPost = new EventEmitter();
   public post: PostModel;
   form: FormGroup;
+  public user: User;
   submitted = false;
+  userCard: any = {};
 
   constructor(
     private modalService: NgbModal,
     private postService: PostService,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private accountService: AccountService
+  ) {
+    this.user = this.accountService.userValue;
+  }
 
   ngOnInit(): void {
-    this.resetForm();
+    this.getUserData(this.user.id);
+  }
+
+  getUserData(id) {
+    this.accountService
+      .getById(id)
+      .toPromise()
+      .then((data) => {
+        console.log(data);
+        this.userCard = {
+          userId: data.id,
+          profileImgUrl: data.profile.profileImgUrl,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          slug: data.slug,
+          city: data.profile.city,
+          state: data.profile.state,
+        };
+        this.resetForm();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   resetForm(form?: FormGroup) {

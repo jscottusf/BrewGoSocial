@@ -65,6 +65,8 @@ namespace BrewGoSocial.Controllers
                 Slug = user.Slug,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                City = user.Profile.City,
+                State = user.Profile.State,
                 Email = user.Email,
                 ProfileImgUrl = user.Profile.ProfileImgUrl,
                 CreatedDate = user.CreatedDate,
