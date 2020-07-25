@@ -224,13 +224,13 @@ namespace BrewGoSocial.Controllers
                 }
                 else
                 {
-                    Console.Write("Upload Failed: you can only upload images");
+                    Console.WriteLine("Upload Failed: you can only upload images");
                 }
             }
 
             catch (Exception ex)
             {
-                Console.Write("Upload Failed: " + ex.Message);
+                Console.WriteLine("Upload Failed: " + ex.Message);
             }
 
         }
