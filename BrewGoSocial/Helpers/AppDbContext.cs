@@ -23,7 +23,7 @@ namespace BrewGoSocial.Helpers
         {
             modelBuilder.Entity<User>().HasMany(u => u.SavedBreweries);
             modelBuilder.Entity<User>().HasMany(u => u.Posts);
-            modelBuilder.Entity<Post>().HasMany(p => p.Comments).WithOne(c => c.Post);
+            modelBuilder.Entity<Post>().HasMany(p => p.Comments);
             modelBuilder.Entity<User>().HasOne(p => p.Profile);
         }
 

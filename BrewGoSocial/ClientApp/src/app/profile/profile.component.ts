@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   alertShow = false;
   alertMessage = "";
   alertType = "";
+  selectedFile: File = null;
   public profile: ProfileModel;
   public posts: PostModel[];
 
@@ -106,5 +107,22 @@ export class ProfileComponent implements OnInit {
 
   exexOnDismiss($event: any) {
     this.alertShow = false;
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload() {
+    const fd = new FormData();
+    fd.append("image", this.selectedFile, this.selectedFile.name);
+    this.accountService.uploadImg(this.user.id, fd).subscribe(
+      (res) => {
+        this.getUserProfile(this.profile.userId);
+        this.postModal.getUserData(this.user.id);
+      },
+      (err) => console.log(err + "something went wrong")
+    );
   }
 }

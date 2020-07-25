@@ -14,6 +14,5 @@ namespace BrewGoSocial.Models
         public int OriginalPosterId { get; set; }
         [ForeignKey("Post")]
         public int PostId { get; set; }
-        public Post Post { get; set; }
     }
 }

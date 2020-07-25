@@ -62,6 +62,13 @@ export class AccountService {
     return this.http.get<User>(`${environment.apiUrl}/api/users/slugs/${slug}`);
   }
 
+  uploadImg(id: string, file: any) {
+    return this.http.post(
+      `${environment.apiUrl}/api/users/imgupload/${id}`,
+      file
+    );
+  }
+
   update(id, params) {
     return this.http.put(`${environment.apiUrl}/api/users/${id}`, params).pipe(
       map((x) => {

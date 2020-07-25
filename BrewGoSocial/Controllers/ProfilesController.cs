@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BrewGoSocial.Services;
 using BrewGoSocial.Models;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -45,7 +41,7 @@ namespace BrewGoSocial.Controllers
 
         //Post api/profiles
         [HttpPost]
-        public ActionResult<SavedBrewery> Create(Profile profile)
+        public ActionResult<Profile> Create(Profile profile)
         {
             _service.Create(profile);
             _service.SaveChanges();
@@ -61,7 +57,7 @@ namespace BrewGoSocial.Controllers
             {
                 return NotFound();
             }
-            //profile.ProfileId = profileModel.ProfileId;
+            profile.ProfileId = profileModel.ProfileId;
             _service.Delete(profileModel);
             _service.Update(profile);
             _service.SaveChanges();

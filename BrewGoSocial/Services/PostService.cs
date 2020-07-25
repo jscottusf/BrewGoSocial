@@ -12,6 +12,7 @@ namespace BrewGoSocial.Services
         bool SaveChanges();
         IEnumerable<Post> GetAll();
         Post GetPostById(int id);
+        Post GetById(int id);
         void Create(Post post);
         void Update(Post post);
         void Delete(Post post);
@@ -32,7 +33,6 @@ namespace BrewGoSocial.Services
             {
                 throw new ArgumentNullException(nameof(post));
             }
-            post.ProfileImgUrl = "../../assets/images/thumb.png";
             _context.Posts.Add(post);
         }
 
@@ -50,9 +50,16 @@ namespace BrewGoSocial.Services
             return _context.Posts.ToList();
         }
 
+        //include comments for data in the client app
         public Post GetPostById(int id)
         {
             return _context.Posts.Include(x => x.Comments).FirstOrDefault(b => b.PostId == id);
+        }
+
+        //does not include comments, so that they are not deleted
+        public Post GetById(int id)
+        {
+            return _context.Posts.FirstOrDefault(b => b.PostId == id);
         }
 
         public bool SaveChanges()
@@ -62,7 +69,7 @@ namespace BrewGoSocial.Services
 
         public void Update(Post post)
         {
-            _context.Posts.Update(post);
+            //_context.Posts.Update(post);
         }
     }
 }

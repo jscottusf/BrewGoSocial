@@ -32,7 +32,6 @@ namespace BrewGoSocial.Services
             {
                 throw new ArgumentNullException(nameof(comment));
             }
-            comment.ProfileImgUrl = "../../assets/images/thumb.png";
             _context.Comments.Add(comment);
         }
 

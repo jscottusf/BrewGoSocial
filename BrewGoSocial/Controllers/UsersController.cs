@@ -11,7 +11,13 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using BrewGoSocial.Services;
 using BrewGoSocial.Entities;
+using BrewGoSocial.Models;
 using BrewGoSocial.Models.Users;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using Amazon.S3;
+using Amazon.S3.Model;
+using System.IO;
 
 namespace BrewGoSocial.Controllers
 {
@@ -156,6 +162,77 @@ namespace BrewGoSocial.Controllers
         {
             _userService.Delete(id);
             return Ok();
+        }
+
+        
+
+        [HttpPost("imgupload/{id}")]
+        public async Task FileImageAsync(int id)
+        {
+            var s3Client = new AmazonS3Client(AWS_accessKey, AWS_secretKey, Amazon.RegionEndpoint.USEast1);
+
+            try
+            {
+                var httpRequest = HttpContext.Request;
+                //posted file
+                var file = httpRequest.Form.Files[0];
+
+                byte[] fileBytes = new byte[file.Length];
+                file.OpenReadStream().Read(fileBytes, 0, Int32.Parse(file.Length.ToString()));
+
+                var fileName = Guid.NewGuid() + file.FileName;
+                //make sure the file is a photo image only
+                string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+                if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
+                {
+
+                    PutObjectResponse response = null;
+
+                    using (var stream = new MemoryStream())
+                    {
+                        file.CopyTo(stream);
+
+                        var request = new PutObjectRequest
+                        {
+                            BucketName = AWS_bucketName,
+                            Key = fileName,
+                            InputStream = stream,
+                            ContentType = file.ContentType,
+                            CannedACL = S3CannedACL.PublicReadWrite
+                        };
+
+                        response = await s3Client.PutObjectAsync(request);
+                        var imgUrl = string.Format("https://{0}.s3.amazonaws.com/{1}", AWS_bucketName, fileName);
+                        var user = _userService.GetById(id);
+                        user.Profile.ProfileImgUrl = imgUrl;
+                        var posts = user.Posts;
+                        foreach (var post in posts)
+                        {
+                            post.ProfileImgUrl = imgUrl;
+                        }
+                        var comments = _userService.GetCommentsByUserId(id);
+                        if (comments == null)
+                        {
+                            _userService.SaveChanges();
+                        }
+                        foreach (var comment in comments)
+                        {
+                            comment.ProfileImgUrl = imgUrl;
+                        }
+                        _userService.SaveChanges();
+                    };
+                }
+                else
+                {
+                    Console.Write("Upload Failed: you can only upload images");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Console.Write("Upload Failed: " + ex.Message);
+            }
+
         }
     }
 }

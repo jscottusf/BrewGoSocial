@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
+using Amazon.S3;
 
 namespace BrewGoSocial
 {
@@ -32,6 +33,12 @@ namespace BrewGoSocial
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BrewGoDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //for photobucket
+            services.AddMvc();
+            services.AddSingleton<IS3Service, S3Service>();
+            services.AddAWSService<IAmazonS3>();
+            services.AddControllersWithViews();
 
             services.AddCors();
             //services.AddControllers();

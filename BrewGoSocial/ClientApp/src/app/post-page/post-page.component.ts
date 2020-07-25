@@ -89,7 +89,7 @@ export class PostPageComponent implements OnInit {
 
   deletePost(id) {
     this.postService.deletePost(id).subscribe(
-      (res) => this.getPostData(this.postId),
+      (res) => this.router.navigate(["/profile"]),
       (err) => console.log(err)
     );
   }

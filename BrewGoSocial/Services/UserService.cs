@@ -10,6 +10,7 @@ namespace BrewGoSocial.Services
 {
     public interface IUserService
     {
+        bool SaveChanges();
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
         User GetById(int id);
@@ -17,6 +18,7 @@ namespace BrewGoSocial.Services
         User Create(User user, string password);
         void Update(User user, string password = null);
         void Delete(int id);
+        IEnumerable<Comment> GetCommentsByUserId(int id);
     }
 
     public class UserService : IUserService
@@ -55,7 +57,6 @@ namespace BrewGoSocial.Services
         public User GetById(int id)
         {
             return _context.Users.Include(x => x.SavedBreweries).Include(x => x.Posts).ThenInclude(post => post.Comments).Include(x => x.Profile).FirstOrDefault(u => u.Id == id);
-            //return _context.Users.Find(id);
         }
 
         public User GetBySlug(string slug)
@@ -196,6 +197,17 @@ namespace BrewGoSocial.Services
             }
 
             return true;
+        }
+
+        public bool SaveChanges()
+        {
+            return _context.SaveChanges() >= 0;
+        }
+
+        // needed for updated user profile picture in all comments that they have made
+        public IEnumerable<Comment> GetCommentsByUserId(int id)
+        {
+            return _context.Comments.Where(c => c.UserId == id);
         }
     }
 }

@@ -71,9 +71,7 @@ namespace BrewGoSocial.Controllers
             {
                 return NotFound();
             }
-            comment.CreatedDate = commentModel.CreatedDate;
-            _service.Delete(commentModel);
-            _service.Update(comment);
+            commentModel.CommentBody = comment.CommentBody;
             _service.SaveChanges();
             return NoContent();
         }
