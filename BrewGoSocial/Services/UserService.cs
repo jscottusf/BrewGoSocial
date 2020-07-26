@@ -5,6 +5,7 @@ using BrewGoSocial.Entities;
 using BrewGoSocial.Models;
 using BrewGoSocial.Helpers;
 using Microsoft.EntityFrameworkCore;
+using NinjaNye.SearchExtensions;
 
 namespace BrewGoSocial.Services
 {
@@ -19,6 +20,7 @@ namespace BrewGoSocial.Services
         void Update(User user, string password = null);
         void Delete(int id);
         IEnumerable<Comment> GetCommentsByUserId(int id);
+        IEnumerable<User> QueryByName(string query);
     }
 
     public class UserService : IUserService
@@ -208,6 +210,12 @@ namespace BrewGoSocial.Services
         public IEnumerable<Comment> GetCommentsByUserId(int id)
         {
             return _context.Comments.Where(c => c.UserId == id);
+        }
+
+        // api/users/QueryByName?query={firstName}%20{lastName} or username
+        public IEnumerable<User> QueryByName(string query)
+        {
+            return _context.Users.Where(x => (x.FirstName + " " + x.LastName).Contains(query) || x.Username.Contains(query));
         }
     }
 }

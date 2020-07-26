@@ -36,7 +36,6 @@ namespace BrewGoSocial
 
             //for photobucket
             services.AddMvc();
-            services.AddSingleton<IS3Service, S3Service>();
             services.AddAWSService<IAmazonS3>();
             services.AddControllersWithViews();
 

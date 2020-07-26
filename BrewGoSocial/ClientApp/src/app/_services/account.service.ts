@@ -69,6 +69,12 @@ export class AccountService {
     );
   }
 
+  queryUserNames(query: string) {
+    return this.http.get<User[]>(
+      `${environment.apiUrl}/api/users/QueryByName?query=${query}`
+    );
+  }
+
   update(id, params) {
     return this.http.put(`${environment.apiUrl}/api/users/${id}`, params).pipe(
       map((x) => {

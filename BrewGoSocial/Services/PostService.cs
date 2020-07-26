@@ -16,6 +16,7 @@ namespace BrewGoSocial.Services
         void Create(Post post);
         void Update(Post post);
         void Delete(Post post);
+        IEnumerable<Post> SearchPosts(string query);
     }
 
     public class PostService : IPostService
@@ -70,6 +71,12 @@ namespace BrewGoSocial.Services
         public void Update(Post post)
         {
             //_context.Posts.Update(post);
+        }
+
+        // api/posts/SearchPosts?query={firstName}%20{lastName} or username
+        public IEnumerable<Post> SearchPosts(string query)
+        {
+            return _context.Posts.Where(x => x.PostBody.Contains(query) || (x.FirstName + " " + x.LastName).Contains(query) || x.Username.Contains(query));
         }
     }
 }

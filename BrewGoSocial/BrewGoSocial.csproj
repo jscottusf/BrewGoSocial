@@ -33,6 +33,7 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.101" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.111.29" />
+    <PackageReference Include="NinjaNye.SearchExtensions" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>

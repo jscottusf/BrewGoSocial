@@ -37,4 +37,10 @@ export class PostService implements OnInit {
   editPost(id: number, formData: PostModel) {
     return this.http.put(this.appurl + id, formData);
   }
+
+  searchPosts(query: string) {
+    return this.http.get<PostModel[]>(
+      `${environment.apiUrl}/api/posts/SearchPosts?query=${query}`
+    );
+  }
 }

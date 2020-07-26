@@ -68,13 +68,9 @@ namespace BrewGoSocial.Controllers
             {
                 Id = user.Id,
                 Username = user.Username,
-                Slug = user.Slug,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                City = user.Profile.City,
-                State = user.Profile.State,
                 Email = user.Email,
-                ProfileImgUrl = user.Profile.ProfileImgUrl,
                 CreatedDate = user.CreatedDate,
                 UpdatedDate = user.UpdatedDate,
                 Token = tokenString
@@ -162,6 +158,14 @@ namespace BrewGoSocial.Controllers
         {
             _userService.Delete(id);
             return Ok();
+        }
+
+        // api/users/QueryByName?query={firstName}%20{lastName} or username
+        [HttpGet("[action]")]
+        public IActionResult QueryByName([FromQuery]string query)
+        {
+            var results = _userService.QueryByName(query);
+            return Ok(results);
         }
 
         

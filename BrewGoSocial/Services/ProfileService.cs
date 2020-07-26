@@ -60,7 +60,7 @@ namespace BrewGoSocial.Services
 
         public void Update(Profile profile)
         {
-            _context.Profiles.Update(profile);
+            //_context.Profiles.Update(profile);
         }
     }
 }

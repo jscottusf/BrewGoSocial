@@ -15,11 +15,14 @@
             <div class="card-body">
                 <div class="profile-grid">
                     <div class="left">
-                        <div class="profile-img">
-                            <img src="{{ profile.profileImgUrl }}" alt="" />
+                        <div *ngIf="editProfile" class="text-center">
+                            <button (click)="fileInput.click()" class="btn btn-sm btn-primary m-1"><i class="fas fa-arrow-circle-up"></i> Profile Image</button>
+                            <input #fileInput type="file" (change)="onFileSelected($event)" style="display:none;" />
                         </div>
-                        <input type="file" (change)="onFileSelected($event)">
-                        <button type="button" (click)="onUpload()">Upload</button>
+                        <div class="profile-img">
+                            <img *ngIf="!loadingImg" src="{{ profile.profileImgUrl }}" alt="" />
+                            <img *ngIf="loadingImg" class="gif" src="../../assets/images/imgloading.gif" />
+                        </div>
                         <h5 class="card-title text-center">{{ user.firstName }} {{ user.lastName }}</h5>
                         <a class="username" [routerLink]="['/users/' + user.username.toLowerCase()]">
                             <h6 class="card-subtitle mb-2 text-muted text-center">@{{ user.username }}</h6>

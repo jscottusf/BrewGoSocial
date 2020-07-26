@@ -89,5 +89,13 @@ namespace BrewGoSocial.Controllers
             _service.SaveChanges();
             return NoContent();
         }
+
+        // api/posts/SearchPosts?query={postBody content or users or whatever}
+        [HttpGet("[action]")]
+        public IActionResult SearchPosts([FromQuery] string query)
+        {
+            var results = _service.SearchPosts(query);
+            return Ok(results);
+        }
     }
 }

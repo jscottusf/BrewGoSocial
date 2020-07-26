@@ -57,9 +57,12 @@ namespace BrewGoSocial.Controllers
             {
                 return NotFound();
             }
-            profile.ProfileId = profileModel.ProfileId;
-            _service.Delete(profileModel);
-            _service.Update(profile);
+            profileModel.City = profile.City;
+            profileModel.State = profile.State;
+            profileModel.FavoriteBeers = profile.FavoriteBeers;
+            profileModel.FavoriteBreweries = profile.FavoriteBreweries;
+            profileModel.Occupation = profile.Occupation;
+            profileModel.Bio = profile.Bio;
             _service.SaveChanges();
             return NoContent();
         }

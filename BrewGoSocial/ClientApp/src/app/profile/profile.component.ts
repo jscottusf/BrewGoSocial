@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   editProfile: boolean;
   submitted = false;
   alertShow = false;
+  loadingImg = true;
   alertMessage = "";
   alertType = "";
   selectedFile: File = null;
@@ -51,6 +52,7 @@ export class ProfileComponent implements OnInit {
       this.userData = data;
       this.profile = this.userData.profile;
       this.posts = this.userData.posts;
+      this.loadingImg = false;
       this.form = this.formBuilder.group({
         profileId: this.profile.profileId,
         city: [this.profile.city, [Validators.maxLength(25)]],
@@ -110,8 +112,17 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(event) {
-    console.log(event);
+    this.loadingImg = true;
     this.selectedFile = event.target.files[0];
+    const fd = new FormData();
+    fd.append("image", this.selectedFile, this.selectedFile.name);
+    this.accountService.uploadImg(this.user.id, fd).subscribe(
+      (res) => {
+        this.getUserProfile(this.profile.userId);
+        this.postModal.getUserData(this.user.id);
+      },
+      (err) => console.log(err + "something went wrong")
+    );
   }
 
   onUpload() {
