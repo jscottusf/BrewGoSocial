@@ -1,117 +1,82 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow"
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">BrewGo</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow" *ngIf="user">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a
-              class="nav-item nav-link"
-              routerLink="/search"
-              routerLinkActive="active"
-              >Search</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a
-              class="nav-item nav-link"
-              routerLink="/saved"
-              routerLinkActive="active"
-              >Saved Breweries</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a
-              class="nav-item nav-link"
-              routerLink="/profile"
-              routerLinkActive="active"
-              >Profile</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a
-              class="nav-item nav-link"
-              id="logout"
-              (click)="this.logout.emit()"
-              >Logout</a
-            >
-          </li>
-        </ul>
-        <ul class="navbar-nav flex-grow" *ngIf="!user">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/account/about']"
-              >About</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a
-              class="nav-item nav-link"
-              routerLink="/account/login"
-              routerLinkActive="active"
-              >Login</a
-            >
-          </li>
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a
-              class="nav-item nav-link"
-              routerLink="/account/register"
-              routerLinkActive="active"
-              >Register</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container">
+            <a class="navbar-brand" [routerLink]="['/']">BrewGo</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    aria-label="Toggle navigation"
+                    [attr.aria-expanded]="isExpanded"
+                    (click)="toggle()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+                 [ngClass]="{ show: isExpanded }">
+                <ul class="navbar-nav flex-grow" *ngIf="user">
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+                    </li>
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-item nav-link"
+                           routerLink="/search"
+                           routerLinkActive="active">Search</a>
+                    </li>
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-item nav-link"
+                           routerLink="/saved"
+                           routerLinkActive="active">Breweries</a>
+                    </li>
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-item nav-link"
+                           routerLink="/profile"
+                           routerLinkActive="active">Profile</a>
+                    </li>
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-item nav-link"
+                           routerLink="/social"
+                           routerLinkActive="active">Social</a>
+                    </li>
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-item nav-link"
+                           id="logout"
+                           (click)="this.logout.emit()">Logout</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-grow" *ngIf="!user">
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-link text-dark" [routerLink]="['/account/about']">About</a>
+                    </li>
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-item nav-link"
+                           routerLink="/account/login"
+                           routerLinkActive="active">Login</a>
+                    </li>
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <a class="nav-item nav-link"
+                           routerLink="/account/register"
+                           routerLinkActive="active">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>

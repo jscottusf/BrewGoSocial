@@ -18,8 +18,8 @@ export class PostService implements OnInit {
     return this.http.get<PostModel>(`${environment.apiUrl}/api/users/${id}`);
   }
 
-  getallPosts(): Observable<PostModel> {
-    return this.http.get<PostModel>(this.appurl);
+  getallPosts() {
+    return this.http.get<PostModel[]>(this.appurl);
   }
 
   getPostById(id): Observable<PostModel> {

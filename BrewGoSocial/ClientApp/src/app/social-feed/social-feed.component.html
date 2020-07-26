@@ -1,0 +1,27 @@
+<h4>Activity Feed</h4>
+<hr />
+<nav class="navbar m-3 p-0 navbar-expand-lg navbar-light bg-light">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active m-1">
+            <div class="public-btn">
+                <i class="fas fa-globe-americas"></i> Public Feed
+            </div>
+        </li>
+        <li class="nav-item active m-1">
+            <div class="social-btn"><i class="fas fa-user-friends"></i> Social Feed </div>
+        </li>
+        <li class="nav-item active m-1">
+            <div>
+                <post-modal (onPost)="exexOnSubmit($event)"></post-modal>
+            </div>
+        </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <input class="form-control mr-sm-2" formControlName="postsSearch" placeholder="BrewGo Social Feed..." type="text" />
+            <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">Explore</button>
+        </form>
+    </div>
+</nav>
+<profile-posts [posts]=posts (onSubmit)="exexOnSubmit($event)"></profile-posts>
+

@@ -164,8 +164,9 @@ namespace BrewGoSocial.Controllers
         [HttpGet("[action]")]
         public IActionResult QueryByName([FromQuery]string query)
         {
-            var results = _userService.QueryByName(query);
-            return Ok(results);
+            var users = _userService.QueryByName(query);
+            var model = _mapper.Map<IList<PublicUserModel>>(users);
+            return Ok(model);
         }
 
         

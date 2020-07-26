@@ -48,7 +48,7 @@ namespace BrewGoSocial.Services
 
         public IEnumerable<Post> GetAll()
         {
-            return _context.Posts.ToList();
+            return _context.Posts.Include(x => x.Comments).ToList();
         }
 
         //include comments for data in the client app
@@ -76,7 +76,7 @@ namespace BrewGoSocial.Services
         // api/posts/SearchPosts?query={firstName}%20{lastName} or username
         public IEnumerable<Post> SearchPosts(string query)
         {
-            return _context.Posts.Where(x => x.PostBody.Contains(query) || (x.FirstName + " " + x.LastName).Contains(query) || x.Username.Contains(query));
+            return _context.Posts.Include(x => x.Comments).Where(x => x.PostBody.Contains(query) || (x.FirstName + " " + x.LastName).Contains(query) || x.Username.Contains(query));
         }
     }
 }

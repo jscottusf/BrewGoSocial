@@ -30,6 +30,9 @@ import { PublicProfileComponent } from "./public-profile/public-profile.componen
 import { PostPageComponent } from "./post-page/post-page.component";
 import { CommentModalComponent } from './comment-modal/comment-modal.component';
 import { CommentEllipsisComponent } from './comment-ellipsis/comment-ellipsis.component';
+import { SocialPageComponent } from './social-page/social-page.component';
+import { SocialFeedComponent } from './social-feed/social-feed.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 @NgModule({
   imports: [
@@ -58,6 +61,9 @@ import { CommentEllipsisComponent } from './comment-ellipsis/comment-ellipsis.co
     PostPageComponent,
     CommentModalComponent,
     CommentEllipsisComponent,
+    SocialPageComponent,
+    SocialFeedComponent,
+    UserSearchComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

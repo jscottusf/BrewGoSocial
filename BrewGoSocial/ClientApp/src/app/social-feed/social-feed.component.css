@@ -1,0 +1,9 @@
+.public-btn, .social-btn {
+  cursor: pointer;
+  padding-bottom: 1px;
+}
+
+.public-btn:hover, .social-btn:hover {
+  font-size: 17px;
+  padding-bottom: 0px;
+}

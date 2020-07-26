@@ -215,7 +215,7 @@ namespace BrewGoSocial.Services
         // api/users/QueryByName?query={firstName}%20{lastName} or username
         public IEnumerable<User> QueryByName(string query)
         {
-            return _context.Users.Where(x => (x.FirstName + " " + x.LastName).Contains(query) || x.Username.Contains(query));
+            return _context.Users.Include(x => x.Profile).Where(x => (x.FirstName + " " + x.LastName).Contains(query) || x.Username.Contains(query));
         }
     }
 }
