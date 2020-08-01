@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BrewGoSocial.Models.Users;
 
@@ -12,6 +13,7 @@ namespace BrewGoSocial.Models
         public string CommentBody { get; set; }
         public int UserId { get; set; }
         public int OriginalPosterId { get; set; }
+        public virtual List<Like> Likes { get; set; }
         [ForeignKey("Post")]
         public int PostId { get; set; }
     }

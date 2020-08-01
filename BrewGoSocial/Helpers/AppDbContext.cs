@@ -18,12 +18,19 @@ namespace BrewGoSocial.Helpers
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Follower> Followers { get; set; }
+        public DbSet<Notifcation> Notifcations { get; set; }
+        public DbSet<Like> likes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasMany(u => u.SavedBreweries);
             modelBuilder.Entity<User>().HasMany(u => u.Posts);
+            modelBuilder.Entity<User>().HasMany(u => u.Followers).WithOne(f => f.User);
+            modelBuilder.Entity<User>().HasMany(u => u.Notifcations).WithOne(n => n.User);
             modelBuilder.Entity<Post>().HasMany(p => p.Comments);
+            modelBuilder.Entity<Post>().HasMany(p => p.Likes).WithOne(l => l.Post).HasForeignKey(p => p.PostId);
+            modelBuilder.Entity<Comment>().HasMany(c => c.Likes).WithOne(l => l.Comment).HasForeignKey(p => p.CommentId);
             modelBuilder.Entity<User>().HasOne(p => p.Profile);
         }
 

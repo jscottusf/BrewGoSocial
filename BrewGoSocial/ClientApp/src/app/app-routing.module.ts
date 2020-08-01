@@ -52,6 +52,7 @@ const routes: Routes = [
     component: SocialPageComponent,
     canActivate: [AuthGuard],
   },
+  { path: "extra", loadChildren: usersModule, canActivate: [AuthGuard] },
   {
     path: "account",
     loadChildren: accountModule,
