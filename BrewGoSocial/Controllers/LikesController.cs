@@ -61,22 +61,6 @@ namespace BrewGoSocial.Controllers
             }
         }
 
-        //We are not editing likes. it's post and delete only.
-
-        //put api/likes
-        //[HttpPut("{id}")]
-        //public ActionResult Update(int id, Like like)
-        //{
-        //    var likeModel = _service.GetLikeById(id);
-        //    if (likeModel == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    //changes here
-        //    _service.SaveChanges();
-        //    return NoContent();
-        //}
-
         //delete like by id
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)

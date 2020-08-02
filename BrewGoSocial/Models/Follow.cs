@@ -11,8 +11,6 @@ namespace BrewGoSocial.Models
         [Key]
         public int FollowId { get; set; }
         public int FollowUserId { get; set; }
-        public string FollowName { get; set; }
-        public string FollowSlug { get; set; }
-        public User User { get; set; }
+        public int UserId { get; set; }
     }
 }

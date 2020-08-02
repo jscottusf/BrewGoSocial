@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using BrewGoSocial.Models;
 using BrewGoSocial.Helpers;
-using Microsoft.EntityFrameworkCore;
 
 namespace BrewGoSocial.Services
 {
@@ -32,6 +31,18 @@ namespace BrewGoSocial.Services
             {
                 throw new ArgumentNullException(nameof(follow));
             }
+
+            var notification = new Notification
+            {
+                FirstName = follow.FirstName,
+                LastName = follow.LastName,
+                Username = follow.Username,
+                Slug = follow.Slug,
+                NotificationType = "followed you",
+                LikerId = follow.UserId,
+                UserId = follow.FollowUserId,
+            };
+            _context.Notifications.Add(notification);
             _context.Follows.Add(follow);
         }
 
@@ -41,6 +52,12 @@ namespace BrewGoSocial.Services
             {
                 throw new NotImplementedException(nameof(follow));
             }
+            var notification = _context.Notifications.FirstOrDefault(n => n.LikerId == follow.UserId && n.NotificationType == "followed you");
+            if (notification == null)
+            {
+                throw new NotImplementedException(nameof(notification));
+            }
+            _context.Notifications.Remove(notification);
             _context.Follows.Remove(follow);
         }
 

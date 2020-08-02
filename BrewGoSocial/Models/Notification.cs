@@ -12,6 +12,7 @@ namespace BrewGoSocial.Models
         public int NotificationId { get; set; }
         public string NotificationType { get; set; }
         public int PostId { get; set; }
-        public User User { get; set; }
+        public int LikerId { get; set; }
+        public int UserId { get; set; }
     }
 }

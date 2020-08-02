@@ -26,11 +26,10 @@ namespace BrewGoSocial.Helpers
         {
             modelBuilder.Entity<User>().HasMany(u => u.SavedBreweries);
             modelBuilder.Entity<User>().HasMany(u => u.Posts);
-            modelBuilder.Entity<User>().HasMany(u => u.Followers).WithOne(f => f.User);
-            modelBuilder.Entity<User>().HasMany(u => u.Notifcations).WithOne(n => n.User);
+            modelBuilder.Entity<User>().HasMany(u => u.Follows);
+            modelBuilder.Entity<User>().HasMany(u => u.Notifcations);
             modelBuilder.Entity<Post>().HasMany(p => p.Comments);
-            modelBuilder.Entity<Post>().HasMany(p => p.Likes).WithOne(l => l.Post).HasForeignKey(p => p.PostId);
-            modelBuilder.Entity<Comment>().HasMany(c => c.Likes).WithOne(l => l.Comment).HasForeignKey(p => p.CommentId);
+            modelBuilder.Entity<Post>().HasMany(p => p.Likes);
             modelBuilder.Entity<User>().HasOne(p => p.Profile);
         }
 

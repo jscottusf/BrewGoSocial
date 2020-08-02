@@ -1,20 +1,17 @@
 <div class="hero-user text-center">
-    <h1>BrewGo Social</h1>
-    <h2>Find local breweries and grub</h2>
-    <p class="font-weight-bold text-center">
-        Enter location, get buzzed, eat food
-    </p>
+  <h1>BrewGo Social</h1>
+  <h2>Find local breweries and grub</h2>
+  <p class="font-weight-bold text-center">
+    Enter location, get buzzed, eat food
+  </p>
 </div>
-<div *ngIf="posts" class="text-center bg-white pt-0 loading-div">
-    <img class="animated-gif" src="../../assets/images/loading.gif" />
-</div>
-<div *ngIf="!posts" class="social-container">
-    <div class="grid">
-        <div>
-            <social-feed></social-feed>
-        </div>
-        <div>
-            <user-search></user-search>
-        </div>
+<div class="social-container">
+  <div class="grid">
+    <div>
+      <social-feed></social-feed>
     </div>
+    <div>
+      <user-search></user-search>
+    </div>
+  </div>
 </div>

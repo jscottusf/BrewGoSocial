@@ -13,7 +13,6 @@ namespace BrewGoSocial.Models
         public string CommentBody { get; set; }
         public int UserId { get; set; }
         public int OriginalPosterId { get; set; }
-        public virtual List<Like> Likes { get; set; }
         [ForeignKey("Post")]
         public int PostId { get; set; }
     }

@@ -15,6 +15,7 @@ namespace BrewGoSocial.Services
         void Create(Like like);
         void Update(Like like);
         void Delete(Like like);
+
     }
 
     public class LikeService : ILikeService
@@ -32,6 +33,26 @@ namespace BrewGoSocial.Services
             {
                 throw new ArgumentNullException(nameof(like));
             }
+
+            var user = _context.Users.FirstOrDefault(u => u.Id == like.UserId);
+
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            var notification = new Notification
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Username = user.Username,
+                Slug = user.Slug,
+                NotificationType = "liked your post",
+                UserId = like.PosterId,
+                PostId = like.PostId,
+                LikerId = like.UserId
+            };
+            _context.Notifications.Add(notification);
             _context.Likes.Add(like);
         }
 
@@ -41,6 +62,12 @@ namespace BrewGoSocial.Services
             {
                 throw new NotImplementedException(nameof(like));
             }
+            var notification = _context.Notifications.FirstOrDefault(n => n.PostId == like.PostId && n.LikerId == like.UserId);
+            if (notification == null)
+            {
+                throw new NotImplementedException(nameof(notification));
+            }
+            _context.Notifications.Remove(notification);
             _context.Likes.Remove(like);
         }
 

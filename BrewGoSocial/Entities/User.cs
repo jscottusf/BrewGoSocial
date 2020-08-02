@@ -16,7 +16,7 @@ namespace BrewGoSocial.Entities
         public byte[] PasswordSalt { get; set; }
         public virtual List<SavedBrewery> SavedBreweries { get; set; }
         public virtual List<Post> Posts { get; set; }
-        public virtual List<Follow> Followers { get; set; }
+        public virtual List<Follow> Follows { get; set; }
         public virtual List<Notification> Notifcations { get; set; }
         public Profile Profile { get; set; }
     }

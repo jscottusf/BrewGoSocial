@@ -54,7 +54,7 @@ namespace BrewGoSocial.Services
         //include comments for data in the client app
         public Post GetPostById(int id)
         {
-            return _context.Posts.Include(x => x.Comments).FirstOrDefault(b => b.PostId == id);
+            return _context.Posts.Include(x => x.Comments).Include(x => x.Likes).FirstOrDefault(b => b.PostId == id);
         }
 
         //does not include comments, so that they are not deleted

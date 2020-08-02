@@ -1,6 +1,7 @@
 .social-container {
-    margin: 20px;
-    padding: 0 20px;
+  margin: 20px;
+  padding: 0 20px;
+  min-height: 700px;
 }
 
 .grid {

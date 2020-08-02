@@ -62,21 +62,7 @@ namespace BrewGoSocial.Controllers
             }
         }
 
-        //put api/follows
-        //[HttpPut("{id}")]
-        //public ActionResult Update(int id, Follow follow)
-        //{
-        //    var postModel = _service.GetPostById(id);
-        //    if (postModel == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    postModel.PostBody = post.PostBody;
-        //    _service.SaveChanges();
-        //    return NoContent();
-        //}
-
-        //delete post by id
+        //delete follow by id
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
