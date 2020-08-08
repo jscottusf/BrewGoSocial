@@ -13,7 +13,7 @@ namespace BrewGoSocial.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/followers")]
+    [Route("api/follows")]
     public class FollowsController : Controller
     {
 
