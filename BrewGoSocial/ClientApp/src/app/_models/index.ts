@@ -4,3 +4,6 @@ export * from "./brewery";
 export * from "./profile";
 export * from "./post";
 export * from "./comment";
+export * from "./like";
+export * from "./follow";
+export * from "./notification";

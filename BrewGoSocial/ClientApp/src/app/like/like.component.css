@@ -1,0 +1,7 @@
+.like-icon:hover {
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: red !important;
+}
