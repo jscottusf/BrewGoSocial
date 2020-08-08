@@ -13,7 +13,7 @@ namespace BrewGoSocial.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/followers")]
+    [Route("api/follows")]
     public class FollowsController : Controller
     {
 
@@ -22,26 +22,6 @@ namespace BrewGoSocial.Controllers
         public FollowsController(IFollowService service)
         {
             _service = service;
-        }
-
-        //GET api/follows
-        [HttpGet]
-        public ActionResult<IEnumerable<Follow>> GetAll()
-        {
-            var follows = _service.GetAll();
-            return Ok(follows);
-        }
-
-        //GET api/follows/:id
-        [HttpGet("{id}", Name = "GetFollowById")]
-        public ActionResult<Follow> GetFollowById(int id)
-        {
-            var follow = _service.GetFollowById(id);
-            if (follow == null)
-            {
-                return NotFound();
-            }
-            return Ok(follow);
         }
 
         //Post api/follows
