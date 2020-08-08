@@ -33,6 +33,8 @@ import { CommentEllipsisComponent } from './comment-ellipsis/comment-ellipsis.co
 import { SocialPageComponent } from './social-page/social-page.component';
 import { SocialFeedComponent } from './social-feed/social-feed.component';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { LikeComponent } from './like/like.component';
+import { FollowComponent } from './follow/follow.component';
 
 @NgModule({
   imports: [
@@ -64,6 +66,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
     SocialPageComponent,
     SocialFeedComponent,
     UserSearchComponent,
+    LikeComponent,
+    FollowComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
