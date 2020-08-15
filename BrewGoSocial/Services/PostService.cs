@@ -48,7 +48,7 @@ namespace BrewGoSocial.Services
 
         public IEnumerable<Post> GetAll()
         {
-            return _context.Posts.Include(x => x.Comments).ToList();
+            return _context.Posts.Include(x => x.Comments).Include(x => x.Likes).ToList();
         }
 
         //include comments for data in the client app

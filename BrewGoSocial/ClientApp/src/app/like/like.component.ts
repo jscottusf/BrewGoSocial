@@ -17,7 +17,11 @@ export class LikeComponent implements OnInit {
   public user: any = {};
   form: FormGroup;
 
-  constructor() {}
+  constructor(
+    private accountService: AccountService,
+    private likeService: LikeService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {}
 }

@@ -8,6 +8,7 @@ export class PostModel {
   username: string;
   slug: string;
   comments: any = [];
+  likes: any = [];
   createdDate: string;
   updatedDate: string;
 }
