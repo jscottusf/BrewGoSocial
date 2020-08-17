@@ -14,9 +14,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-2 sm-3">
-                        <div id="postImgDiv">
-                            <img id="postImg" src="{{post.profileImgUrl}}" />
-                        </div>
+                        <a [routerLink]="['/users/' + post.slug]">
+                            <div id="postImgDiv">
+                                <img id="postImg" src="{{post.profileImgUrl}}" />
+                            </div>
+                        </a>
                     </div>
                     <div class="col-10 sm-9">
                         <div class="postcard-grid">
