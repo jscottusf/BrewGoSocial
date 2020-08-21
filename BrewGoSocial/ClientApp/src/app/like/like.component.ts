@@ -21,7 +21,29 @@ export class LikeComponent implements OnInit {
     private accountService: AccountService,
     private likeService: LikeService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.viewer = this.accountService.userValue;
+  }
 
   ngOnInit(): void {}
+
+  setForm(form?: FormGroup) {
+    if (form != null) form.reset();
+    this.form = this.formBuilder.group({
+      userId: this.viewer.id,
+      posterId: this.postCard.userId,
+      postId: this.postCard.postId,
+    });
+  }
+
+  likePost() {
+    this.likeService
+      .postNewLike(this.form.value)
+      .toPromise()
+      .then((res) => {
+        this.onLike.emit();
+        this.setForm();
+      })
+      .catch((err) => console.log(err));
+  }
 }
