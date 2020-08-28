@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User, PostModel } from "../_models";
-import { PostService, AccountService } from "../_services";
+import { PostService, AccountService, LikeService } from "../_services";
 import * as moment from "moment";
 
 @Component({
@@ -24,6 +24,7 @@ export class ProfilePostsComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private postService: PostService,
+    private likeService: LikeService,
     private formBuilder: FormBuilder,
     private accountService: AccountService
   ) {
@@ -86,6 +87,16 @@ export class ProfilePostsComponent implements OnInit {
       (res) => this.onSubmit.emit(),
       (err) => console.log(err)
     );
+  }
+
+  unLikePost(id) {
+    this.likeService
+      .deleteLike(id)
+      .toPromise()
+      .then((res) => {
+        this.onSubmit.emit();
+      })
+      .catch((err) => console.log(err));
   }
 
   open(content) {

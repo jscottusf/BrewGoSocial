@@ -3,7 +3,12 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { NgbModalConfig, NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User, PostModel, CommentModel } from "../_models";
-import { PostService, CommentService, AccountService } from "../_services";
+import {
+  PostService,
+  CommentService,
+  AccountService,
+  LikeService,
+} from "../_services";
 import * as moment from "moment";
 
 @Component({
@@ -23,6 +28,7 @@ export class PostPageComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private postService: PostService,
+    private likeService: LikeService,
     private commentService: CommentService,
     private modalService: NgbModal,
     private router: Router,
@@ -92,6 +98,15 @@ export class PostPageComponent implements OnInit {
       (res) => this.router.navigate(["/profile"]),
       (err) => console.log(err)
     );
+  }
+
+  unLikePost(id) {
+    this.likeService
+      .deleteLike(id)
+      .toPromise()
+      .then((res) => {
+        this.getPostData(this.postId);
+      });
   }
 
   open(content) {
