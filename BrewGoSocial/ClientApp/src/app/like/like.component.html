@@ -1,3 +1,6 @@
-<div class="like-icon">
+<div *ngIf="postCard?.likes?.indexOf(viewer.id) >=0" class="like-icon">
     <i class="far fa-heart icon text-muted" (click)="console.log('clicked')"></i>
+</div>
+<div *ngIf="postCard?.likes?.indexOf(viewer.id) === -1" class="like-icon">
+    <i class="fas fa-heart icon text-muted" (click)="console.log('clicked')"></i>
 </div>

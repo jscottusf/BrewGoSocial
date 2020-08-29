@@ -16,6 +16,7 @@ export class LikeComponent implements OnInit {
   public viewer: User;
   public user: any = {};
   form: FormGroup;
+  posts: PostModel[];
 
   constructor(
     private accountService: AccountService,
@@ -25,7 +26,15 @@ export class LikeComponent implements OnInit {
     this.viewer = this.accountService.userValue;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this is an idea for filtering out liked posts
+    // needs to be in another file
+    // this.posts = this.postCard.likes.map((like) => {
+    //   if (like.userId === this.viewer.id) {
+    //     return liked === true
+    //   }
+    // });
+  }
 
   setForm(form?: FormGroup) {
     if (form != null) form.reset();
@@ -44,6 +53,20 @@ export class LikeComponent implements OnInit {
         this.onLike.emit();
         this.setForm();
       })
+      .catch((err) => console.log(err));
+  }
+
+  unlikePost() {
+    const postIdArr = this.postCard.likes.filter((like) => {
+      if (like.userId === this.viewer.id) {
+        return like.postId;
+      }
+    });
+    let postId = postIdArr[0];
+    this.likeService
+      .deleteLike(postId)
+      .toPromise()
+      .then((res) => this.onLike.emit())
       .catch((err) => console.log(err));
   }
 }

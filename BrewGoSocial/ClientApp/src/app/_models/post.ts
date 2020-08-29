@@ -11,4 +11,5 @@ export class PostModel {
   likes: any = [];
   createdDate: string;
   updatedDate: string;
+  likedByViewer: boolean;
 }
