@@ -71,7 +71,13 @@ namespace BrewGoSocial.Services
 
         public User GetBySlug(string slug)
         {
-            return _context.Users.Include(x => x.Posts).ThenInclude(post => post.Comments).Include(x => x.Profile).Include(x => x.Follows).FirstOrDefault(u => u.Slug == slug);
+            return _context.Users.Include(x => x.Posts)
+                .ThenInclude(post => post.Comments)
+                .Include(x => x.Posts)
+                .ThenInclude(post => post.Likes)
+                .Include(x => x.Profile)
+                .Include(x => x.Follows)
+                .FirstOrDefault(u => u.Slug == slug);
         }
 
         public User Create(User user, string password)
