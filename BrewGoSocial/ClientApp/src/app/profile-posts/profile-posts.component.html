@@ -20,9 +20,9 @@
                     </div>
                     <div class="card-text mb-1">{{post.postBody}}</div>
                     <div class="likes-comments-grid">
-                        <like></like>
+                        <like [postCard]=post (onLike)="exexOnLike()"></like>
                         <div class="text-muted like-count">
-                            {{post.likes?.length}}
+                            {{post.likes.length}}
                         </div> 
                         <a class="comments-link" [routerLink]="['/posts/' + post.postId]">
                             <div class="card-text text-muted mb-1 comments"><i class="far fa-comment"></i> {{post.comments.length}}</div>

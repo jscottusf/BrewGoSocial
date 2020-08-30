@@ -2,6 +2,10 @@
   cursor: pointer;
 }
 
-.icon:hover {
+.notLiked:hover {
+  color: red !important;
+}
+
+.liked {
   color: red !important;
 }
