@@ -5,7 +5,6 @@ using BrewGoSocial.Entities;
 using BrewGoSocial.Models;
 using BrewGoSocial.Helpers;
 using Microsoft.EntityFrameworkCore;
-using NinjaNye.SearchExtensions;
 
 namespace BrewGoSocial.Services
 {

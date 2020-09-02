@@ -34,25 +34,25 @@ namespace BrewGoSocial.Services
                 throw new ArgumentNullException(nameof(like));
             }
 
-            var user = _context.Users.FirstOrDefault(u => u.Id == like.UserId);
-
-            if (user == null)
+            if (like.UserId != like.PosterId)
             {
-                throw new ArgumentNullException(nameof(user));
+                var user = _context.Users.FirstOrDefault(u => u.Id == like.UserId);
+
+                var notification = new Notification
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Username = user.Username,
+                    Slug = user.Slug,
+                    NotificationType = "liked",
+                    UserId = like.PosterId,
+                    PostId = like.PostId,
+                    LikerId = like.UserId
+                };
+
+                _context.Notifications.Add(notification);
             }
-
-            var notification = new Notification
-            {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Username = user.Username,
-                Slug = user.Slug,
-                NotificationType = "liked your post",
-                UserId = like.PosterId,
-                PostId = like.PostId,
-                LikerId = like.UserId
-            };
-            _context.Notifications.Add(notification);
+            
             _context.Likes.Add(like);
         }
 
@@ -63,10 +63,7 @@ namespace BrewGoSocial.Services
                 throw new NotImplementedException(nameof(like));
             }
             var notification = _context.Notifications.FirstOrDefault(n => n.PostId == like.PostId && n.LikerId == like.UserId);
-            if (notification == null)
-            {
-                throw new NotImplementedException(nameof(notification));
-            }
+            
             _context.Notifications.Remove(notification);
             _context.Likes.Remove(like);
         }

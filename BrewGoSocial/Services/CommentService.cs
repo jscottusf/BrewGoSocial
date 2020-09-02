@@ -32,6 +32,24 @@ namespace BrewGoSocial.Services
             {
                 throw new ArgumentNullException(nameof(comment));
             }
+
+            if (comment.UserId != comment.OriginalPosterId)
+            {
+                var notification = new Notification
+                {
+                    FirstName = comment.FirstName,
+                    LastName = comment.LastName,
+                    Username = comment.Username,
+                    Slug = comment.Slug,
+                    NotificationType = "commented",
+                    UserId = comment.OriginalPosterId,
+                    PostId = comment.PostId,
+                    LikerId = comment.UserId
+                };
+
+                _context.Notifications.Add(notification);
+            }
+            
             _context.Comments.Add(comment);
         }
 

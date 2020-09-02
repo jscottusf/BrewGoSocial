@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.ItemProperties.BrewGoSocial PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="BrewGoSocial/Controllers/UsersController.cs">
     <Files>
-      <File FileName="BrewGoSocial/ClientApp/src/app/profile-posts/profile-posts.component.html" Line="29" Column="29" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/post-page/post-page.component.html" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/social-feed/social-feed.component.html" />
-      <File FileName="BrewGoSocial/ClientApp/src/app/like/like.component.html" Line="5" Column="72" />
-      <File FileName="BrewGoSocial/Controllers/UsersController.cs" Line="172" Column="9" />
+      <File FileName="BrewGoSocial/Controllers/UsersController.cs" Line="174" Column="42" />
+      <File FileName="BrewGoSocial/Services/CommentService.cs" />
+      <File FileName="BrewGoSocial/Services/LikeService.cs" />
+      <File FileName="BrewGoSocial/Services/NotificationService.cs" />
+      <File FileName="BrewGoSocial/Services/UserService.cs" Line="7" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,6 +16,7 @@
               <Node name="Controllers" expanded="True">
                 <Node name="UsersController.cs" selected="True" />
               </Node>
+              <Node name="Helpers" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>
           </Node>
