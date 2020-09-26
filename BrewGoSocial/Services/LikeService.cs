@@ -63,8 +63,12 @@ namespace BrewGoSocial.Services
                 throw new NotImplementedException(nameof(like));
             }
             var notification = _context.Notifications.FirstOrDefault(n => n.PostId == like.PostId && n.LikerId == like.UserId);
-            
-            _context.Notifications.Remove(notification);
+
+            if (notification != null)
+            {
+                _context.Notifications.Remove(notification);
+            }
+
             _context.Likes.Remove(like);
         }
 
