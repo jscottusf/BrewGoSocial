@@ -14,7 +14,7 @@ export class SavedBreweriesComponent implements OnInit {
   alertShow = false;
   alertMessage = "";
   alertType = "";
-  public breweries: BreweryModel;
+  public breweries: BreweryModel[];
 
   constructor(
     private breweryService: BreweryService,
