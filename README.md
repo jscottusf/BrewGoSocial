@@ -14,6 +14,8 @@ In addition to brewery and restaurant searching, you can connect with other user
 - UI : Angular, TypeScript, Bootstrap CSS
 - API : Asp.net Core, EntityFramework Core, C#
 
+## Demo
+
 Demo: https://brewgo.azurewebsites.net/
 
 -   Login: user
