@@ -12,7 +12,7 @@ In addition to brewery and restaurant searching, you can connect with other user
 
 ## Technologies
 - UI : Angular, TypeScript, Bootstrap CSS
-- API : Asp.net Core, EntityFramework Core, C#
+- API : Asp.Net Core, EntityFramework Core, C#
 
 ## Demo
 
