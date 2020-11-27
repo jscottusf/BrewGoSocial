@@ -10,7 +10,7 @@ namespace BrewGoSocial.Services
     public interface INotificationService
     {
         bool SaveChanges();
-        IEnumerable<Notification> GetAll();
+        IEnumerable<Notification> GetAllById(int id);
         Notification GetNotificationById(int id);
         void Create(Notification notification);
         void Update(Notification notification);
@@ -44,9 +44,9 @@ namespace BrewGoSocial.Services
             _context.Notifications.Remove(notification);
         }
 
-        public IEnumerable<Notification> GetAll()
+        public IEnumerable<Notification> GetAllById(int id)
         {
-            return _context.Notifications.ToList();
+            return _context.Notifications.Where(x => x.UserId == id);
         }
 
         public Notification GetNotificationById(int id)

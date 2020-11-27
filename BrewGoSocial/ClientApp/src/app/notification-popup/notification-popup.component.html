@@ -1,0 +1,19 @@
+<div
+  class="nav-link bell"
+  popoverTitle="Notifications"
+  [autoClose]="true"
+  [ngbPopover]="popContent"
+>
+  <i class="fas fa-bell"></i>
+</div>
+
+<ng-template #popContent>
+  <div *ngFor="let notification of notifications">
+    <div class="notifications">
+      <a class="text-dark"
+        >{{ notification.firstName }} {{ notification.lastName }}</a
+      >
+      {{ notification.notificationType }}
+    </div>
+  </div>
+</ng-template>

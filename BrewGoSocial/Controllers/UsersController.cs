@@ -27,6 +27,7 @@ namespace BrewGoSocial.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
+        private ILikeService _likeService;
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
 

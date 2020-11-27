@@ -23,7 +23,6 @@ namespace BrewGoSocial.Controllers
             _service = service;
         }
 
-        //GET api/posts
         [HttpGet]
         public ActionResult<IEnumerable<Post>> GetAll()
         {
@@ -32,7 +31,6 @@ namespace BrewGoSocial.Controllers
             return Ok(posts);
         }
 
-        //GET api/posts/:id
         [HttpGet("{id}", Name = "GetPostById")]
         public ActionResult<Post> GetPostById(int id)
         {
@@ -44,7 +42,6 @@ namespace BrewGoSocial.Controllers
             return Ok(post);
         }
 
-        //Post api/posts
         [HttpPost]
         public ActionResult<Post> Create(Post post)
         {
@@ -57,12 +54,10 @@ namespace BrewGoSocial.Controllers
             }
             catch (AppException ex)
             {
-                // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
             }
         }
 
-        //put api/posts
         [HttpPut("{id}")]
         public ActionResult Update(int id, Post post)
         {
@@ -76,7 +71,6 @@ namespace BrewGoSocial.Controllers
             return NoContent();
         }
 
-        //delete post by id
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {

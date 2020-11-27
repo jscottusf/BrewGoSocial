@@ -35,6 +35,7 @@ import { SocialFeedComponent } from './social-feed/social-feed.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { LikeComponent } from './like/like.component';
 import { FollowComponent } from './follow/follow.component';
+import { NotificationPopupComponent } from './notification-popup/notification-popup.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { FollowComponent } from './follow/follow.component';
     UserSearchComponent,
     LikeComponent,
     FollowComponent,
+    NotificationPopupComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

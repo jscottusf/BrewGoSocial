@@ -1,67 +1,104 @@
 <div *ngIf="!posts" class="text-center bg-white pt-0 loading-div">
-    <img class="animated-gif" src="../../assets/images/loading.gif" />
+  <img class="animated-gif" src="../../assets/images/loading.gif" />
 </div>
-<h5 class="text-center m-3 p-3" *ngIf="posts?.length == 0">No posts to BrewGo Social</h5>
+<h5 class="text-center m-3 p-3" *ngIf="posts?.length == 0">
+  No posts to BrewGo Social
+</h5>
 <div *ngFor="let post of posts">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-2 sm-3">
-                    <div id="postImgDiv">
-                        <a [routerLink]="['/users/' + post.slug]">
-                            <img id="postImg" src="{{post.profileImgUrl}}" />
-                        </a>
-                    </div>
-                </div>
-                <div class="col-10 sm-9">
-                    <div class="postcard-grid">
-                        <h5 class="card-title mb-2">{{post.firstName}} {{post.lastName}}</h5>
-                        <h7 class="card-subtitle mb-2 text-muted">{{moment(post.createdDate).format('MMMM Do YYYY, h:mm a')}}</h7>
-                    </div>
-                    <div class="card-text mb-1">{{post.postBody}}</div>
-                    <div class="likes-comments-grid">
-                        <like [postCard]=post (onLike)="exexOnLike()"></like>
-                        <div class="text-muted like-count">
-                            {{post.likes.length}}
-                        </div> 
-                        <a class="comments-link" [routerLink]="['/posts/' + post.postId]">
-                            <div class="card-text text-muted mb-1 comments"><i class="far fa-comment"></i> {{post.comments.length}}</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2 sm-3">
+          <div id="postImgDiv">
+            <a [routerLink]="['/users/' + post.slug]">
+              <img id="postImg" src="{{ post.profileImgUrl }}" />
+            </a>
+          </div>
         </div>
-        <div>
-            <div *ngIf="user.id == post.userId" class="dropdown">
-                <i class="fas fa-ellipsis-h" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div class="dropdown-item" (click)="getPostData(post.postId); open(editPost)">Edit Post</div>
-                    <div class="dropdown-item" (click)="deletePost(post.postId)">Delete Post</div>
-                </div>
+        <div class="col-10 sm-9">
+          <div class="postcard-grid">
+            <h5 class="card-title mb-2">
+              {{ post.firstName }} {{ post.lastName }}
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted date">
+              {{ moment(post.createdDate).format("MMMM Do YYYY, h:mm a") }}
+            </h6>
+          </div>
+          <div class="card-text mb-1">{{ post.postBody }}</div>
+          <div class="likes-comments-grid">
+            <like [postCard]="post" (onLike)="exexOnLike()"></like>
+            <div class="text-muted like-count">
+              {{ post.likes.length }}
             </div>
+            <a class="comments-link" [routerLink]="['/posts/' + post.postId]">
+              <div class="card-text text-muted mb-1 comments">
+                <i class="far fa-comment"></i> {{ post.comments.length }}
+              </div>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
+    <div>
+      <div *ngIf="user.id == post.userId" class="dropdown">
+        <i
+          class="fas fa-ellipsis-h"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        ></i>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div
+            class="dropdown-item"
+            (click)="getPostData(post.postId); open(editPost)"
+          >
+            Edit Post
+          </div>
+          <div class="dropdown-item" (click)="deletePost(post.postId)">
+            Delete Post
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #editPost let-c="close">
-    <div class="card" style="width: 100%;">
-        <div class="card-body">
-            <div [formGroup]="editForm" (ngSubmit)="c(submitChanges())">
-                <div class="post-grid">
-                    <div id="postImgDiv">
-                        <img id="postImg" src="{{postData.profileImgUrl}}" alt="profile image" />
-                    </div>
-                    <div>
-                        <h5 class="card-title mt-2">{{postData.firstName}} {{postData.lastName}}</h5>
-                    </div>
-                    <div>
-                        <button id="editPostBtn" class="btn btn-sm btn-primary" (click)="c(submitChanges())">Submit Changes</button>
-                    </div>
-                </div>
-                <div class="postText form-group">
-                    <textarea formControlName="postBody" class="form-control" rows="10"></textarea>
-                </div>
-            </div>
+  <div class="card" style="width: 100%">
+    <div class="card-body">
+      <div [formGroup]="editForm" (ngSubmit)="c(submitChanges())">
+        <div class="post-grid">
+          <div id="postImgDiv">
+            <img
+              id="postImg"
+              src="{{ postData.profileImgUrl }}"
+              alt="profile image"
+            />
+          </div>
+          <div>
+            <h5 class="card-title mt-2">
+              {{ postData.firstName }} {{ postData.lastName }}
+            </h5>
+          </div>
+          <div>
+            <button
+              id="editPostBtn"
+              class="btn btn-sm btn-primary"
+              (click)="c(submitChanges())"
+            >
+              Submit Changes
+            </button>
+          </div>
         </div>
+        <div class="postText form-group">
+          <textarea
+            formControlName="postBody"
+            class="form-control"
+            rows="10"
+          ></textarea>
+        </div>
+      </div>
     </div>
+  </div>
 </ng-template>
