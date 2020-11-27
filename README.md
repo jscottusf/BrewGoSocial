@@ -10,6 +10,12 @@ In addition to brewery and restaurant searching, you can connect with other user
 
 ### Enter location, get buzzed, eat food
 
+## Technologies
+- UI : Angular, TypeScript, Bootstrap CSS
+- API : Asp.Net Core, EntityFramework Core, C#
+
+## Demo
+
 Demo: https://brewgo.azurewebsites.net/
 
 -   Login: user
