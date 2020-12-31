@@ -23,14 +23,21 @@ namespace BrewGoSocial.Controllers
             _service = service;
         }
 
-        [HttpGet("{id}", Name = "GetNotificationById")]
-        public ActionResult<IEnumerable<Notification>> GetAllById(int id)
+        [HttpGet]
+        public ActionResult<IEnumerable<Post>> GetAll()
         {
-            var notifications = _service.GetAllById(id);
+            var notifications = _service.GetAll();
             return Ok(notifications);
         }
 
-        [HttpDelete("{id")]
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<Notification>> GetAllByUserId(int id)
+        {
+            var notifications = _service.GetAllByUserId(id);
+            return Ok(notifications);
+        }
+
+        [HttpDelete("{id}")]
         public ActionResult<Notification> Delete(int id)
         {
             var notification = _service.GetNotificationById(id);

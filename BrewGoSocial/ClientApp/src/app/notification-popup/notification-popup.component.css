@@ -2,8 +2,54 @@
   cursor: pointer;
 }
 
+.badge {
+  font-size: 50%;
+  position: absolute;
+  top: 6px;
+  right: 2px;
+}
+
+.bell-container {
+  position: relative;
+}
+
 .notifications {
-  width: 500px;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.notifications .user-name {
+  margin-right: 2px;
+}
+
+.notifications .link {
+  cursor: pointer;
+}
+
+.notifications .link:hover {
+  font-weight: 600;
+}
+
+.delete-like {
+  cursor: pointer;
+}
+
+::ng-deep .popover {
+  width: 500px !important;
+  max-width: none !important;
+}
+
+::ng-deep .bs-popover-bottom > .arrow::after {
+  border-bottom-color: #353b40;
+}
+
+::ng-deep .popover-header {
+  background-color: #353b40;
+  color: #fff;
+}
+
+::ng-deep .bs-popover-bottom .popover-header::before {
+  width: 0;
 }

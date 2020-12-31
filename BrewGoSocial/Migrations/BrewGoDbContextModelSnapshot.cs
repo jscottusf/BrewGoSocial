@@ -153,9 +153,6 @@ namespace BrewGoSocial.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LikerName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 

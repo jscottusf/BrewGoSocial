@@ -21,7 +21,7 @@
               {{ post.firstName }} {{ post.lastName }}
             </h5>
             <h6 class="card-subtitle mb-2 text-muted date">
-              {{ moment(post.createdDate).format("MMMM Do YYYY, h:mm a") }}
+              {{ moment(post.createdDate).format("L h:mm a") }}
             </h6>
           </div>
           <div class="card-text mb-1">{{ post.postBody }}</div>

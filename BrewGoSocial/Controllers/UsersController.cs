@@ -27,7 +27,6 @@ namespace BrewGoSocial.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
-        private ILikeService _likeService;
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
 
@@ -169,8 +168,6 @@ namespace BrewGoSocial.Controllers
             var model = _mapper.Map<IList<PublicUserModel>>(users);
             return Ok(model);
         }
-
-        
 
         [HttpPost("imgupload/{id}")]
         public async Task FileImageAsync(int id)

@@ -21,6 +21,7 @@ export class PostPageComponent implements OnInit {
   submitted = false;
   user: User;
   postId: string;
+  showElipsis: boolean;
   public comments: CommentModel[];
   public post: PostModel;
   public editForm: FormGroup;
@@ -35,13 +36,14 @@ export class PostPageComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {
-    this.user = this.accountService.userValue;
-    this.postId = this.route.snapshot.paramMap.get("id");
+    this.route.params.subscribe((res) => {
+      this.postId = res.id;
+      this.user = this.accountService.userValue;
+      this.getPostData(this.postId);
+    });
   }
 
-  ngOnInit(): void {
-    this.getPostData(this.postId);
-  }
+  ngOnInit(): void {}
 
   getPostData(id) {
     this.postService
@@ -49,6 +51,8 @@ export class PostPageComponent implements OnInit {
       .toPromise()
       .then((data) => {
         this.post = data;
+        console.log(this.post.userId, this.user.id);
+        this.showElipsis = this.post.userId === parseInt(this.user.id);
         this.comments = data.comments;
         this.setForm();
       })
@@ -84,7 +88,6 @@ export class PostPageComponent implements OnInit {
     if (/\S/.test(this.editForm.value.postBody) === false) {
       return;
     }
-    console.log(this.editForm.value);
     this.postService
       .editPost(this.post.postId, this.editForm.value)
       .subscribe((res) => {

@@ -1,19 +1,47 @@
 <div
-  class="nav-link bell"
+  class="bell-container"
   popoverTitle="Notifications"
   [autoClose]="true"
   [ngbPopover]="popContent"
+  style="cursor: pointer"
 >
-  <i class="fas fa-bell"></i>
+  <span *ngIf="notifications?.length" class="badge badge-danger">{{
+    notifications?.length
+  }}</span>
+  <div class="nav-link bell">
+    <i class="fas fa-bell"></i>
+  </div>
 </div>
 
 <ng-template #popContent>
   <div *ngFor="let notification of notifications">
     <div class="notifications">
-      <a class="text-dark"
-        >{{ notification.firstName }} {{ notification.lastName }}</a
-      >
-      {{ notification.notificationType }}
+      <div>
+        <span
+          class="user-name link"
+          (click)="navigateToUserProfile(notification.slug)"
+        >
+          {{ notification.firstName }} {{ notification.lastName }}
+        </span>
+        <span> {{ notification.notificationType }} </span>
+        <span *ngIf="notification.notificationType == 'liked'">
+          your
+          <span (click)="navigateToPost(notification.postId)" class="link"
+            >post</span
+          ></span
+        >
+        <span *ngIf="notification.notificationType == 'commented'">
+          on your
+          <span (click)="navigateToPost(notification.postId)" class="link"
+            >post</span
+          ></span
+        >
+      </div>
+      <span
+        (click)="deleteNotification(notification.notificationId)"
+        class="delete-like"
+        ><i class="fas fa-times-circle"></i
+      ></span>
     </div>
   </div>
 </ng-template>

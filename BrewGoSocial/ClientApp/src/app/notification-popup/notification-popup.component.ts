@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { User, NotificationModel } from "../_models";
 import { AccountService } from "../_services";
 import { NotificationService } from "../_services/notifcation.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "notification-popup",
@@ -14,21 +15,38 @@ export class NotificationPopupComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) {
     this.user = this.accountService.userValue;
   }
 
   ngOnInit(): void {
     this.getNotifications();
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 3000);
   }
 
   getNotifications() {
     this.notificationService
       .getNotificationsById(this.user.id)
       .subscribe((notifications: NotificationModel[]) => {
-        console.log(notifications);
         this.notifications = notifications;
       });
+  }
+
+  deleteNotification(id) {
+    this.notificationService.deleteNotification(id).subscribe(() => {
+      this.getNotifications();
+    });
+  }
+
+  navigateToUserProfile(user) {
+    this.router.navigate(["users/" + user]);
+  }
+
+  navigateToPost(postId) {
+    this.router.navigate(["posts/" + postId]);
   }
 }

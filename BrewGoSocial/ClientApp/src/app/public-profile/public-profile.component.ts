@@ -20,12 +20,14 @@ export class PublicProfileComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
     private accountService: AccountService
   ) {
-    this.slug = this.route.snapshot.paramMap.get("slug");
-    this.profileViewer = this.accountService.userValue;
-    this.getProfileBySlug(this.slug);
+    route.params.subscribe((res) => {
+      this.slug = res.slug;
+      this.profileViewer = this.accountService.userValue;
+      this.getProfileBySlug(this.slug);
+    });
   }
 
   ngOnInit(): void {}
