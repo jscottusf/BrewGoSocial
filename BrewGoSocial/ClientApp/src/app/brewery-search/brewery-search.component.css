@@ -122,10 +122,6 @@ h4 i:hover {
   justify-content: left;
 }
 
-.food-card {
-  min-height: 250px;
-}
-
 .menu-btn {
   position: absolute;
   left: 15px;

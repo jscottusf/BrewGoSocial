@@ -60,6 +60,7 @@ export class BrewerySearchComponent implements OnInit {
     this.breweryAPI.searchBreweryAPI(query).subscribe(
       (data) => {
         this.breweryData = data;
+        console.log(this.breweryData);
         //allows for bootstrap expansion cards to be collapsed or not
         this.breweryData.map((brewery) => (brewery.isCollapsed = true));
         this.city = this.breweryAPI.city;
@@ -121,6 +122,11 @@ export class BrewerySearchComponent implements OnInit {
           this.zomato.getRestaurants(latitude, longitude).subscribe(
             (data: any) => {
               this.restaurants = data.restaurants;
+              this.restaurants.forEach((res) => {
+                res.BrewGoRating = Math.round(
+                  res.restaurant.user_rating.aggregate_rating
+                );
+              });
               this.foodDisplayCount = 0;
             },
             (err) => console.log(err)
