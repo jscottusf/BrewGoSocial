@@ -56,7 +56,7 @@ h4 i:hover {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 5px;
 }
 
@@ -81,8 +81,7 @@ h4 i:hover {
 
 .contact-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 #website a {

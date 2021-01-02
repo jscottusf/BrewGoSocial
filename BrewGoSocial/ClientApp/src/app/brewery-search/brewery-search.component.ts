@@ -6,6 +6,7 @@ import { MapService } from "../_services/mapbox.service";
 import { ZomatoService } from "../_services/zomato.service";
 import { AccountService } from "../_services";
 import { User } from "../_models";
+import * as mapboxgl from "mapbox-gl";
 
 @Component({
   selector: "app-brewery-search",
@@ -14,25 +15,24 @@ import { User } from "../_models";
 })
 export class BrewerySearchComponent implements OnInit {
   //Open BreweryAPI IDs
-  apiIds: any = [];
+  apiIds: any[];
   //Saved Brewery DeleteIds
-  deleteIds: any = [];
+  deleteIds: any[];
 
   alertShow = false;
   savedBreweryList: any;
-  alertMessage = "";
-  alertType = "";
+  alertMessage;
+  alertType;
   user: User;
   form: FormGroup;
-  breweryData: any = [];
-  brewery: any = {};
+  breweryData: any;
+  brewery: any;
   city: string = "";
   areaCode: number;
   prefix: number;
   lineNum: number;
   zip: number;
-  results: any = [];
-  restaurants: any = [];
+  restaurants: any[];
   foodDisplayCount: number = 0;
 
   constructor(
@@ -60,11 +60,21 @@ export class BrewerySearchComponent implements OnInit {
     this.breweryAPI.searchBreweryAPI(query).subscribe(
       (data) => {
         this.breweryData = data;
+        //allows for bootstrap expansion cards to be collapsed or not
+        this.breweryData.map((brewery) => (brewery.isCollapsed = true));
         this.city = this.breweryAPI.city;
         this.getSavedBreweries();
       },
       (err) => console.log(err)
     );
+  }
+
+  closeAllCards(i) {
+    this.breweryData.forEach((brewery, index) => {
+      if (!brewery.isCollapsed && i !== index) {
+        brewery.isCollapsed = true;
+      }
+    });
   }
 
   getSavedBreweries() {
@@ -85,30 +95,43 @@ export class BrewerySearchComponent implements OnInit {
 
   handleClick(brewery) {
     this.brewery = brewery;
-    this.mapBox.getLocation(
-      brewery.street,
-      brewery.city,
-      brewery.state,
-      brewery.postal_code
-    );
+    this.mapBox
+      .getLocation(
+        brewery.street,
+        brewery.city,
+        brewery.state,
+        brewery.postal_code
+      )
+      .subscribe(
+        (res: any) => {
+          let latitude = res.features[0].center[1];
+          let longitude = res.features[0].center[0];
+          this.mapBox.buildMap(longitude, latitude);
+          //display map marker
+          new mapboxgl.Marker()
+            .setLngLat([longitude, latitude])
+            .addTo(this.mapBox.map);
+          //allows for full screen map
+          this.mapBox.map.addControl(new mapboxgl.FullscreenControl());
+          //allows to zoom in and zoom out map
+          this.mapBox.map.addControl(new mapboxgl.NavigationControl());
+          this.mapBox.map.scrollZoom.disable();
+          //this.map.resize(); is done with after a half second timeout
+          setTimeout(() => this.mapBox.map.resize(), 250);
+          this.zomato.getRestaurants(latitude, longitude).subscribe(
+            (data: any) => {
+              this.restaurants = data.restaurants;
+              this.foodDisplayCount = 0;
+            },
+            (err) => console.log(err)
+          );
+        },
+        (err) => console.log(err)
+      );
     this.areaCode = brewery.phone.substr(0, 3);
     this.prefix = brewery.phone.substr(3, 3);
     this.lineNum = brewery.phone.substr(6, 4);
     this.zip = brewery.postal_code.substr(0, 5);
-    setTimeout(
-      () =>
-        this.zomato
-          .getRestaurants(this.mapBox.latitude, this.mapBox.longitude)
-          .subscribe(
-            (data) => {
-              this.results = data;
-              this.restaurants = this.results.restaurants;
-              this.foodDisplayCount = 0;
-            },
-            (err) => console.log(err)
-          ),
-      750
-    );
   }
 
   leftClick() {
@@ -130,13 +153,15 @@ export class BrewerySearchComponent implements OnInit {
   }
 
   exexOnSave($event: any, name) {
+    event.stopPropagation();
     this.brewerySearch(this.city);
     this.alertType = "success";
     this.alertMessage = name + " added to favorites list";
     this.alertShow = true;
   }
 
-  deleteBrewery(id, name) {
+  deleteBrewery(event, id, name) {
+    event.stopPropagation();
     this.breweryService.deleteBrewery(id).subscribe(
       (res) => {
         this.brewerySearch(this.city);

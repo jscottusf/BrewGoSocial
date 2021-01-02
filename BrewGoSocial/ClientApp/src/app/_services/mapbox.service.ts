@@ -19,10 +19,6 @@ export class MapService {
   }
 
   getLocation(address, city, state, zip) {
-    //destory map if it exists
-    if (this.map) {
-      this.map.remove();
-    }
     var locationSearch =
       "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
       encodeURI(address) +
@@ -34,25 +30,8 @@ export class MapService {
       encodeURI(zip) +
       ".json?access_token=" +
       environment.mapBoxAccessToken;
-    return this.http.get(locationSearch).subscribe(
-      (res: any) => {
-        this.latitude = res.features[0].center[1];
-        this.longitude = res.features[0].center[0];
-        this.buildMap(this.longitude, this.latitude);
-        //display map marker
-        new mapboxgl.Marker()
-          .setLngLat([this.longitude, this.latitude])
-          .addTo(this.map);
-        //allows for full screen map
-        this.map.addControl(new mapboxgl.FullscreenControl());
-        //allows to zoom in and zoom out map
-        this.map.addControl(new mapboxgl.NavigationControl());
-        this.map.scrollZoom.disable();
-        //this.map.resize(); is done with after a half second timeout
-        setTimeout(() => this.map.resize(), 250);
-      },
-      (err) => console.log(err)
-    );
+
+    return this.http.get(locationSearch);
   }
 
   buildMap(long, lat) {
