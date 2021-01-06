@@ -169,7 +169,6 @@ namespace BrewGoSocial.Controllers
             return Ok(model);
         }
 
-
         [HttpPost("imgupload/{id}")]
         public async Task FileImageAsync(int id)
         {

@@ -58,7 +58,9 @@
               <div
                 class="card-body"
                 (click)="
-                  closeAllCards(i); collapse.toggle(); handleClick(brewery)
+                  closeAllCards(i, collapse);
+                  collapse.toggle();
+                  handleClick(brewery)
                 "
               >
                 <div
