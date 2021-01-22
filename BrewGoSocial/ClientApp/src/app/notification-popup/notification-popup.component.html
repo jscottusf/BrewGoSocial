@@ -20,22 +20,28 @@
         <span
           class="user-name link"
           (click)="navigateToUserProfile(notification.slug)"
-        >
-          {{ notification.firstName }} {{ notification.lastName }}
+          ><span>{{ notification.firstName }} {{ notification.lastName }}</span>
         </span>
-        <span> {{ notification.notificationType }} </span>
+        <span>{{ notification.notificationType }}</span>
         <span *ngIf="notification.notificationType == 'liked'">
           your
-          <span (click)="navigateToPost(notification.postId)" class="link"
+          <span
+            (click)="navigateToPost(notification.postId)"
+            class="link text-primary"
             >post</span
           ></span
         >
         <span *ngIf="notification.notificationType == 'commented'">
           on your
-          <span (click)="navigateToPost(notification.postId)" class="link"
+          <span
+            (click)="navigateToPost(notification.postId)"
+            class="link text-primary"
             >post</span
           ></span
         >
+        <span class="ml-1">{{
+          moment(notification.createdDate).fromNow()
+        }}</span>
       </div>
       <span
         (click)="deleteNotification(notification.notificationId)"

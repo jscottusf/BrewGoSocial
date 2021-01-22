@@ -3,6 +3,7 @@ import { User, NotificationModel } from "../_models";
 import { AccountService } from "../_services";
 import { NotificationService } from "../_services/notifcation.service";
 import { Router } from "@angular/router";
+import * as moment from "moment";
 
 @Component({
   selector: "notification-popup",
@@ -12,6 +13,7 @@ import { Router } from "@angular/router";
 export class NotificationPopupComponent implements OnInit {
   user: User;
   notifications: NotificationModel[];
+  moment: any = moment;
 
   constructor(
     private accountService: AccountService,

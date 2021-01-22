@@ -21,7 +21,8 @@
 }
 
 .notifications .user-name {
-  margin-right: 2px;
+  font-weight: 600;
+  padding-right: 3px;
 }
 
 .notifications .link {
@@ -29,7 +30,7 @@
 }
 
 .notifications .link:hover {
-  font-weight: 600;
+  text-decoration: underline;
 }
 
 .delete-like {
