@@ -9,6 +9,12 @@
   padding-top: 50px;
 }
 
+.account-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 .hero {
   height: 100vh;
   min-height: 750px;
